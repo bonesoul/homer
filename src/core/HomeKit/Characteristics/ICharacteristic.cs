@@ -21,18 +21,10 @@ namespace Smarty.Core.HomeKit.Characteristics
         public string DisplayName { get; }
 
         /// <summary>
-        /// Format
+        /// The value of the characteristic, which must conform to the ”format” property.The literal value null may also be used
+        /// if the characteristic has no value.This property must be present if and only if the characteristic contains the
+        /// Paired Read permission, see Table 6-4 (page 56).
         /// </summary>
-        public CharacteristicFormat Format { get; }
-
-        /// <summary>
-        /// Unit.
-        /// </summary>
-        public CharacteristicUnit Unit { get; }
-
-        /// <summary>
-        /// Permissions
-        /// </summary>
-        public IReadOnlyList<CharacteristicPermission> Permissions { get; }
+        public dynamic Value { get; }
     }
 }
