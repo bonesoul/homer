@@ -3,21 +3,61 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "smarty.core", "src\core\smarty.core.csproj", "{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smarty.Core", "src\core\Smarty.Core.csproj", "{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{9EA2E57A-D4CA-481B-AA3F-7A6E4E84A106}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contrib", "Contrib", "{EA45AF70-3539-4CB4-9DC5-49CCCAD21A9A}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DaanV2.UUID.Net Source", "contrib\DaanV2.UUID.Net-master\DaanV2.UUID.Net Source\DaanV2.UUID.Net Source.shproj", "{72DE337F-6F32-4E42-9CA3-3F4759275E1E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DaanV2.UUID.Net Core", "contrib\DaanV2.UUID.Net-master\DaanV2.UUID.Net Core\DaanV2.UUID.Net Core.csproj", "{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		contrib\DaanV2.UUID.Net-master\DaanV2.UUID.Net Source\DaanV2.UUID.Net Source.projitems*{72de337f-6f32-4e42-9ca3-3f4759275e1e}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}.Debug|x64.Build.0 = Debug|Any CPU
+		{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}.Debug|x86.Build.0 = Debug|Any CPU
 		{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}.Release|x64.ActiveCfg = Release|Any CPU
+		{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}.Release|x64.Build.0 = Release|Any CPU
+		{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}.Release|x86.ActiveCfg = Release|Any CPU
+		{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}.Release|x86.Build.0 = Release|Any CPU
+		{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9}.Debug|x64.ActiveCfg = Debug|x64
+		{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9}.Debug|x64.Build.0 = Debug|x64
+		{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9}.Debug|x86.ActiveCfg = Debug|x86
+		{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9}.Debug|x86.Build.0 = Debug|x86
+		{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9}.Release|x64.ActiveCfg = Release|x64
+		{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9}.Release|x64.Build.0 = Release|x64
+		{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9}.Release|x86.ActiveCfg = Release|x86
+		{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DA1CF614-7D2E-49BA-B27F-4334B964C2E0} = {9EA2E57A-D4CA-481B-AA3F-7A6E4E84A106}
+		{72DE337F-6F32-4E42-9CA3-3F4759275E1E} = {EA45AF70-3539-4CB4-9DC5-49CCCAD21A9A}
+		{4CFE6081-F3CD-4AAC-9DBD-4937F88FEAC9} = {EA45AF70-3539-4CB4-9DC5-49CCCAD21A9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AFE6693E-8F99-43D6-8CAA-B27A77B81AF6}
