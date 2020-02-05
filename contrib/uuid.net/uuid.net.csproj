@@ -4,8 +4,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\contrib\uuid.net\uuid.net.csproj" />
-  </ItemGroup>
-
 </Project>

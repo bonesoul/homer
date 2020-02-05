@@ -6,4 +6,8 @@
     <RootNamespace>Smarty.Core</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\platforms\homekit\Smarty.Platform.HomeKit.csproj" />
+  </ItemGroup>
+
 </Project>
