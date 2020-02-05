@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Smarty.Core.HomeKit.Accessories;
+using Smarty.Platform.HomeKit.Accessories;
 
-namespace Smarty.Core.HomeKit.Bridges
+namespace Smarty.Platform.HomeKit.Bridges
 {
     /// <summary>
     /// Bridge interface.

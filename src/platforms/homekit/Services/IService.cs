@@ -1,6 +1,6 @@
 ﻿using DaanV2.UUID;
 
-namespace Smarty.Core.HomeKit.Services
+namespace Smarty.Platform.HomeKit.Services
 {
     /// <summary>
     /// Interface for HomeKit services.

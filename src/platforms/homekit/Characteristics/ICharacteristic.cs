@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using DaanV2.UUID;
+﻿using DaanV2.UUID;
 
-namespace Smarty.Core.HomeKit.Characteristics
+namespace Smarty.Platform.HomeKit.Characteristics
 {
     /// <summary>
     /// A characteristic is a feature that represents data or an associated behavior of a service. The characteristic is defined

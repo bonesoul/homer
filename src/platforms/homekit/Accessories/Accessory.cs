@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DaanV2.UUID;
-using Smarty.Core.HomeKit.Bridges;
-using Smarty.Core.HomeKit.Services;
+using Smarty.Platform.HomeKit.Bridges;
+using Smarty.Platform.HomeKit.Services;
 
-namespace Smarty.Core.HomeKit.Accessories
+namespace Smarty.Platform.HomeKit.Accessories
 {
     public class Accessory : IAccessory
     {

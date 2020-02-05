@@ -1,4 +1,4 @@
-﻿namespace Smarty.Core.HomeKit.Characteristics
+﻿namespace Smarty.Platform.HomeKit.Characteristics
 {
     /// <summary>
     /// Data units.
