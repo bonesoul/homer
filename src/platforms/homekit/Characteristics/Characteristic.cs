@@ -14,7 +14,7 @@ namespace Homer.Platform.HomeKit.Characteristics
         public string DisplayName { get; }
 
         /// <inheritdoc />
-        public dynamic Value { get; }
+        public dynamic Value { get; private set; }
 
         /// <inheritdoc />
         public IReadOnlyList<CharacteristicPermission> Permissions { get; }
@@ -64,8 +64,6 @@ namespace Homer.Platform.HomeKit.Characteristics
             if (!string.IsNullOrEmpty(displayName)) DisplayName = displayName;
             else throw new ArgumentException("Characteristics must be created with a non-empty displayName.", nameof(displayName));
 
-            Value = GetDefaultValue();
-            
             Permissions = permissions ?? throw new ArgumentNullException(nameof(permissions));
             if (Permissions.Count == 0) throw new ArgumentException("Characteristics must have permissions defined.", nameof(displayName));
 
@@ -81,6 +79,13 @@ namespace Homer.Platform.HomeKit.Characteristics
             MaxDataLength = maxDataLength;
             ValidValues = validValues;
             ValidValuesRange = validValuesRange;
+
+            Value = GetDefaultValue();
+        }
+
+        public void SetValue(dynamic value)
+        {
+            Value = value;
         }
 
         private dynamic GetDefaultValue()

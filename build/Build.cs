@@ -58,7 +58,8 @@ namespace Homer.Build
             {
                 "contrib/uuid.net/uuid.net.csproj",
                 "src/platforms/homekit/Homer.Platform.HomeKit.csproj",
-                "src/core/Homer.Core.csproj"
+                "src/core/Homer.Core.csproj",
+                "src/server/Homer.Server.csproj"
             };
 
             var testProjects = new string[]

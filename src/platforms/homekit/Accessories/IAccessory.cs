@@ -1,4 +1,5 @@
 ﻿using Homer.Platform.HomeKit.Bridges;
+using Homer.Platform.HomeKit.Entity;
 
 namespace Homer.Platform.HomeKit.Accessories
 {

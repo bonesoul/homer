@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Homer.Platform.HomeKit.Accessories;
+using Homer.Platform.HomeKit.Entity;
 
 namespace Homer.Platform.HomeKit.Bridges
 {

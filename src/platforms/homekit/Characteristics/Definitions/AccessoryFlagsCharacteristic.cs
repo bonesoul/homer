@@ -2,9 +2,9 @@
 
 namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
-    public class AccessoryFlags : Characteristic
+    public class AccessoryFlagsCharacteristic : Characteristic
     {
-        public AccessoryFlags() : base(
+        public AccessoryFlagsCharacteristic() : base(
             "000000A6-0000-1000-8000-0026BB765291", 
             "Accessory Flags",
             CharacteristicFormat.Uint32,

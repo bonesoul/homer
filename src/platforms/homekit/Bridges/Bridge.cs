@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DaanV2.UUID;
 using Homer.Platform.HomeKit.Accessories;
+using Homer.Platform.HomeKit.Entity;
 using Homer.Platform.HomeKit.Services;
 
 namespace Homer.Platform.HomeKit.Bridges

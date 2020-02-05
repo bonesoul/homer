@@ -1,20 +1,18 @@
-﻿using DaanV2.UUID;
+﻿using System;
+using System.Collections.Generic;
+using DaanV2.UUID;
+using Homer.Platform.HomeKit.Characteristics;
+using Homer.Platform.HomeKit.Entity;
 
 namespace Homer.Platform.HomeKit.Services
 {
     /// <summary>
     /// Interface for HomeKit services.
     /// </summary>
-    public interface IService
+    public interface IService: IEntity
     {
-        /// <summary>
-        /// UUID of the service.
-        /// </summary>
-        public UUID Uuid { get; }
+        public IReadOnlyDictionary<Type, ICharacteristic> Characteristics { get; }
 
-        /// <summary>
-        /// Display name of the service.
-        /// </summary>
-        public string DisplayName { get; }
+        public IService SetCharacteristic(Type t, dynamic value);
     }
 }

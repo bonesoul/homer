@@ -25,5 +25,7 @@ namespace Homer.Platform.HomeKit.Characteristics
         /// Paired Read permission, see Table 6-4 (page 56).
         /// </summary>
         public dynamic Value { get; }
+
+        public void SetValue(dynamic value);
     }
 }

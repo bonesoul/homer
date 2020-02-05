@@ -6,8 +6,4 @@
     <RootNamespace>Homer.Core</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\platforms\homekit\Homer.Platform.HomeKit.csproj" />
-  </ItemGroup>
-
 </Project>
