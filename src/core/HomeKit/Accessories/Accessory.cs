@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DaanV2.UUID;
-using Smarty.Core.HomeKit.Bridge;
-using Smarty.Core.HomeKit.Service;
+using Smarty.Core.HomeKit.Bridges;
+using Smarty.Core.HomeKit.Services;
 
-namespace Smarty.Core.HomeKit.Accessory
+namespace Smarty.Core.HomeKit.Accessories
 {
     public class Accessory : IAccessory
     {
@@ -49,6 +49,8 @@ namespace Smarty.Core.HomeKit.Accessory
 
             _services = new List<IService>();
             Services = new ReadOnlyCollection<IService>(_services);
+
+            // create our initial "Accessory Information" Service that all Accessories are expected to have.
         }
     }
 }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DaanV2.UUID;
-using Smarty.Core.HomeKit.Accessory;
-using Smarty.Core.HomeKit.Service;
+using Smarty.Core.HomeKit.Accessories;
+using Smarty.Core.HomeKit.Services;
 
-namespace Smarty.Core.HomeKit.Bridge
+namespace Smarty.Core.HomeKit.Bridges
 {
     public class Bridge : IBridge
     {
@@ -44,11 +44,11 @@ namespace Smarty.Core.HomeKit.Bridge
 
         public Bridge(string uuid, string displayName)
         {
-            Uuid = uuid ?? throw new ArgumentException("Accessories must be created with a valid UUID.", nameof(uuid));
+            Uuid = uuid ?? throw new ArgumentException("Bridges must be created with a valid UUID.", nameof(uuid));
             if (!UUIDValidator.IsValidUUID(Uuid)) throw new ArgumentException("Provided UUID is not valid.", nameof(uuid));
 
             if (!string.IsNullOrEmpty(displayName)) DisplayName = displayName;
-            else throw new ArgumentException("Accessories must be created with a non-empty displayName.", nameof(displayName));
+            else throw new ArgumentException("Bridges must be created with a non-empty displayName.", nameof(displayName));
 
             IsBridged = false; // a bridge can not be bridged again.
             Category = AccessoryCategory.Bridge; // set category.

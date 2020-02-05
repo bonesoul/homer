@@ -1,4 +1,4 @@
-﻿namespace Smarty.Core.HomeKit.Accessory
+﻿namespace Smarty.Core.HomeKit.Accessories
 {
     /// <summary>
     /// Accessory categories
