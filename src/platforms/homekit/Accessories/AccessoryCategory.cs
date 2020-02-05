@@ -1,4 +1,4 @@
-﻿namespace Smarty.Platform.HomeKit.Accessories
+﻿namespace Homer.Platform.HomeKit.Accessories
 {
     /// <summary>
     /// Accessory categories

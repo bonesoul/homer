@@ -1,6 +1,6 @@
-﻿using Smarty.Platform.HomeKit.Bridges;
+﻿using Homer.Platform.HomeKit.Bridges;
 
-namespace Smarty.Platform.HomeKit.Accessories
+namespace Homer.Platform.HomeKit.Accessories
 {
     /// <summary>
     /// Accessory interface.

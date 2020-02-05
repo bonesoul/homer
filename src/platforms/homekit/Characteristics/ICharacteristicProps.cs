@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Smarty.Platform.HomeKit.Characteristics
+namespace Homer.Platform.HomeKit.Characteristics
 {
     public interface ICharacteristicProps
     {

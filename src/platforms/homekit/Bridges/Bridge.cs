@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DaanV2.UUID;
-using Smarty.Platform.HomeKit.Accessories;
-using Smarty.Platform.HomeKit.Services;
+using Homer.Platform.HomeKit.Accessories;
+using Homer.Platform.HomeKit.Services;
 
-namespace Smarty.Platform.HomeKit.Bridges
+namespace Homer.Platform.HomeKit.Bridges
 {
     public class Bridge : IBridge
     {

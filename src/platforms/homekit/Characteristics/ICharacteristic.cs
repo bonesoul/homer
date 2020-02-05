@@ -1,6 +1,6 @@
 ﻿using DaanV2.UUID;
 
-namespace Smarty.Platform.HomeKit.Characteristics
+namespace Homer.Platform.HomeKit.Characteristics
 {
     /// <summary>
     /// A characteristic is a feature that represents data or an associated behavior of a service. The characteristic is defined

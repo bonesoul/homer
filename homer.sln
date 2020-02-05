@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smarty.Core", "src\core\Smarty.Core.csproj", "{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homer.Core", "src\core\Homer.Core.csproj", "{DA1CF614-7D2E-49BA-B27F-4334B964C2E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{9EA2E57A-D4CA-481B-AA3F-7A6E4E84A106}"
 EndProject
@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contrib", "Contrib", "{EA45
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{ED96F7FE-6FF3-4C84-9976-46D2C8557E8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smarty.Platform.HomeKit", "src\platforms\homekit\Smarty.Platform.HomeKit.csproj", "{75D7361A-EEC0-489C-AA21-3B0511668D9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homer.Platform.HomeKit", "src\platforms\homekit\Homer.Platform.HomeKit.csproj", "{75D7361A-EEC0-489C-AA21-3B0511668D9D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smarty.Build", "build\Smarty.Build.csproj", "{270DC829-5D6A-4A10-AADF-1C5302651C19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Homer.Build", "build\Homer.Build.csproj", "{270DC829-5D6A-4A10-AADF-1C5302651C19}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "uuid.net", "contrib\uuid.net\uuid.net.csproj", "{A7F57E76-2DD1-4E29-97E0-BBB27DAB3F25}"
 EndProject

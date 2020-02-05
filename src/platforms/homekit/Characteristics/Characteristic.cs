@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using DaanV2.UUID;
-using Smarty.Platform.HomeKit.Events;
+using Homer.Platform.HomeKit.Events;
 
-namespace Smarty.Platform.HomeKit.Characteristics
+namespace Homer.Platform.HomeKit.Characteristics
 {
     public class Characteristic : EventEmitter, ICharacteristic, ICharacteristicProps
     {

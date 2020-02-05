@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Smarty.Platform.HomeKit.Characteristics.Definitions
+namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class AccessoryFlags : Characteristic
     {

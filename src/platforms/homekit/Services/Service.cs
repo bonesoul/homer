@@ -1,7 +1,7 @@
 ﻿using System;
 using DaanV2.UUID;
 
-namespace Smarty.Platform.HomeKit.Services
+namespace Homer.Platform.HomeKit.Services
 {
     public class Service : IService
     {

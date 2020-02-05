@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using DaanV2.UUID;
-using Smarty.Platform.HomeKit.Services;
+using Homer.Platform.HomeKit.Services;
 
-namespace Smarty.Platform.HomeKit.Accessories
+namespace Homer.Platform.HomeKit.Accessories
 {
     /// <summary>
     /// Base accessory interface.

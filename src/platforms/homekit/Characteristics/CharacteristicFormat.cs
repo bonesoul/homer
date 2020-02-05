@@ -1,4 +1,4 @@
-﻿namespace Smarty.Platform.HomeKit.Characteristics
+﻿namespace Homer.Platform.HomeKit.Characteristics
 {
     // Data presentation formats.
     public enum CharacteristicFormat

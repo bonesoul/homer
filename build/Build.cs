@@ -14,7 +14,7 @@ using McMaster.Extensions.CommandLineUtils;
 using static Bullseye.Targets;
 using static SimpleExec.Command;
 
-namespace HypeEngine.Build
+namespace Homer.Build
 {
     [Command(ThrowOnUnexpectedArgument = false)]
     [SuppressDefaultHelpOption]
@@ -57,8 +57,8 @@ namespace HypeEngine.Build
             var projects = new []
             {
                 "contrib/uuid.net/uuid.net.csproj",
-                "src/platforms/homekit/Smarty.Platform.HomeKit.csproj",
-                "src/core/Smarty.Core.csproj"
+                "src/platforms/homekit/Homer.Platform.HomeKit.csproj",
+                "src/core/Homer.Core.csproj"
             };
 
             var testProjects = new string[]
