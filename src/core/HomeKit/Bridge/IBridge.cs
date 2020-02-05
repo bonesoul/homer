@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Smarty.Core.Accessory;
+﻿using System.Collections.Generic;
+using Smarty.Core.HomeKit.Accessory;
 
-namespace Smarty.Core.Bridge
+namespace Smarty.Core.HomeKit.Bridge
 {
     /// <summary>
     /// Bridge interface.
