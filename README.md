@@ -36,5 +36,7 @@ dotnet test
 ## Building
 
 ```
-./build.sh
+Windows: .\build.cmd
+Linux: ./build.sh
+MacOS: ./build.sh
 ```
