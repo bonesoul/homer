@@ -41,20 +41,32 @@ namespace Homer.Platform.HomeKit.Characteristics
         /// <summary>
         /// UUID of the characteristic.
         /// </summary>
-        public UUID Uuid { get; }
+        UUID Uuid { get; }
+
+        /// <summary>
+        /// instance IDs are numbers with a range of [1, 18446744073709551615] for IP accessories (see ”7.4.4.2 Instance IDs”
+        /// (page 122) for BLE accessories). These numbers are used to uniquely identify HAP accessory objects within an HAP
+        /// accessory server, or uniquely identify services, and characteristics within an HAP accessory object. The instance ID
+        /// for each object must be unique for the lifetime of the server/client pairing.
+        /// </summary>
+        int InstanceId { get; }
 
         /// <summary>
         /// Display name of the characteristic.
         /// </summary>
-        public string DisplayName { get; }
+        string DisplayName { get; }
 
         /// <summary>
         /// The value of the characteristic, which must conform to the ”format” property.The literal value null may also be used
         /// if the characteristic has no value.This property must be present if and only if the characteristic contains the
         /// Paired Read permission, see Table 6-4 (page 56).
         /// </summary>
-        public dynamic Value { get; }
+        dynamic Value { get; }
 
-        public void SetValue(dynamic value);
+        /// <summary>
+        /// Sets value for the characteristic.
+        /// </summary>
+        /// <param name="value"></param>
+        void SetValue(dynamic value);
     }
 }

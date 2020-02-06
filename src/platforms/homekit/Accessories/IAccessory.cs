@@ -33,6 +33,6 @@ namespace Homer.Platform.HomeKit.Accessories
         /// <summary>
         /// if accessory is bridged, this property points to the bridge which bridges this accessory
         /// </summary>
-        public IBridge ParentBridge { get; }
+        IBridge ParentBridge { get; }
     }
 }

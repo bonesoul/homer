@@ -21,9 +21,12 @@
 //      Licensor: Hüseyin Uslu
 #endregion
 
+using System;
+
 namespace Homer.Platform.HomeKit.Events
 {
     public interface IEventEmitter
     {
+        void OnEvent<T>(EventHandler<T> handler, T args);
     }
 }

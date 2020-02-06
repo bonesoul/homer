@@ -24,13 +24,15 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using DaanV2.UUID;
 using Homer.Platform.HomeKit.Characteristics;
 using Homer.Platform.HomeKit.Characteristics.Definitions;
+using Homer.Platform.HomeKit.Events;
 
 namespace Homer.Platform.HomeKit.Services
 {
-    public class Service : IService
+    public class Service : EventEmitter, IService
     {
         /// <inheritdoc />
         public UUID Uuid { get; }
@@ -47,9 +49,35 @@ namespace Homer.Platform.HomeKit.Services
         /// <inheritdoc />
         public IReadOnlyDictionary<Type, ICharacteristic> OptionalCharacteristics { get; }
 
+        /// <inheritdoc />
+        public bool IsPrimaryService { get; }
+
+        /// <inheritdoc />
+        public bool IsHiddenService
+        {
+            get => _isHiddenService;
+            set
+            {
+                _isHiddenService = value;
+                OnEvent(ServiceConfigurationChange, EventArgs.Empty); // notify listeners.
+            }
+        }
+
+        /// <inheritdoc />
+        public List<IService> LinkedServices { get; }
+
+        /// <inheritdoc />
+        public event EventHandler<EventArgs> CharacteristicChange;
+
+        /// <inheritdoc />
+        public event EventHandler<EventArgs> ServiceConfigurationChange;
+
         // internal list of characteristics.
         private readonly Dictionary<Type, ICharacteristic> _characteristics;
         private readonly Dictionary<Type, ICharacteristic> _optionalCharacteristics;
+
+        // internally track if this is a hidden service.
+        private bool _isHiddenService;
 
         public Service(string uuid, string displayName)
         {
@@ -65,7 +93,12 @@ namespace Homer.Platform.HomeKit.Services
             Characteristics = new ReadOnlyDictionary<Type, ICharacteristic>(_characteristics);
             OptionalCharacteristics = new ReadOnlyDictionary<Type, ICharacteristic>(_optionalCharacteristics);
 
-            SetCharacteristic(typeof(NameCharacteristic), displayName); // set Characteristic.Name to given displayName.
+            // set Characteristic.Name to given displayName.
+            SetCharacteristic(typeof(NameCharacteristic), displayName);
+
+            IsPrimaryService = false;
+            IsHiddenService = false;
+            LinkedServices = new List<IService>();
         }
 
         public ICharacteristic GetCharacteristic(Type characteristic)
@@ -78,30 +111,109 @@ namespace Homer.Platform.HomeKit.Services
             return _optionalCharacteristics.ContainsKey(characteristic) ? _optionalCharacteristics[characteristic] : null;
         }
 
+        public IService AddCharacteristic(ICharacteristic characteristic)
+        {
+            _characteristics.Add(characteristic.GetType(), characteristic);
+            OnEvent(ServiceConfigurationChange, EventArgs.Empty); // notify listeners.
+            return this; // allow chaining.
+        }
+
+        public IService AddCharacteristic(Type t)
+        {
+            var characteristic = (ICharacteristic)Activator.CreateInstance(t);
+            AddCharacteristic(characteristic);
+            return this; // allow chaining.
+        }
+
+        public IService AddOptionalCharacteristic(ICharacteristic characteristic)
+        {
+            _optionalCharacteristics.Add(characteristic.GetType(), characteristic);
+            OnEvent(ServiceConfigurationChange, EventArgs.Empty); // notify listeners.
+            return this; // allow chaining.
+        }
+
+        public IService AddOptionalCharacteristic(Type t)
+        {
+            var optionalCharacteristic = (ICharacteristic)Activator.CreateInstance(t);
+            AddOptionalCharacteristic(optionalCharacteristic);
+            return this; // allow chaining.
+        }
+
         public IService SetCharacteristic(Type t, dynamic value)
         {
-            var characteristic = GetCharacteristic(t) ?? AddCharacteristic((ICharacteristic)Activator.CreateInstance(t));
+            var characteristic = GetCharacteristic(t);
+
+            if (characteristic == null)
+            {
+                AddCharacteristic(t);
+                characteristic = GetCharacteristic(t);
+            }
+
             characteristic.SetValue(value);
             return this; // allow chaining.
         }
 
         public IService SetOptionalCharacteristic(Type t, dynamic value)
         {
-            var characteristic = GetOptionalCharacteristic(t) ?? AddOptionalCharacteristic((ICharacteristic)Activator.CreateInstance(t));
-            characteristic.SetValue(value);
+            var optionalCharacteristic = GetOptionalCharacteristic(t);
+
+            if (optionalCharacteristic == null)
+            {
+                AddOptionalCharacteristic(t);
+                optionalCharacteristic = GetOptionalCharacteristic(t);
+            }
+
+            optionalCharacteristic.SetValue(value);
             return this; // allow chaining.
         }
 
-        private ICharacteristic AddCharacteristic(ICharacteristic characteristic)
+        public IService RemoveCharacteristic(Type t)
         {
-            _characteristics.Add(characteristic.GetType(), characteristic);
-            return characteristic;
+            if (_characteristics.Any(x => x.Value.GetType() == t))
+            {
+                _characteristics.Remove(t);
+                // TODO: remove listeners of characteristic too.
+                OnEvent(ServiceConfigurationChange, EventArgs.Empty); // notify listeners.
+            }
+
+            return this; // allow chaining.
         }
 
-        private ICharacteristic AddOptionalCharacteristic(ICharacteristic characteristic)
+        public IService RemoveOptionalCharacteristic(Type t)
         {
-            _optionalCharacteristics.Add(characteristic.GetType(), characteristic);
-            return characteristic;
+            if (_optionalCharacteristics.Any(x => x.Value.GetType() == t))
+            {
+                _optionalCharacteristics.Remove(t);
+                // TODO: remove listeners of characteristic too.
+                OnEvent(ServiceConfigurationChange, EventArgs.Empty); // notify listeners.
+            }
+
+            return this; // allow chaining.
+        }
+
+        public bool CheckCharacteristic(Type t)
+        {
+            return _characteristics.ContainsKey(t);
+        }
+
+        public bool CheckOptionalCharacteristic(Type t)
+        {
+            return _optionalCharacteristics.ContainsKey(t);
+        }
+
+        public ICharacteristic GetCharacteristicByInstanceId(int iid)
+        {
+            return (from x in _characteristics where x.Value.InstanceId == iid select x.Value).FirstOrDefault();
+        }
+
+        public ICharacteristic GetOptionalCharacteristicByInstanceId(int iid)
+        {
+            return (from x in _optionalCharacteristics where x.Value.InstanceId == iid select x.Value).FirstOrDefault();
+        }
+
+        public IService ToHapJson()
+        {
+            return this; // allow chaining.
         }
     }
 }

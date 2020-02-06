@@ -30,11 +30,11 @@ namespace Homer.Platform.HomeKit.Entity
         /// <summary>
         /// UUID of the entity.
         /// </summary>
-        public UUID Uuid { get; }
+        UUID Uuid { get; }
 
         /// <summary>
         /// Display name of the entity.
         /// </summary>
-        public string DisplayName { get; }
+        string DisplayName { get; }
     }
 }

@@ -34,6 +34,9 @@ namespace Homer.Platform.HomeKit.Characteristics
         public UUID Uuid { get; }
 
         /// <inheritdoc />
+        public int InstanceId { get; }
+
+        /// <inheritdoc />
         public string DisplayName { get; }
 
         /// <inheritdoc />
