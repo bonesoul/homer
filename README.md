@@ -1,6 +1,8 @@
 <h1 align="center">homer</h1>
 
-<img src='https://giphy.com/embed/lPdn5MOabkgCY'/>
+<div align="center">
+<img src='https://github.com/bonesoul/homer/blob/develop/assets/images/homer/homer-lazy-1.gif?raw=true'/>
+</div>
 
 <div align="center">
   :rocket::zap::sparkles:
