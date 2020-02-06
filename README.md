@@ -30,13 +30,21 @@ As current so called "home automation" systems are actually just "home informati
 <br/><strong>homer, orchestrating the office.</strong>
 </div>
 
-## Requirements
+## status
+
+still in early development stage.
+
+## voice control support?
+
+initially will have support for apple homekit, have plans for alexa & goole asistant support too.
+
+## requirements
 
 ```
- - dotnet core 3.1
+dotnet core 3.1
 ```
 
-## Building
+## building
 
 ```
 git clone https://github.com/bonesoul/homer
@@ -45,7 +53,7 @@ Linux: ./build.sh
 MacOS: ./build.sh
 ```
 
-## Tests
+## tests
 
 ```
 dotnet test
