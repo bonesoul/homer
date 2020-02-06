@@ -116,31 +116,20 @@ namespace Homer.Platform.HomeKit.Characteristics
 
         private dynamic GetDefaultValue()
         {
-            switch (Format)
+            return Format switch
             {
-                case CharacteristicFormat.Bool:
-                    return false;
-                case CharacteristicFormat.Int:
-                    return 0;
-                case CharacteristicFormat.Float:
-                    return 0;
-                case CharacteristicFormat.String:
-                    return "";
-                case CharacteristicFormat.Uint8:
-                    return 0;
-                case CharacteristicFormat.Uint16:
-                    return 0;
-                case CharacteristicFormat.Uint32:
-                    return 0;
-                case CharacteristicFormat.Uint64:
-                    return 0;
-                case CharacteristicFormat.Data:
-                    return null;
-                case CharacteristicFormat.Tlv8:
-                    return null;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                CharacteristicFormat.Bool => (dynamic) false,
+                CharacteristicFormat.Int => 0,
+                CharacteristicFormat.Float => 0,
+                CharacteristicFormat.String => "",
+                CharacteristicFormat.Uint8 => 0,
+                CharacteristicFormat.Uint16 => 0,
+                CharacteristicFormat.Uint32 => 0,
+                CharacteristicFormat.Uint64 => 0,
+                CharacteristicFormat.Data => null,
+                CharacteristicFormat.Tlv8 => null,
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
     }
 }
