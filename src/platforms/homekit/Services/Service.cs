@@ -38,12 +38,18 @@ namespace Homer.Platform.HomeKit.Services
         /// <inheritdoc />
         public string DisplayName { get; }
 
+        /// <inheritdoc />
+        public int InstanceId { get; }
+
+        /// <inheritdoc />
         public IReadOnlyDictionary<Type, ICharacteristic> Characteristics { get; }
 
-        /// <summary>
-        /// internal list of characteristics.
-        /// </summary>
+        /// <inheritdoc />
+        public IReadOnlyDictionary<Type, ICharacteristic> OptionalCharacteristics { get; }
+
+        // internal list of characteristics.
         private readonly Dictionary<Type, ICharacteristic> _characteristics;
+        private readonly Dictionary<Type, ICharacteristic> _optionalCharacteristics;
 
         public Service(string uuid, string displayName)
         {
@@ -53,10 +59,23 @@ namespace Homer.Platform.HomeKit.Services
             if (!string.IsNullOrEmpty(displayName)) DisplayName = displayName;
             else throw new ArgumentException("Services must be created with a non-empty displayName.", nameof(displayName));
 
+            // set characteristics lists.
             _characteristics = new Dictionary<Type, ICharacteristic>();
+            _optionalCharacteristics = new Dictionary<Type, ICharacteristic>();
             Characteristics = new ReadOnlyDictionary<Type, ICharacteristic>(_characteristics);
+            OptionalCharacteristics = new ReadOnlyDictionary<Type, ICharacteristic>(_optionalCharacteristics);
 
             SetCharacteristic(typeof(NameCharacteristic), displayName); // set Characteristic.Name to given displayName.
+        }
+
+        public ICharacteristic GetCharacteristic(Type characteristic)
+        {
+            return _characteristics.ContainsKey(characteristic) ? _characteristics[characteristic] : null;
+        }
+
+        public ICharacteristic GetOptionalCharacteristic(Type characteristic)
+        {
+            return _optionalCharacteristics.ContainsKey(characteristic) ? _optionalCharacteristics[characteristic] : null;
         }
 
         public IService SetCharacteristic(Type t, dynamic value)
@@ -66,14 +85,22 @@ namespace Homer.Platform.HomeKit.Services
             return this; // allow chaining.
         }
 
-        private ICharacteristic GetCharacteristic(Type characteristic)
+        public IService SetOptionalCharacteristic(Type t, dynamic value)
         {
-            return _characteristics.ContainsKey(characteristic) ? _characteristics[characteristic] : null;
+            var characteristic = GetOptionalCharacteristic(t) ?? AddOptionalCharacteristic((ICharacteristic)Activator.CreateInstance(t));
+            characteristic.SetValue(value);
+            return this; // allow chaining.
         }
 
         private ICharacteristic AddCharacteristic(ICharacteristic characteristic)
         {
             _characteristics.Add(characteristic.GetType(), characteristic);
+            return characteristic;
+        }
+
+        private ICharacteristic AddOptionalCharacteristic(ICharacteristic characteristic)
+        {
+            _optionalCharacteristics.Add(characteristic.GetType(), characteristic);
             return characteristic;
         }
     }

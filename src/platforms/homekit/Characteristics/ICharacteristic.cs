@@ -29,6 +29,12 @@ namespace Homer.Platform.HomeKit.Characteristics
     /// A characteristic is a feature that represents data or an associated behavior of a service. The characteristic is defined
     /// by a universally unique type, and has additional properties that determine how the value of the characteristic can be
     /// accessed.
+    /// <remarks>
+    /// <summary>
+    /// After an accessory has a pairing, only the values of the Value (”value”) and Event Notifications (”ev”) properties are
+    /// allowed to change.
+    /// </summary>
+    /// </remarks>
     /// </summary>
     public interface ICharacteristic
     {
