@@ -2,7 +2,7 @@
 
 <div align="center">
 <img src='https://github.com/bonesoul/homer/blob/develop/assets/images/homer/homer-lazy-1.gif?raw=true'/>
-<strong>The complete home automation for Homer Simpson.</strong>
+<br/><strong>The complete home automation for Homer Simpson.</strong>
 </div>
 
 <br />
@@ -27,7 +27,7 @@ As current so called "home automation" systems are actually just "home informati
 
 <div align="center">
 <img src='https://github.com/bonesoul/homer/blob/develop/assets/images/homer/homer-lazy-3.gif?raw=true'/>
-<strong>homer, orchestrating the office.</strong>
+<br/><strong>homer, orchestrating the office.</strong>
 </div>
 
 ## Requirements
