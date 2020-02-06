@@ -1,5 +1,7 @@
 <h1 align="center">homer</h1>
 
+<img src='https://giphy.com/embed/lPdn5MOabkgCY'/>
+
 <div align="center">
   :rocket::zap::sparkles:
 </div>
@@ -19,9 +21,13 @@
   <sub>Built with ❤︎ by <a href="https://github.com/bonesoul">Hüseyin Uslu</a>.</sub>
 </div>
 
-## About
+## what is homer?
 
 homer is code-first home & office automation system allowing complex interactions between accessories.
+
+## why?
+
+As current so called "home automation" systems are actually just "home information" system, I needed a real "home automation" system where IoT stuff can interract which each other and respond to stuff happening at your home/office. Even more homer allows you to develop complex virtual orchestrators that can command stuff together.
 
 ## Requirements
 
