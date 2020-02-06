@@ -31,6 +31,7 @@ homer is code-first home & office automation system allowing complex interaction
 
 <div align="center">
 <img src='https://github.com/bonesoul/homer/blob/develop/assets/images/homer/homer-lazy-3.gif?raw=true'/>
+<img src='https://github.com/bonesoul/homer/blob/develop/assets/images/homer/homer-lazy2-.gif?raw=true'/>
 </div>
 As current so called "home automation" systems are actually just "home information" system, I needed a real "home automation" system where IoT stuff can interract which each other and respond to stuff happening at your home/office. Even more homer allows you to develop complex virtual orchestrators that can command stuff together.
 
