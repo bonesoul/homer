@@ -32,21 +32,24 @@ As current so called "home automation" systems are actually just "home informati
 
 ## Requirements
 
+```
  - dotnet core 3.1
- 
+```
+
+## Building
+
+```
+git clone https://github.com/bonesoul/homer
+Windows: .\build.cmd
+Linux: ./build.sh
+MacOS: ./build.sh
+```
+
 ## Tests
 
 ```
 dotnet test
 ``` 
-
-## Building
-
-```
-Windows: .\build.cmd
-Linux: ./build.sh
-MacOS: ./build.sh
-```
 
 <div align="center">
 <img src='https://github.com/bonesoul/homer/blob/develop/assets/images/homer/homer-lazy-2.gif?raw=true'/>
