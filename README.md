@@ -2,7 +2,6 @@
 
 <div align="center">
 <img src='https://github.com/bonesoul/homer/blob/develop/assets/images/homer/homer-lazy-1.gif?raw=true'/>
-<img src='https://github.com/bonesoul/homer/blob/develop/assets/images/homer/homer-lazy-2.gif?raw=true'/>
 </div>
 
 <div align="center">
@@ -52,3 +51,7 @@ Windows: .\build.cmd
 Linux: ./build.sh
 MacOS: ./build.sh
 ```
+
+<div align="center">
+<img src='https://github.com/bonesoul/homer/blob/develop/assets/images/homer/homer-lazy-2.gif?raw=true'/>
+</div>
