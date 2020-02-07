@@ -34,6 +34,9 @@ As current so called "home automation" systems are actually just "home informati
 
 still in early development stage.
 
+- initially working on homekit support.
+- will soon be able to pair with homekit.
+
 ## voice control support?
 
 initially will have support for apple homekit, have plans for alexa & goole asistant support too.
