@@ -1,6 +1,5 @@
 ﻿using System;
 using Homer.Core.Internals.Registries;
-using Homer.Server.Servers;
 using Stashbox;
 
 namespace Homer.Server.Internals
@@ -17,7 +16,7 @@ namespace Homer.Server.Internals
 
         public void Attach()
         {
-            _container.RegisterSingleton<IBonjourTestServer, BonjourTestServer>();
+            
         }
     }
 }
