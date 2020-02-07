@@ -27,6 +27,8 @@ using Homer.Core.Host;
 using Homer.Core.Internals.Bootstrap;
 using Homer.Core.Internals.Registries;
 using Homer.Core.Internals.Services.Configuration;
+using Homer.Server.Internals;
+using Homer.Server.Servers;
 using Stashbox;
 
 namespace Homer.Server
@@ -36,18 +38,20 @@ namespace Homer.Server
         public static async Task Main(string[] args)
         {
             var bootstrapper = new Bootstrapper(); // IoC kernel bootstrapper.
-            var serviceHost = new ServerHost(bootstrapper); // service host.
+            var host = new ServerHost(bootstrapper); // server host.
 
             // setup registries
             var registries = new List<IRegistry>
             {
+                new Internals.ServerRegistry(bootstrapper.Container)
             };
 
             // initialize service host.
-            await serviceHost.InitializeAsync(registries, args, true);
+            await host.InitializeAsync(registries, args);
 
-            // initialize jobs.
-            var configurationService = bootstrapper.Container.Resolve<IConfigurationService>(); // resolve configuration service.
+            // initialize bonjour server.
+            var bonjourServer = bootstrapper.Container.Resolve<IBonjourServer>(); // resolve bonjour service.
+            await bonjourServer.RunAsync();
         }
     }
 }

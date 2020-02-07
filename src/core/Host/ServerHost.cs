@@ -29,7 +29,7 @@ namespace Homer.Core.Host
         }
 
         /// <inheritdoc />
-        public async Task InitializeAsync(IReadOnlyList<IRegistry> registries, string[] args, bool needsNetworkingSupport = false)
+        public async Task InitializeAsync(IReadOnlyList<IRegistry> registries, string[] args)
         {
             // init unhandled exception handler.
             AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionHandler; // Catch any unhandled exceptions if we are in release mode.
