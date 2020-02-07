@@ -21,7 +21,7 @@
 //      Licensor: Hüseyin Uslu
 #endregion
 
-using DaanV2.UUID;
+using uuid.net.Classes.UUID;
 
 namespace Homer.Platform.HomeKit.Entity
 {

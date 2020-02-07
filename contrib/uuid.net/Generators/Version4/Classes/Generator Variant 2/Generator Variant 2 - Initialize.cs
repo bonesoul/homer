@@ -13,9 +13,12 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.*/
-using System;
 
-namespace DaanV2.UUID.Generators.Version4 {
+using System;
+using uuid.net.Generators.Abstract_Classes.Generator_Base;
+using uuid.net.Generators.Version4.Classes.Generator_Variant_1;
+
+namespace uuid.net.Generators.Version4.Classes.Generator_Variant_2 {
     /// <summary>The UUID generator Version 4, Variant 2</summary>
     public partial class GeneratorVariant2 {
 

@@ -23,8 +23,9 @@
 
 using System;
 using System.Collections.Generic;
-using DaanV2.UUID;
 using Homer.Platform.HomeKit.Events;
+using uuid.net.Classes.UUID;
+using uuid.net.Static_Classes.UUID_Validator;
 
 namespace Homer.Platform.HomeKit.Characteristics
 {

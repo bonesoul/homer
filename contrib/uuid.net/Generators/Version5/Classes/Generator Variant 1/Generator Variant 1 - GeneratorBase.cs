@@ -13,10 +13,15 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.*/
+
 using System;
 using System.Text;
+using uuid.net.Classes.UUID;
+using uuid.net.Generators.Abstract_Classes.Generator_Base;
+using uuid.net.Generators.Static_Classes.Converter;
+using uuid.net.Interfaces.IUUID_Generator;
 
-namespace DaanV2.UUID.Generators.Version5 {
+namespace uuid.net.Generators.Version5.Classes.Generator_Variant_1 {
     public partial class GeneratorVariant1 : GeneratorBase {
         /// <summary>Gets the version of the UUID generator</summary>
         public override Int32 Version => 5;

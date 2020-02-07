@@ -25,10 +25,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using DaanV2.UUID;
 using Homer.Platform.HomeKit.Characteristics;
 using Homer.Platform.HomeKit.Characteristics.Definitions;
 using Homer.Platform.HomeKit.Events;
+using uuid.net.Classes.UUID;
+using uuid.net.Static_Classes.UUID_Validator;
 
 namespace Homer.Platform.HomeKit.Services
 {

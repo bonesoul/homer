@@ -13,9 +13,10 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.*/
+
 using System;
 
-namespace DaanV2.UUID.Generators {
+namespace uuid.net.Generators.Static_Classes.Converter {
     public static partial class Converter {
         /// <summary>Converts a <see cref="Byte[]"/> to <see cref="Char[]"/> using hexidecimal. Size needs to be atleast 16</summary>
         /// <param name="Bytes">The <see cref="Byte[]"/> that need to be converted to <see cref="Char[]"/>. The size needs to be atleast 16 items</param>

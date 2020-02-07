@@ -14,7 +14,9 @@ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.*/
 
-namespace DaanV2.UUID.Generators {
+using uuid.net.Interfaces.IUUID_Generator;
+
+namespace uuid.net.Generators.Classes.Generator_Info {
     /// <summary>The class that holds the information of a generator</summary>
     public partial class GeneratorInfo {
         /// <summary>Creates a new instance of <see cref="GeneratorInfo"/></summary>

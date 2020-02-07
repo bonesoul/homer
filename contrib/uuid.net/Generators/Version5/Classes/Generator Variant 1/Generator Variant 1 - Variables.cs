@@ -13,9 +13,10 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.*/
+
 using System.Security.Cryptography;
 
-namespace DaanV2.UUID.Generators.Version5 {
+namespace uuid.net.Generators.Version5.Classes.Generator_Variant_1 {
     public partial class GeneratorVariant1 {
         /// <summary>The hasher used to generate UUID</summary>
         private SHA1 _Hasher;

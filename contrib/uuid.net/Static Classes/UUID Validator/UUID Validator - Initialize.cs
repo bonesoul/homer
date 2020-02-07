@@ -14,7 +14,7 @@ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.*/
 
-namespace DaanV2.UUID {
+namespace uuid.net.Static_Classes.UUID_Validator {
     /// <summary>The static class that is responisble for validating UUIDs</summary>
     public static partial class UUIDValidator {
         /// <summary>Creates a new instance of <see cref="UUIDValidator"/></summary>

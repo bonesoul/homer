@@ -13,9 +13,10 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.*/
+
 using System;
 
-namespace DaanV2.UUID.Generators {
+namespace uuid.net.Generators.Static_Classes.Converter {
     /// <summary>The class responsible for converting data</summary>
     public static partial class Converter {
         /// <summary>Creates a new instance of <see cref="Converter"/></summary>

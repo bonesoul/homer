@@ -13,10 +13,11 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.*/
+
 using System;
 using System.Collections.Generic;
 
-namespace DaanV2.UUID {
+namespace uuid.net.Classes.UUID {
     public partial class UUID : IEquatable<UUID> {
 
         /// <summary>Returns the <see cref="String"/> representation of the UUID</summary>
