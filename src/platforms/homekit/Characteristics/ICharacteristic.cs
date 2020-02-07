@@ -21,6 +21,7 @@
 //      Licensor: Hüseyin Uslu
 #endregion
 
+using System;
 using DaanV2.UUID;
 
 namespace Homer.Platform.HomeKit.Characteristics
@@ -64,9 +65,56 @@ namespace Homer.Platform.HomeKit.Characteristics
         dynamic Value { get; }
 
         /// <summary>
+        /// Number of subscriptions to event.
+        /// </summary>
+        int Subscriptions { get; }
+
+        /// <summary>
+        /// Get event.
+        /// </summary>
+        event EventHandler<EventArgs> Get;
+
+        /// <summary>
+        /// Set event.
+        /// </summary>
+        event EventHandler<EventArgs> Set;
+
+        /// <summary>
+        /// Subscribe event.
+        /// </summary>
+        event EventHandler<EventArgs> OnSubscribe;
+
+        /// <summary>
+        /// Unsubscribe event.
+        /// </summary>
+        event EventHandler<EventArgs> OnUnsubscribe;
+
+        /// <summary>
+        /// Change event.
+        /// </summary>
+        event EventHandler<EventArgs> Change;
+
+        /// <summary>
+        /// Subscribe to characteristic.
+        /// </summary>
+        void Subscribe();
+
+        /// <summary>
+        /// Unsubscribe from characteristic.
+        /// </summary>
+        void Unsubscribe();
+
+        /// <summary>
+        /// Gets value of the characteristic.
+        /// </summary>
+        void GetValue();
+
+        /// <summary>
         /// Sets value for the characteristic.
         /// </summary>
         /// <param name="value"></param>
         void SetValue(dynamic value);
+
+        string ToHapJson();
     }
 }

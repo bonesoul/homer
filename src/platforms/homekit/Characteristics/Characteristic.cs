@@ -43,6 +43,9 @@ namespace Homer.Platform.HomeKit.Characteristics
         public dynamic Value { get; private set; }
 
         /// <inheritdoc />
+        public int Subscriptions { get; }
+
+        /// <inheritdoc />
         public IReadOnlyList<CharacteristicPermission> Permissions { get; }
 
         /// <inheritdoc />
@@ -78,6 +81,52 @@ namespace Homer.Platform.HomeKit.Characteristics
         /// <inheritdoc />
         public dynamic[] ValidValuesRange { get; }
 
+        /// <inheritdoc />
+        public event EventHandler<EventArgs> Get;
+
+        /// <inheritdoc />
+        public event EventHandler<EventArgs> Set;
+
+        /// <inheritdoc />
+        public event EventHandler<EventArgs> OnSubscribe;
+
+        /// <inheritdoc />
+        public event EventHandler<EventArgs> OnUnsubscribe;
+
+        /// <inheritdoc />
+        public event EventHandler<EventArgs> Change;
+
+        /**
+        * Characteristic represents a particular typed variable that can be assigned to a Service. For instance, a
+        * "Hue" Characteristic might store a 'float' value of type 'arcdegrees'. You could add the Hue Characteristic
+        * to a Service in order to store that value. A particular Characteristic is distinguished from others by its
+        * UUID. HomeKit provides a set of known Characteristic UUIDs defined in HomeKit.ts along with a
+        * corresponding concrete subclass.
+        *
+        * You can also define custom Characteristics by providing your own UUID. Custom Characteristics can be added
+        * to any native or custom Services, but Siri will likely not be able to work with these.
+        *
+        * Note that you can get the "value" of a Characteristic by accessing the "value" property directly, but this
+        * is really a "cached value". If you want to fetch the latest value, which may involve doing some work, then
+        * call getValue().
+        *
+        * @event 'get' => function(callback(err, newValue), context) { }
+        *        Emitted when someone calls getValue() on this Characteristic and desires the latest non-cached
+        *        value. If there are any listeners to this event, one of them MUST call the callback in order
+        *        for the value to ever be delivered. The `context` object is whatever was passed in by the initiator
+        *        of this event (for instance whomever called `getValue`).
+        *
+        * @event 'set' => function(newValue, callback(err), context) { }
+        *        Emitted when someone calls setValue() on this Characteristic with a desired new value. If there
+        *        are any listeners to this event, one of them MUST call the callback in order for this.value to
+        *        actually be set. The `context` object is whatever was passed in by the initiator of this change
+        *        (for instance, whomever called `setValue`).
+        *
+        * @event 'change' => function({ oldValue, newValue, context }) { }
+        *        Emitted after a change in our value has occurred. The new value will also be immediately accessible
+        *        in this.value. The event object contains the new value as well as the context object originally
+        *        passed in by the initiator of this change (if known).
+        */
 
         protected Characteristic(string uuid, string displayName, CharacteristicFormat format,  IReadOnlyList<CharacteristicPermission> permissions,  
             CharacteristicUnit unit = CharacteristicUnit.Unitless,  bool eventNotificationsEnabled = false,  string description = null, 
@@ -109,9 +158,39 @@ namespace Homer.Platform.HomeKit.Characteristics
             Value = GetDefaultValue();
         }
 
+        public void Subscribe()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Unsubscribe()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetValue()
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetValue(dynamic value)
         {
             Value = value;
+        }
+
+        public string ToHapJson()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ValidateValue(dynamic value)
+        {
+
+        }
+
+        private void AssignInstanceId()
+        {
+
         }
 
         private dynamic GetDefaultValue()

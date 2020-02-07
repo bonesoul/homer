@@ -211,9 +211,9 @@ namespace Homer.Platform.HomeKit.Services
             return (from x in _optionalCharacteristics where x.Value.InstanceId == iid select x.Value).FirstOrDefault();
         }
 
-        public IService ToHapJson()
+        public string ToHapJson()
         {
-            return this; // allow chaining.
+            return "";
         }
     }
 }

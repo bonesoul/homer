@@ -142,6 +142,6 @@ namespace Homer.Platform.HomeKit.Services
 
         ICharacteristic GetOptionalCharacteristicByInstanceId(int iid);
 
-        IService ToHapJson();
+        string ToHapJson();
     }
 }
