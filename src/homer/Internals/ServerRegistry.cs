@@ -1,8 +1,9 @@
 ﻿using System;
 using Homer.Core.Internals.Registries;
+using Homer.Servers;
 using Stashbox;
 
-namespace Homer.Server.Internals
+namespace Homer.Internals
 {
     public class ServerRegistry : IRegistry
     {
@@ -16,7 +17,7 @@ namespace Homer.Server.Internals
 
         public void Attach()
         {
-            
+            _container.RegisterSingleton<IServer, Server>();
         }
     }
 }

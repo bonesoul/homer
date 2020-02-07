@@ -28,8 +28,11 @@ using System.Threading.Tasks;
 using Homer.Core.Host;
 using Homer.Core.Internals.Bootstrap;
 using Homer.Core.Internals.Registries;
+using Homer.Core.Internals.Services.Runtime;
+using Homer.Servers;
+using Stashbox;
 
-namespace Homer.Server
+namespace Homer
 {
     public static class Program
     {
@@ -46,6 +49,10 @@ namespace Homer.Server
 
             // initialize service host.
             await host.InitializeAsync(registries, args);
+
+            // resolver server.
+            var server = bootstrapper.Container.Resolve<IServer>();
+            await server.RunAsync();
 
             Console.ReadLine(); // read a line.
             await Task.Run(() => Thread.Sleep(Timeout.Infinite)); // let the program continue to run within docker.
