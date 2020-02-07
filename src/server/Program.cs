@@ -21,13 +21,13 @@
 //      Licensor: Hüseyin Uslu
 #endregion
 
+using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Homer.Core.Host;
 using Homer.Core.Internals.Bootstrap;
 using Homer.Core.Internals.Registries;
-using Homer.Core.Internals.Services.Configuration;
-using Homer.Server.Internals;
 using Homer.Server.Servers;
 using Stashbox;
 
@@ -52,6 +52,9 @@ namespace Homer.Server
             // initialize bonjour server.
             var bonjourServer = bootstrapper.Container.Resolve<IBonjourServer>(); // resolve bonjour service.
             await bonjourServer.RunAsync();
+
+            Console.ReadLine(); // read a line.
+            await Task.Run(() => Thread.Sleep(Timeout.Infinite)); // let the program continue to run within docker.
         }
     }
 }
