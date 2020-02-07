@@ -132,7 +132,7 @@ namespace Homer.Platform.HomeKit.Characteristics
         protected Characteristic(string uuid, string displayName, CharacteristicFormat format,  IReadOnlyList<CharacteristicPermission> permissions,  
             CharacteristicUnit unit = CharacteristicUnit.Unitless,  bool eventNotificationsEnabled = false,  string description = null, 
             dynamic minValue = null,  dynamic maxValue = null, dynamic minStep = null,  int maxLength = 64, int maxDataLength = 2097152, 
-            IList<dynamic> validValues = null, dynamic[] validValuesRange = null)
+            IList<dynamic> validValues = null, dynamic[] validValuesRange = null, dynamic value = null)
         {
             Uuid = uuid ?? throw new ArgumentException("Characteristics must be created with a valid UUID.", nameof(uuid));
             if (!UUIDValidator.IsValidUUID(Uuid)) throw new ArgumentException("Provided UUID is not valid.", nameof(uuid));
@@ -156,7 +156,7 @@ namespace Homer.Platform.HomeKit.Characteristics
             ValidValues = validValues;
             ValidValuesRange = validValuesRange;
 
-            Value = GetDefaultValue();
+            Value = value ?? GetDefaultValue();
         }
 
         public void Subscribe()

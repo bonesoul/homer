@@ -28,7 +28,7 @@ namespace Homer.Platform.HomeKit.Accessories
     /// <summary>
     /// Accessory interface.
     /// </summary>
-    public interface IAccessory : IAccessoryBase
+    public interface IAccessory
     {
         /// <summary>
         /// if accessory is bridged, this property points to the bridge which bridges this accessory

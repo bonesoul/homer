@@ -22,41 +22,22 @@
 #endregion
 
 using System.Collections.Generic;
-using Homer.Platform.HomeKit.Entity;
-using Homer.Platform.HomeKit.Services;
+using Homer.Platform.HomeKit.Characteristics;
 
-namespace Homer.Platform.HomeKit.Accessories
+namespace Homer.Platform.HomeKit.Bridges.Setup.Characteristics
 {
-    /// <summary>
-    /// Base accessory interface.
-    /// </summary>
-    public interface IAccessoryBase : IEntity
+    public class VersionCharacteristic : Characteristic
     {
-        /// <summary>
-        /// true if we are hosted "behind" a Bridge Accessory
-        /// </summary>
-        bool IsBridged { get; }
-
-        /// <summary>
-        /// Is accessory reachable?
-        /// </summary>
-        bool IsReachable { get; }
-
-        /// <summary>
-        /// Accessory category.
-        /// </summary>
-        AccessoryCategory Category { get; }
-
-        /// <summary>
-        /// Services exposed by accessory.
-        /// </summary>
-        IReadOnlyList<IService> Services { get; }
-
-        /// <summary>
-        /// Adds service.
-        /// </summary>
-        /// <param name="service"></param>
-        /// <returns></returns>
-        IService AddService(IService service);
+        public VersionCharacteristic() : base(
+            "FD9FE4CC-D06F-4FFE-96C6-595D464E1026",
+            "Version",
+            CharacteristicFormat.String,
+            new List<CharacteristicPermission>()
+            {
+                CharacteristicPermission.PairedRead,
+                CharacteristicPermission.Events
+            }, value: "1.0")
+        {
+        }
     }
 }

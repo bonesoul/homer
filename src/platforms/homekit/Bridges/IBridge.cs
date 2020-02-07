@@ -29,7 +29,7 @@ namespace Homer.Platform.HomeKit.Bridges
     /// <summary>
     /// Bridge interface.
     /// </summary>
-    public interface IBridge : IAccessoryBase
+    public interface IBridge
     {
         /// <summary>
         /// List of accessories we are bridging.

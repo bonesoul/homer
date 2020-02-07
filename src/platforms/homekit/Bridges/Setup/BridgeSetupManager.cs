@@ -22,39 +22,41 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Homer.Core.Host;
-using Homer.Core.Internals.Bootstrap;
-using Homer.Core.Internals.Registries;
-using Homer.Servers;
-using Stashbox;
+using Homer.Platform.HomeKit.Bridges.Setup.Characteristics;
+using Homer.Platform.HomeKit.Bridges.Setup.Setup;
 
-namespace Homer
+namespace Homer.Platform.HomeKit.Bridges.Setup
 {
-    public static class Program
+    public class BridgeSetupManager : Bridge
     {
-        public static async Task Main(string[] args)
+        public BridgeSetupManager(string uuid, string displayName) 
+            : base(uuid, displayName)
         {
-            var bootstrapper = new Bootstrapper(); // IoC kernel bootstrapper.
-            var host = new ServerHost(bootstrapper); // server host.
+            // create setup service.
+            var setupService = new SetupService();
+            
+            // create handler characteristic.
+            var controlPointCharacteristic = new ControlPointCharacteristic();
+            controlPointCharacteristic.Get += HandleReadRequest;
+            controlPointCharacteristic.Set += HandleWriteRequest;
 
-            // setup registries
-            var registries = new List<IRegistry>
-            {
-                new Internals.ServerRegistry(bootstrapper.Container)
-            };
+            // add characteristics.
+            setupService.AddCharacteristic(new StateCharacteristic())
+                .AddCharacteristic(new VersionCharacteristic())
+                .AddCharacteristic(controlPointCharacteristic);
 
-            // initialize service host.
-            await host.InitializeAsync(registries, args);
+            AddService(setupService);
+        }
 
-            // resolver server.
-            var server = bootstrapper.Container.Resolve<IServer>();
-            await server.RunAsync();
 
-            Console.ReadLine(); // read a line.
-            await Task.Run(() => Thread.Sleep(Timeout.Infinite)); // let the program continue to run within docker.
+        private void HandleReadRequest(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void HandleWriteRequest(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -22,41 +22,20 @@
 #endregion
 
 using System.Collections.Generic;
-using Homer.Platform.HomeKit.Entity;
-using Homer.Platform.HomeKit.Services;
 
-namespace Homer.Platform.HomeKit.Accessories
+namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
-    /// <summary>
-    /// Base accessory interface.
-    /// </summary>
-    public interface IAccessoryBase : IEntity
+    public class FirmwareRevisonCharacteristic: Characteristic
     {
-        /// <summary>
-        /// true if we are hosted "behind" a Bridge Accessory
-        /// </summary>
-        bool IsBridged { get; }
-
-        /// <summary>
-        /// Is accessory reachable?
-        /// </summary>
-        bool IsReachable { get; }
-
-        /// <summary>
-        /// Accessory category.
-        /// </summary>
-        AccessoryCategory Category { get; }
-
-        /// <summary>
-        /// Services exposed by accessory.
-        /// </summary>
-        IReadOnlyList<IService> Services { get; }
-
-        /// <summary>
-        /// Adds service.
-        /// </summary>
-        /// <param name="service"></param>
-        /// <returns></returns>
-        IService AddService(IService service);
+        public FirmwareRevisonCharacteristic() : base(
+            "00000052-0000-1000-8000-0026BB765291",
+            "Firmware Revision",
+            CharacteristicFormat.String,
+            new List<CharacteristicPermission>()
+            {
+                CharacteristicPermission.PairedRead
+            })
+        {
+        }
     }
 }
