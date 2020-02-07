@@ -21,30 +21,33 @@
 //      Licensor: Hüseyin Uslu
 #endregion
 
-using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using DaanV2.UUID;
-using Homer.Platform.HomeKit.Characteristics.Definitions;
-using Homer.Platform.HomeKit.Services;
+using Homer.Core.Host;
+using Homer.Core.Internals.Bootstrap;
+using Homer.Core.Internals.Registries;
+using Homer.Core.Internals.Services.Configuration;
+using Stashbox;
 
 namespace Homer.Server
 {
-    public class Program
+    public static class Program
     {
         public static async Task Main(string[] args)
         {
-            try
-            {
-                var uuid = UUIDFactory.CreateUUID(4, 2);
-                var service = new Service(uuid, "test")
-                    .SetCharacteristic(typeof(ManufacturerCharacteristic), "Default - Manufacturer")
-                    .SetCharacteristic(typeof(ModelCharacteristic), "Default-Model")
-                    .SetCharacteristic(typeof(SerialNumberCharacteristic), "Default-SerialNumber");
-            }
-            catch (Exception e)
-            {
+            var bootstrapper = new Bootstrapper(); // IoC kernel bootstrapper.
+            var serviceHost = new ServerHost(bootstrapper); // service host.
 
-            }
+            // setup registries
+            var registries = new List<IRegistry>
+            {
+            };
+
+            // initialize service host.
+            await serviceHost.InitializeAsync(registries, args, true);
+
+            // initialize jobs.
+            var configurationService = bootstrapper.Container.Resolve<IConfigurationService>(); // resolve configuration service.
         }
     }
 }

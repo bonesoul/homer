@@ -4,11 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Homer.Core</AssemblyName>
     <RootNamespace>Homer.Core</RootNamespace>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Internals\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="GitVersionTask" Version="5.1.3">
@@ -43,6 +40,26 @@
     <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
     <PackageReference Include="Stashbox" Version="2.8.9" />
     <PackageReference Include="System.Collections.Immutable" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Internals\Services\Configuration\Models\Logs\" />
+    <Folder Include="config\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="config\default.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="config\development.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="config\production.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="config\test.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
