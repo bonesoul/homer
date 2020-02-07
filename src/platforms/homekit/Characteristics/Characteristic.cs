@@ -23,12 +23,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Homer.Platform.HomeKit.Events;
 using uuid.net.Classes.UUID;
 using uuid.net.Static_Classes.UUID_Validator;
 
 namespace Homer.Platform.HomeKit.Characteristics
 {
+    [DebuggerDisplay("Name = {DisplayName}, Value = {Value}")]
     public class Characteristic : EventEmitter, ICharacteristic, ICharacteristicProps
     {
         /// <inheritdoc />
@@ -77,10 +79,10 @@ namespace Homer.Platform.HomeKit.Characteristics
         public int MaxDataLength { get; }
 
         /// <inheritdoc />
-        public IList<dynamic> ValidValues { get; }
+        public IList<int> ValidValues { get; }
 
         /// <inheritdoc />
-        public dynamic[] ValidValuesRange { get; }
+        public int[] ValidValuesRange { get; }
 
         /// <inheritdoc />
         public event EventHandler<EventArgs> Get;
@@ -132,7 +134,7 @@ namespace Homer.Platform.HomeKit.Characteristics
         protected Characteristic(string uuid, string displayName, CharacteristicFormat format,  IReadOnlyList<CharacteristicPermission> permissions,  
             CharacteristicUnit unit = CharacteristicUnit.Unitless,  bool eventNotificationsEnabled = false,  string description = null, 
             dynamic minValue = null,  dynamic maxValue = null, dynamic minStep = null,  int maxLength = 64, int maxDataLength = 2097152, 
-            IList<dynamic> validValues = null, dynamic[] validValuesRange = null, dynamic value = null)
+            IList<int> validValues = null, int[] validValuesRange = null, dynamic value = null)
         {
             Uuid = uuid ?? throw new ArgumentException("Characteristics must be created with a valid UUID.", nameof(uuid));
             if (!UUIDValidator.IsValidUUID(Uuid)) throw new ArgumentException("Provided UUID is not valid.", nameof(uuid));

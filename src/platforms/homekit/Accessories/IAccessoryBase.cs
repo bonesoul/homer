@@ -21,6 +21,7 @@
 //      Licensor: Hüseyin Uslu
 #endregion
 
+using System;
 using System.Collections.Generic;
 using Homer.Platform.HomeKit.Entity;
 using Homer.Platform.HomeKit.Services;
@@ -50,7 +51,7 @@ namespace Homer.Platform.HomeKit.Accessories
         /// <summary>
         /// Services exposed by accessory.
         /// </summary>
-        IReadOnlyList<IService> Services { get; }
+        IReadOnlyDictionary<Type, IService> Services { get; }
 
         /// <summary>
         /// Adds service.
@@ -58,5 +59,7 @@ namespace Homer.Platform.HomeKit.Accessories
         /// <param name="service"></param>
         /// <returns></returns>
         IService AddService(IService service);
+
+        IService GetService(Type t);
     }
 }

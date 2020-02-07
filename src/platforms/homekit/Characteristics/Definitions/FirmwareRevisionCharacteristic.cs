@@ -25,9 +25,9 @@ using System.Collections.Generic;
 
 namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
-    public class FirmwareRevisonCharacteristic: Characteristic
+    public class FirmwareRevisionCharacteristic: Characteristic
     {
-        public FirmwareRevisonCharacteristic() : base(
+        public FirmwareRevisionCharacteristic() : base(
             "00000052-0000-1000-8000-0026BB765291",
             "Firmware Revision",
             CharacteristicFormat.String,

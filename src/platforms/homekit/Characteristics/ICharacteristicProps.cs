@@ -93,12 +93,12 @@ namespace Homer.Platform.HomeKit.Characteristics
         /// (Optional)
         /// An array of numbers where each element represents a valid value.
         /// </summary>
-        IList<dynamic> ValidValues { get; }
+        IList<int> ValidValues { get; }
 
         /// <summary>
         /// (Optional)
         /// A 2 element array representing the starting value and ending value of the range of valid values.
         /// </summary>
-        dynamic[] ValidValuesRange { get; }
+        int[] ValidValuesRange { get; }
     }
 }

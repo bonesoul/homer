@@ -24,6 +24,9 @@
 using System;
 using Homer.Platform.HomeKit.Bridges.Setup.Characteristics;
 using Homer.Platform.HomeKit.Bridges.Setup.Setup;
+using Homer.Platform.HomeKit.Characteristics.Definitions;
+using Homer.Platform.HomeKit.Services.Definitions;
+using VersionCharacteristic = Homer.Platform.HomeKit.Bridges.Setup.Characteristics.VersionCharacteristic;
 
 namespace Homer.Platform.HomeKit.Bridges.Setup
 {
@@ -32,20 +35,25 @@ namespace Homer.Platform.HomeKit.Bridges.Setup
         public BridgeSetupManager(string uuid, string displayName) 
             : base(uuid, displayName)
         {
-            // create setup service.
-            var setupService = new SetupService();
-            
             // create handler characteristic.
             var controlPointCharacteristic = new ControlPointCharacteristic();
             controlPointCharacteristic.Get += HandleReadRequest;
             controlPointCharacteristic.Set += HandleWriteRequest;
 
-            // add characteristics.
-            setupService.AddCharacteristic(new StateCharacteristic())
+            // add characteristics to setup service.
+
+            // create setup service.
+            AddService(new SetupService())
+                .AddCharacteristic(new StateCharacteristic())
                 .AddCharacteristic(new VersionCharacteristic())
                 .AddCharacteristic(controlPointCharacteristic);
 
-            AddService(setupService);
+            // set accessory information service characteristics
+            GetService(typeof(AccessoryInformationService))
+                .SetCharacteristic(typeof(ManufacturerCharacteristic), "Hüseyin Uslu")
+                .SetCharacteristic(typeof(ModelCharacteristic), "Homer")
+                .SetCharacteristic(typeof(SerialNumberCharacteristic), "CC:22:3D:E3:CE:30")
+                .SetCharacteristic(typeof(FirmwareRevisionCharacteristic), "0.1");
         }
 
 

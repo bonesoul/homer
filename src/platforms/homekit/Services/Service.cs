@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using Homer.Platform.HomeKit.Characteristics;
 using Homer.Platform.HomeKit.Characteristics.Definitions;
@@ -33,6 +34,7 @@ using uuid.net.Static_Classes.UUID_Validator;
 
 namespace Homer.Platform.HomeKit.Services
 {
+    [DebuggerDisplay("Name = {" + nameof(DisplayName) + "}")]
     public class Service : EventEmitter, IService
     {
         /// <inheritdoc />
@@ -114,6 +116,8 @@ namespace Homer.Platform.HomeKit.Services
 
         public IService AddCharacteristic(ICharacteristic characteristic)
         {
+            if (characteristic == null) throw new ArgumentNullException(nameof(characteristic));
+
             _characteristics.Add(characteristic.GetType(), characteristic);
             OnEvent(ServiceConfigurationChange, EventArgs.Empty); // notify listeners.
             return this; // allow chaining.

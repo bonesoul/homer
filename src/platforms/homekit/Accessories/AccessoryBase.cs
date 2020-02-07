@@ -44,12 +44,12 @@ namespace Homer.Platform.HomeKit.Accessories
 
         public AccessoryCategory Category { get; }
 
-        public IReadOnlyList<IService> Services { get; }
+        public IReadOnlyDictionary<Type, IService> Services { get; }
 
         /// <summary>
         /// internal list of services.
         /// </summary>
-        private List<IService> _services;
+        private Dictionary<Type, IService> _services;
 
         protected AccessoryBase(string uuid, string displayName, bool isBridged, bool isReachable, AccessoryCategory category)
         {
@@ -63,21 +63,28 @@ namespace Homer.Platform.HomeKit.Accessories
             IsReachable = isReachable;
             Category = category;
 
-            _services = new List<IService>();
-            Services = new ReadOnlyCollection<IService>(_services);
+            _services = new Dictionary<Type, IService>();
+            Services = new ReadOnlyDictionary<Type, IService>(_services);
 
             // create our initial "Accessory Information" Service that all Accessories are expected to have.
             AddService(new AccessoryInformationService())
-                .SetCharacteristic(typeof(ManufacturerCharacteristic), "Hüseyin Uslu")
-                .SetCharacteristic(typeof(ModelCharacteristic), "Homer")
-                .SetCharacteristic(typeof(SerialNumberCharacteristic), "CC:22:3D:E3:CE:30")
-                .SetCharacteristic(typeof(FirmwareRevisonCharacteristic), "0.1");
+                .SetCharacteristic(typeof(ManufacturerCharacteristic), "Default-Manufacturer")
+                .SetCharacteristic(typeof(ModelCharacteristic), "Default-Model")
+                .SetCharacteristic(typeof(SerialNumberCharacteristic), "Default-SerialNumber")
+                .SetCharacteristic(typeof(FirmwareRevisionCharacteristic), "0.1");
         }
 
         public IService AddService(IService service)
         {
-            _services.Add(service);
-            return service; // allow chaining.
+            if (service == null) throw new ArgumentNullException(nameof(service));
+
+            _services.Add(service.GetType(), service);
+            return service;
+        }
+
+        public IService GetService(Type service)
+        {
+            return _services.ContainsKey(service) ? _services[service] : null;
         }
     }
 }

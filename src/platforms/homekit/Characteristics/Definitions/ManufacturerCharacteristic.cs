@@ -31,9 +31,12 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             "00000020-0000-1000-8000-0026BB765291",
             "Manufacturer",
             CharacteristicFormat.String,
-            new List<CharacteristicPermission>()
+            new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead
+            },validValues: new List<int>
+            {
+
             })
         {
         }
