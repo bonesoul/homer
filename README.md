@@ -41,6 +41,10 @@ still in early development stage.
 
 initially will have support for apple homekit, have plans for alexa & goole asistant support too.
 
+## runtimes
+
+homer can run on a wide range of platforms including x86, x64, ARM32 and ARM64 - including Raspberry Pi or variants. Check [dotnet core runtime](https://github.com/dotnet/runtime/blob/master/src/libraries/pkg/Microsoft.NETCore.Platforms/runtime.json) too see all available runtimes.
+
 ## requirements
 
 ```
