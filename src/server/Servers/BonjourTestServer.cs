@@ -5,7 +5,7 @@ using Serilog;
 
 namespace Homer.Server.Servers
 {
-    public class BonjourServer: IBonjourServer
+    public class BonjourTestServer: IBonjourTestServer
     {
         public ILogger Logger { get; }
 
@@ -13,9 +13,9 @@ namespace Homer.Server.Servers
 
         private TxtRecord _txtRecord;
 
-        public BonjourServer()
+        public BonjourTestServer()
         {
-            Logger = Log.ForContext<BonjourServer>();
+            Logger = Log.ForContext<BonjourTestServer>();
 
             _service = new RegisterService
             {
@@ -51,7 +51,7 @@ namespace Homer.Server.Servers
             {
                 Logger.Information("starting bonjour server..");
                 _service.Register();
-                Browse();
+                //Browse();
             }
             catch (Exception e)
             {

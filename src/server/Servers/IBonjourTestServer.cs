@@ -1,6 +1,6 @@
 ﻿namespace Homer.Server.Servers
 {
-    public interface IBonjourServer: IServer
+    public interface IBonjourTestServer: IServer
     {
     }
 }

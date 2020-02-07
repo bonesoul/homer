@@ -49,9 +49,9 @@ namespace Homer.Server
             // initialize service host.
             await host.InitializeAsync(registries, args);
 
-            // initialize bonjour server.
-            var bonjourServer = bootstrapper.Container.Resolve<IBonjourServer>(); // resolve bonjour service.
-            await bonjourServer.RunAsync();
+            //// initialize bonjour server.
+            //var bonjourServer = bootstrapper.Container.Resolve<IBonjourTestServer>(); // resolve bonjour service.
+            //await bonjourServer.RunAsync();
 
             Console.ReadLine(); // read a line.
             await Task.Run(() => Thread.Sleep(Timeout.Infinite)); // let the program continue to run within docker.

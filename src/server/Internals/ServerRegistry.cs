@@ -17,7 +17,7 @@ namespace Homer.Server.Internals
 
         public void Attach()
         {
-            _container.RegisterSingleton<IBonjourServer, BonjourServer>();
+            _container.RegisterSingleton<IBonjourTestServer, BonjourTestServer>();
         }
     }
 }
