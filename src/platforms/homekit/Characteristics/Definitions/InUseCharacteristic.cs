@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class InUseCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int NOT_IN_USE = 0;
         public static int IN_USE = 1;
 
@@ -35,15 +35,17 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "000000D2-0000-1000-8000-0026BB765291",
             displayName: "In Use",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

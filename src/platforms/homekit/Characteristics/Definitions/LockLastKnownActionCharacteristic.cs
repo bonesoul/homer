@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class LockLastKnownActionCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int SECURED_PHYSICALLY_INTERIOR = 0;
         public static int UNSECURED_PHYSICALLY_INTERIOR = 1;
         public static int SECURED_PHYSICALLY_EXTERIOR = 2;
@@ -42,22 +42,17 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "0000001C-0000-1000-8000-0026BB765291",
             displayName: "Lock Last Known Action",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,2,3,4,5,6,7,8,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

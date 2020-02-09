@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class WaterLevelCharacteristic: Characteristic
     {
+    
+
         public WaterLevelCharacteristic(): base(
             uuid: "000000B5-0000-1000-8000-0026BB765291",
             displayName: "Water Level",
@@ -34,10 +36,14 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             unit: CharacteristicUnit.Percentage,
             maxValue: 100,
             minValue: 0,
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

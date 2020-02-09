@@ -27,17 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SecuritySystemAlarmTypeCharacteristic: Characteristic
     {
+    
+
         public SecuritySystemAlarmTypeCharacteristic(): base(
             uuid: "0000008E-0000-1000-8000-0026BB765291",
             displayName: "Security System Alarm Type",
             format: CharacteristicFormat.Uint8,
+            
             maxValue: 1,
             minValue: 0,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

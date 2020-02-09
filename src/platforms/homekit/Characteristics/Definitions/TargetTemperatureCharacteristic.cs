@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class TargetTemperatureCharacteristic: Characteristic
     {
+    
+
         public TargetTemperatureCharacteristic(): base(
             uuid: "00000035-0000-1000-8000-0026BB765291",
             displayName: "Target Temperature",
@@ -35,11 +37,14 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             maxValue: 38,
             minValue: 10,
             minStep: 0.1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

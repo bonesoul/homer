@@ -27,16 +27,21 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ServiceLabelIndexCharacteristic: Characteristic
     {
+    
+
         public ServiceLabelIndexCharacteristic(): base(
             uuid: "000000CB-0000-1000-8000-0026BB765291",
             displayName: "Service Label Index",
             format: CharacteristicFormat.Uint8,
+            
             maxValue: 255,
             minValue: 1,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
+                
             })
         {
         }

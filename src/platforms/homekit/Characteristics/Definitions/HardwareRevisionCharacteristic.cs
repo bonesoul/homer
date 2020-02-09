@@ -27,13 +27,21 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class HardwareRevisionCharacteristic: Characteristic
     {
+    
+
         public HardwareRevisionCharacteristic(): base(
             uuid: "00000053-0000-1000-8000-0026BB765291",
             displayName: "Hardware Revision",
             format: CharacteristicFormat.String,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
+                
             })
         {
         }

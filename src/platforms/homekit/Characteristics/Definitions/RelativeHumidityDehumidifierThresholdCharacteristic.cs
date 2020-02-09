@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class RelativeHumidityDehumidifierThresholdCharacteristic: Characteristic
     {
+    
+
         public RelativeHumidityDehumidifierThresholdCharacteristic(): base(
             uuid: "000000C9-0000-1000-8000-0026BB765291",
             displayName: "Relative Humidity Dehumidifier Threshold",
@@ -35,11 +37,14 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             maxValue: 100,
             minValue: 0,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

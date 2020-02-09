@@ -27,14 +27,22 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SetupEndpointsCharacteristic: Characteristic
     {
+    
+
         public SetupEndpointsCharacteristic(): base(
             uuid: "00000118-0000-1000-8000-0026BB765291",
             displayName: "Setup Endpoints",
             format: CharacteristicFormat.Tlv8,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
+                
             })
         {
         }

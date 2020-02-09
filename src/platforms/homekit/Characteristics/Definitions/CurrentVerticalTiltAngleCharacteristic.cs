@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class CurrentVerticalTiltAngleCharacteristic: Characteristic
     {
+    
+
         public CurrentVerticalTiltAngleCharacteristic(): base(
             uuid: "0000006E-0000-1000-8000-0026BB765291",
             displayName: "Current Vertical Tilt Angle",
@@ -35,10 +37,13 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             maxValue: 90,
             minValue: -1,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

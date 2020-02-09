@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ValveTypeCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int GENERIC_VALVE = 0;
         public static int IRRIGATION = 1;
         public static int SHOWER_HEAD = 2;
@@ -37,17 +37,17 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "000000D5-0000-1000-8000-0026BB765291",
             displayName: "Valve Type",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-                2,
-                3,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,2,3,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

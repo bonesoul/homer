@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ContactSensorStateCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int CONTACT_DETECTED = 0;
         public static int CONTACT_NOT_DETECTED = 1;
 
@@ -35,15 +35,17 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "0000006A-0000-1000-8000-0026BB765291",
             displayName: "Contact Sensor State",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

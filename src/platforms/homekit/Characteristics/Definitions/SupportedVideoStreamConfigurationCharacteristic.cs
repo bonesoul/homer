@@ -27,13 +27,21 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SupportedVideoStreamConfigurationCharacteristic: Characteristic
     {
+    
+
         public SupportedVideoStreamConfigurationCharacteristic(): base(
             uuid: "00000114-0000-1000-8000-0026BB765291",
             displayName: "Supported Video Stream Configuration",
             format: CharacteristicFormat.Tlv8,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
+                
             })
         {
         }

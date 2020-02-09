@@ -27,13 +27,21 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SupportedRTPConfigurationCharacteristic: Characteristic
     {
+    
+
         public SupportedRTPConfigurationCharacteristic(): base(
             uuid: "00000116-0000-1000-8000-0026BB765291",
             displayName: "Supported RTP Configuration",
             format: CharacteristicFormat.Tlv8,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
+                
             })
         {
         }

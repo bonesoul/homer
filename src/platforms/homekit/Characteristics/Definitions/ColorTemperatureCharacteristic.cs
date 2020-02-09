@@ -27,18 +27,24 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ColorTemperatureCharacteristic: Characteristic
     {
+    
+
         public ColorTemperatureCharacteristic(): base(
             uuid: "000000CE-0000-1000-8000-0026BB765291",
             displayName: "Color Temperature",
             format: CharacteristicFormat.Uint32,
+            
             maxValue: 500,
             minValue: 140,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

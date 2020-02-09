@@ -27,17 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class RemainingDurationCharacteristic: Characteristic
     {
+    
+
         public RemainingDurationCharacteristic(): base(
             uuid: "000000D4-0000-1000-8000-0026BB765291",
             displayName: "Remaining Duration",
             format: CharacteristicFormat.Uint32,
+            
             maxValue: 3600,
             minValue: 0,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

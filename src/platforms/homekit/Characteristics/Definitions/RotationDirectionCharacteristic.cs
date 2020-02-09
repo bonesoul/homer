@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class RotationDirectionCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int CLOCKWISE = 0;
         public static int COUNTER_CLOCKWISE = 1;
 
@@ -35,16 +35,18 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "00000028-0000-1000-8000-0026BB765291",
             displayName: "Rotation Direction",
             format: CharacteristicFormat.Int,
-            validValues: new List<int>
-            {
-                0,
-                1,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

@@ -27,14 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class StatusActiveCharacteristic: Characteristic
     {
+    
+
         public StatusActiveCharacteristic(): base(
             uuid: "00000075-0000-1000-8000-0026BB765291",
             displayName: "Status Active",
             format: CharacteristicFormat.Bool,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

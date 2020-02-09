@@ -27,15 +27,24 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class AudioFeedbackCharacteristic: Characteristic
     {
+    
+
         public AudioFeedbackCharacteristic(): base(
             uuid: "00000005-0000-1000-8000-0026BB765291",
             displayName: "Audio Feedback",
             format: CharacteristicFormat.Bool,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

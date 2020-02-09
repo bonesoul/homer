@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class StatusLowBatteryCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int BATTERY_LEVEL_NORMAL = 0;
         public static int BATTERY_LEVEL_LOW = 1;
 
@@ -35,15 +35,17 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "00000079-0000-1000-8000-0026BB765291",
             displayName: "Status Low Battery",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

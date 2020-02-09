@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SaturationCharacteristic: Characteristic
     {
+    
+
         public SaturationCharacteristic(): base(
             uuid: "0000002F-0000-1000-8000-0026BB765291",
             displayName: "Saturation",
@@ -35,11 +37,14 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             maxValue: 100,
             minValue: 0,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

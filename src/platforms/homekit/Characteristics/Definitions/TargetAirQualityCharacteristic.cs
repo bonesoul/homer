@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class TargetAirQualityCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int EXCELLENT = 0;
         public static int GOOD = 1;
         public static int FAIR = 2;
@@ -36,17 +36,18 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "000000AE-0000-1000-8000-0026BB765291",
             displayName: "Target Air Quality",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-                2,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,2,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

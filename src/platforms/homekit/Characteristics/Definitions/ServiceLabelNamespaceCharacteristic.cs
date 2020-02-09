@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ServiceLabelNamespaceCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int DOTS = 0;
         public static int ARABIC_NUMERALS = 1;
 
@@ -35,14 +35,15 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "000000CD-0000-1000-8000-0026BB765291",
             displayName: "Service Label Namespace",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
+                
             })
         {
         }

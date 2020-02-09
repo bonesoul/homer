@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class TargetHumidifierDehumidifierStateCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int HUMIDIFIER_OR_DEHUMIDIFIER = 0;
         public static int HUMIDIFIER = 1;
         public static int DEHUMIDIFIER = 2;
@@ -36,17 +36,18 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "000000B4-0000-1000-8000-0026BB765291",
             displayName: "Target Humidifier Dehumidifier State",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-                2,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,2,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

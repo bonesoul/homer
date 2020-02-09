@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class PositionStateCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int DECREASING = 0;
         public static int INCREASING = 1;
         public static int STOPPED = 2;
@@ -36,16 +36,17 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "00000072-0000-1000-8000-0026BB765291",
             displayName: "Position State",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-                2,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,2,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

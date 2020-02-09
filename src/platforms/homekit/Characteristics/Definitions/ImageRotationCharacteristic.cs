@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ImageRotationCharacteristic: Characteristic
     {
+    
+
         public ImageRotationCharacteristic(): base(
             uuid: "0000011E-0000-1000-8000-0026BB765291",
             displayName: "Image Rotation",
@@ -35,11 +37,14 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             maxValue: 270,
             minValue: 0,
             minStep: 90,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

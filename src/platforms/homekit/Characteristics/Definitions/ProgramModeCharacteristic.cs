@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ProgramModeCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int NO_PROGRAM_SCHEDULED = 0;
         public static int PROGRAM_SCHEDULED = 1;
         public static int PROGRAM_SCHEDULED_MANUAL_MODE_ = 2;
@@ -36,16 +36,17 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "000000D1-0000-1000-8000-0026BB765291",
             displayName: "Program Mode",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-                2,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,2,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

@@ -27,13 +27,21 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SerialNumberCharacteristic: Characteristic
     {
+    
+
         public SerialNumberCharacteristic(): base(
             uuid: "00000030-0000-1000-8000-0026BB765291",
             displayName: "Serial Number",
             format: CharacteristicFormat.String,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
+                
             })
         {
         }

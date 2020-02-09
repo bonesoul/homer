@@ -27,14 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ObstructionDetectedCharacteristic: Characteristic
     {
+    
+
         public ObstructionDetectedCharacteristic(): base(
             uuid: "00000024-0000-1000-8000-0026BB765291",
             displayName: "Obstruction Detected",
             format: CharacteristicFormat.Bool,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

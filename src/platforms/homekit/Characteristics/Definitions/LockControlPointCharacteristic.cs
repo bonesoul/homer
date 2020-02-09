@@ -27,13 +27,21 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class LockControlPointCharacteristic: Characteristic
     {
+    
+
         public LockControlPointCharacteristic(): base(
             uuid: "00000019-0000-1000-8000-0026BB765291",
             displayName: "Lock Control Point",
             format: CharacteristicFormat.Tlv8,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedWrite,
+                
             })
         {
         }

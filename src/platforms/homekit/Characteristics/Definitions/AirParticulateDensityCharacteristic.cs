@@ -27,17 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class AirParticulateDensityCharacteristic: Characteristic
     {
+    
+
         public AirParticulateDensityCharacteristic(): base(
             uuid: "00000064-0000-1000-8000-0026BB765291",
             displayName: "Air Particulate Density",
             format: CharacteristicFormat.Float,
+            
             maxValue: 1000,
             minValue: 0,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

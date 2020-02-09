@@ -27,15 +27,24 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class MuteCharacteristic: Characteristic
     {
+    
+
         public MuteCharacteristic(): base(
             uuid: "0000011A-0000-1000-8000-0026BB765291",
             displayName: "Mute",
             format: CharacteristicFormat.Bool,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

@@ -27,15 +27,24 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class OnCharacteristic: Characteristic
     {
+    
+
         public OnCharacteristic(): base(
             uuid: "00000025-0000-1000-8000-0026BB765291",
             displayName: "On",
             format: CharacteristicFormat.Bool,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

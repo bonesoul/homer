@@ -27,14 +27,22 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class PairVerifyCharacteristic: Characteristic
     {
+    
+
         public PairVerifyCharacteristic(): base(
             uuid: "0000004E-0000-1000-8000-0026BB765291",
             displayName: "Pair Verify",
             format: CharacteristicFormat.Tlv8,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
+                
             })
         {
         }

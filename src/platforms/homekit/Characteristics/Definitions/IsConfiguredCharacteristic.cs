@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class IsConfiguredCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int NOT_CONFIGURED = 0;
         public static int CONFIGURED = 1;
 
@@ -35,16 +35,18 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "000000D6-0000-1000-8000-0026BB765291",
             displayName: "Is Configured",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

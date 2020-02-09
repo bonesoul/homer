@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SlatTypeCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int HORIZONTAL = 0;
         public static int VERTICAL = 1;
 
@@ -35,14 +35,15 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "000000C0-0000-1000-8000-0026BB765291",
             displayName: "Slat Type",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
+                
             })
         {
         }

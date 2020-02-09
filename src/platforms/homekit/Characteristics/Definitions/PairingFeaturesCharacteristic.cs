@@ -27,13 +27,21 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class PairingFeaturesCharacteristic: Characteristic
     {
+    
+
         public PairingFeaturesCharacteristic(): base(
             uuid: "0000004F-0000-1000-8000-0026BB765291",
             displayName: "Pairing Features",
             format: CharacteristicFormat.Uint8,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
+                
             })
         {
         }

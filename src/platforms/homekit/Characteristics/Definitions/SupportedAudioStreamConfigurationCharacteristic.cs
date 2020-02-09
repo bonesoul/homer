@@ -27,13 +27,21 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SupportedAudioStreamConfigurationCharacteristic: Characteristic
     {
+    
+
         public SupportedAudioStreamConfigurationCharacteristic(): base(
             uuid: "00000115-0000-1000-8000-0026BB765291",
             displayName: "Supported Audio Stream Configuration",
             format: CharacteristicFormat.Tlv8,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
+                
             })
         {
         }

@@ -27,13 +27,21 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class HoldPositionCharacteristic: Characteristic
     {
+    
+
         public HoldPositionCharacteristic(): base(
             uuid: "0000006F-0000-1000-8000-0026BB765291",
             displayName: "Hold Position",
             format: CharacteristicFormat.Bool,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedWrite,
+                
             })
         {
         }

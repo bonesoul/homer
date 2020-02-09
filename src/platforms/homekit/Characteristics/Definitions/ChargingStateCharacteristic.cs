@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ChargingStateCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int NOT_CHARGING = 0;
         public static int CHARGING = 1;
         public static int NOT_CHARGEABLE = 2;
@@ -36,16 +36,17 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "0000008F-0000-1000-8000-0026BB765291",
             displayName: "Charging State",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-                2,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,2,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

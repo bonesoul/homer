@@ -27,17 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class OzoneDensityCharacteristic: Characteristic
     {
+    
+
         public OzoneDensityCharacteristic(): base(
             uuid: "000000C3-0000-1000-8000-0026BB765291",
             displayName: "Ozone Density",
             format: CharacteristicFormat.Float,
+            
             maxValue: 1000,
             minValue: 0,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

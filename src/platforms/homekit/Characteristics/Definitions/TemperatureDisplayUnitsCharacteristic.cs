@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class TemperatureDisplayUnitsCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int CELSIUS = 0;
         public static int FAHRENHEIT = 1;
 
@@ -35,16 +35,18 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "00000036-0000-1000-8000-0026BB765291",
             displayName: "Temperature Display Units",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

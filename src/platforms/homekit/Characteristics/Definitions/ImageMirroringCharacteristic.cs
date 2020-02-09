@@ -27,15 +27,24 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ImageMirroringCharacteristic: Characteristic
     {
+    
+
         public ImageMirroringCharacteristic(): base(
             uuid: "0000011F-0000-1000-8000-0026BB765291",
             displayName: "Image Mirroring",
             format: CharacteristicFormat.Bool,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

@@ -27,15 +27,24 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class DigitalZoomCharacteristic: Characteristic
     {
+    
+
         public DigitalZoomCharacteristic(): base(
             uuid: "0000011D-0000-1000-8000-0026BB765291",
             displayName: "Digital Zoom",
             format: CharacteristicFormat.Float,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class CurrentRelativeHumidityCharacteristic: Characteristic
     {
+    
+
         public CurrentRelativeHumidityCharacteristic(): base(
             uuid: "00000010-0000-1000-8000-0026BB765291",
             displayName: "Current Relative Humidity",
@@ -35,10 +37,13 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             maxValue: 100,
             minValue: 0,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

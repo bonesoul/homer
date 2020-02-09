@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class TargetVerticalTiltAngleCharacteristic: Characteristic
     {
+    
+
         public TargetVerticalTiltAngleCharacteristic(): base(
             uuid: "0000007D-0000-1000-8000-0026BB765291",
             displayName: "Target Vertical Tilt Angle",
@@ -35,11 +37,14 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             maxValue: 90,
             minValue: -1,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

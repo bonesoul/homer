@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class CurrentTemperatureCharacteristic: Characteristic
     {
+    
+
         public CurrentTemperatureCharacteristic(): base(
             uuid: "00000011-0000-1000-8000-0026BB765291",
             displayName: "Current Temperature",
@@ -35,10 +37,13 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             maxValue: 100,
             minValue: 0,
             minStep: 0.1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

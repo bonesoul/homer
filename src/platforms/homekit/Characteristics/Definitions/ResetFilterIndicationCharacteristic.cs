@@ -27,16 +27,21 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ResetFilterIndicationCharacteristic: Characteristic
     {
+    
+
         public ResetFilterIndicationCharacteristic(): base(
             uuid: "000000AD-0000-1000-8000-0026BB765291",
             displayName: "Reset Filter Indication",
             format: CharacteristicFormat.Uint8,
+            
             maxValue: 1,
             minValue: 1,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedWrite,
+                
             })
         {
         }

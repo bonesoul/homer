@@ -27,17 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class PM2_5DensityCharacteristic: Characteristic
     {
+    
+
         public PM2_5DensityCharacteristic(): base(
             uuid: "000000C6-0000-1000-8000-0026BB765291",
             displayName: "PM2.5 Density",
             format: CharacteristicFormat.Float,
+            
             maxValue: 1000,
             minValue: 0,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

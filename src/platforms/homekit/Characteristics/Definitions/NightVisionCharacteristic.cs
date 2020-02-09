@@ -27,15 +27,24 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class NightVisionCharacteristic: Characteristic
     {
+    
+
         public NightVisionCharacteristic(): base(
             uuid: "0000011B-0000-1000-8000-0026BB765291",
             displayName: "Night Vision",
             format: CharacteristicFormat.Bool,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

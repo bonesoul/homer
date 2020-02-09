@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class TargetHeatingCoolingStateCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int OFF = 0;
         public static int HEAT = 1;
         public static int COOL = 2;
@@ -37,18 +37,18 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "00000033-0000-1000-8000-0026BB765291",
             displayName: "Target Heating Cooling State",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-                2,
-                3,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,2,3,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

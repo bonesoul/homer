@@ -27,14 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class StreamingStatusCharacteristic: Characteristic
     {
+    
+
         public StreamingStatusCharacteristic(): base(
             uuid: "00000120-0000-1000-8000-0026BB765291",
             displayName: "Streaming Status",
             format: CharacteristicFormat.Tlv8,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

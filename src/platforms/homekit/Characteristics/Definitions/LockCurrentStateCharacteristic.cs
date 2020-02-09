@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class LockCurrentStateCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int UNSECURED = 0;
         public static int SECURED = 1;
         public static int JAMMED = 2;
@@ -37,17 +37,17 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "0000001D-0000-1000-8000-0026BB765291",
             displayName: "Lock Current State",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-                2,
-                3,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,2,3,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

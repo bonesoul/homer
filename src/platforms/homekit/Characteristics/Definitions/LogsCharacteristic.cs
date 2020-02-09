@@ -27,14 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class LogsCharacteristic: Characteristic
     {
+    
+
         public LogsCharacteristic(): base(
             uuid: "0000001F-0000-1000-8000-0026BB765291",
             displayName: "Logs",
             format: CharacteristicFormat.Tlv8,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

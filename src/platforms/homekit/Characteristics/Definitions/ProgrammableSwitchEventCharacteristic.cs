@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ProgrammableSwitchEventCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int SINGLE_PRESS = 0;
         public static int DOUBLE_PRESS = 1;
         public static int LONG_PRESS = 2;
@@ -36,16 +36,17 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "00000073-0000-1000-8000-0026BB765291",
             displayName: "Programmable Switch Event",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-                2,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,2,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

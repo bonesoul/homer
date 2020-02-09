@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class CoolingThresholdTemperatureCharacteristic: Characteristic
     {
+    
+
         public CoolingThresholdTemperatureCharacteristic(): base(
             uuid: "0000000D-0000-1000-8000-0026BB765291",
             displayName: "Cooling Threshold Temperature",
@@ -35,11 +37,14 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             maxValue: 35,
             minValue: 10,
             minStep: 0.1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

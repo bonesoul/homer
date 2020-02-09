@@ -27,16 +27,24 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class LockManagementAutoSecurityTimeoutCharacteristic: Characteristic
     {
+    
+
         public LockManagementAutoSecurityTimeoutCharacteristic(): base(
             uuid: "0000001A-0000-1000-8000-0026BB765291",
             displayName: "Lock Management Auto Security Timeout",
             format: CharacteristicFormat.Uint32,
             unit: CharacteristicUnit.Seconds,
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

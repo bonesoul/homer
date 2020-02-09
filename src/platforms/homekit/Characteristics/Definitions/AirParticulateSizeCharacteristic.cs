@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class AirParticulateSizeCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int _2_5_M = 0;
         public static int _10_M = 1;
 
@@ -35,15 +35,17 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "00000065-0000-1000-8000-0026BB765291",
             displayName: "Air Particulate Size",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

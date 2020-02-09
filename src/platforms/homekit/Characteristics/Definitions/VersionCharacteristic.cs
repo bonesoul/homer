@@ -27,14 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class VersionCharacteristic: Characteristic
     {
+    
+
         public VersionCharacteristic(): base(
             uuid: "00000037-0000-1000-8000-0026BB765291",
             displayName: "Version",
             format: CharacteristicFormat.String,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

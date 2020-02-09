@@ -27,13 +27,21 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class IdentifyCharacteristic: Characteristic
     {
+    
+
         public IdentifyCharacteristic(): base(
             uuid: "00000014-0000-1000-8000-0026BB765291",
             displayName: "Identify",
             format: CharacteristicFormat.Bool,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedWrite,
+                
             })
         {
         }

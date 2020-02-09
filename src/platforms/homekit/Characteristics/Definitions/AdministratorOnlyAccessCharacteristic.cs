@@ -27,15 +27,24 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class AdministratorOnlyAccessCharacteristic: Characteristic
     {
+    
+
         public AdministratorOnlyAccessCharacteristic(): base(
             uuid: "00000001-0000-1000-8000-0026BB765291",
             displayName: "Administrator Only Access",
             format: CharacteristicFormat.Bool,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

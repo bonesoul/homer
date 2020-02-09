@@ -27,14 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class OutletInUseCharacteristic: Characteristic
     {
+    
+
         public OutletInUseCharacteristic(): base(
             uuid: "00000026-0000-1000-8000-0026BB765291",
             displayName: "Outlet In Use",
             format: CharacteristicFormat.Bool,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

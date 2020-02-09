@@ -27,16 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class CarbonMonoxidePeakLevelCharacteristic: Characteristic
     {
+    
+
         public CarbonMonoxidePeakLevelCharacteristic(): base(
             uuid: "00000091-0000-1000-8000-0026BB765291",
             displayName: "Carbon Monoxide Peak Level",
             format: CharacteristicFormat.Float,
+            
             maxValue: 100,
             minValue: 0,
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

@@ -27,16 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class FilterLifeLevelCharacteristic: Characteristic
     {
+    
+
         public FilterLifeLevelCharacteristic(): base(
             uuid: "000000AB-0000-1000-8000-0026BB765291",
             displayName: "Filter Life Level",
             format: CharacteristicFormat.Float,
+            
             maxValue: 100,
             minValue: 0,
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

@@ -27,17 +27,23 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class VOCDensityCharacteristic: Characteristic
     {
+    
+
         public VOCDensityCharacteristic(): base(
             uuid: "000000C8-0000-1000-8000-0026BB765291",
             displayName: "VOC Density",
             format: CharacteristicFormat.Float,
+            
             maxValue: 1000,
             minValue: 0,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

@@ -27,7 +27,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SecuritySystemCurrentStateCharacteristic: Characteristic
     {
-        // possible values:
+    
         public static int STAY_ARM = 0;
         public static int AWAY_ARM = 1;
         public static int NIGHT_ARM = 2;
@@ -38,18 +38,17 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             uuid: "00000066-0000-1000-8000-0026BB765291",
             displayName: "Security System Current State",
             format: CharacteristicFormat.Uint8,
-            validValues: new List<int>
-            {
-                0,
-                1,
-                2,
-                3,
-                4,
-            },
+            
+            
+            
+            
+            validValues: new List<int> {0,1,2,3,4,},
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

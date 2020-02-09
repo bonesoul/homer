@@ -27,15 +27,24 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class OpticalZoomCharacteristic: Characteristic
     {
+    
+
         public OpticalZoomCharacteristic(): base(
             uuid: "0000011C-0000-1000-8000-0026BB765291",
             displayName: "Optical Zoom",
             format: CharacteristicFormat.Float,
+            
+            
+            
+            
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.PairedWrite,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }

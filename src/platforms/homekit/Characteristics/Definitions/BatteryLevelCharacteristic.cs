@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class BatteryLevelCharacteristic: Characteristic
     {
+    
+
         public BatteryLevelCharacteristic(): base(
             uuid: "00000068-0000-1000-8000-0026BB765291",
             displayName: "Battery Level",
@@ -35,10 +37,13 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             maxValue: 100,
             minValue: 0,
             minStep: 1,
+            
             permissions: new List<CharacteristicPermission>
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events,
+                
+                
             })
         {
         }
