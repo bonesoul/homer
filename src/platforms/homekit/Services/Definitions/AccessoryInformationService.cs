@@ -31,7 +31,7 @@ namespace Homer.Platform.HomeKit.Services.Definitions
             : base("0000003E-0000-1000-8000-0026BB765291", "Accessory Information")
         {
             // required characteristics.
-            AddCharacteristic(typeof(IdentityCharacteristic))
+            AddCharacteristic(typeof(IdentifyCharacteristic))
                 .AddCharacteristic(typeof(ManufacturerCharacteristic))
                 .AddCharacteristic(typeof(ModelCharacteristic))
                 .AddCharacteristic(typeof(NameCharacteristic))

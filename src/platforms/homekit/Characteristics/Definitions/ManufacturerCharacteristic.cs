@@ -1,13 +1,13 @@
-﻿#region license
-// 
+#region license
+//
 //     homer - The complete home automation for Homer Simpson.
 //     Copyright (C) 2020, Hüseyin Uslu - shalafiraistlin at gmail dot com
 //     https://github.com/bonesoul/homer
-// 
+//
 //      “Commons Clause” License Condition v1.0
 //
 //      The Software is provided to you by the Licensor under the License, as defined below, subject to the following condition.
-//  
+//
 //      Without limiting other conditions in the License, the grant of rights under the License will not include, and the License
 //      does not grant to you, the right to Sell the Software.
 //
@@ -25,18 +25,15 @@ using System.Collections.Generic;
 
 namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
-    public class ManufacturerCharacteristic : Characteristic
+    public class ManufacturerCharacteristic: Characteristic
     {
-        public ManufacturerCharacteristic() : base(
-            "00000020-0000-1000-8000-0026BB765291",
-            "Manufacturer",
-            CharacteristicFormat.String,
-            new List<CharacteristicPermission>
+        public ManufacturerCharacteristic(): base(
+            uuid: "00000020-0000-1000-8000-0026BB765291",
+            displayName: "Manufacturer",
+            format: CharacteristicFormat.String,
+            permissions: new List<CharacteristicPermission>
             {
-                CharacteristicPermission.PairedRead
-            },validValues: new List<int>
-            {
-
+                CharacteristicPermission.PairedRead,
             })
         {
         }

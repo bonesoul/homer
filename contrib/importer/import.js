@@ -9,9 +9,6 @@ const plist = require('simple-plist');
 var plistPath = './data/default.metadata.plist';
 var metadata = plist.readFileSync(plistPath);
 
-var outputPath = path.join(__dirname, 'HomeKitTypes.txt');
-var output = fs.createWriteStream(outputPath);
-
 var characteristics = {};
 
 for (var index in metadata.Characteristics) {
@@ -21,9 +18,35 @@ for (var index in metadata.Characteristics) {
 
   characteristics[characteristic.UUID] = classyName;
 
-  output.write(`using System.Collections.Generic;\n\n`);
-  output.write(`namespace Homer.Platform.HomeKit.Characteristics.Definitions\n{\n`);
-  output.write(`    public class ${classyName}Characteristic : Characteristic\n    {\n`);
+  var outputPath = path.join(__dirname, '..', '..', 'src', 'platforms', 'homekit', 'Characteristics',  'Definitions', `${classyName}Characteristic.cs`);
+  var output = fs.createWriteStream(outputPath);
+
+  output.write(`#region license
+//
+//     homer - The complete home automation for Homer Simpson.
+//     Copyright (C) 2020, Hüseyin Uslu - shalafiraistlin at gmail dot com
+//     https://github.com/bonesoul/homer
+//
+//      “Commons Clause” License Condition v1.0
+//
+//      The Software is provided to you by the Licensor under the License, as defined below, subject to the following condition.
+//
+//      Without limiting other conditions in the License, the grant of rights under the License will not include, and the License
+//      does not grant to you, the right to Sell the Software.
+//
+//      For purposes of the foregoing, “Sell” means practicing any or all of the rights granted to you under the License to provide
+//      to third parties, for a fee or other consideration (including without limitation fees for hosting or consulting/ support
+//      services related to the Software), a product or service whose value derives, entirely or substantially, from the functionality
+//      of the Software.Any license notice or attribution required by the License must also include this Commons Clause License
+//      Condition notice.
+//
+//      License: MIT License
+//      Licensor: Hüseyin Uslu
+#endregion\n\n`);
+
+output.write(`using System.Collections.Generic;\n\n`);
+output.write(`namespace Homer.Platform.HomeKit.Characteristics.Definitions\n{\n`);
+  output.write(`    public class ${classyName}Characteristic: Characteristic\n    {\n`);
 
   if (characteristic.Constraints && characteristic.Constraints.ValidValues) {
     // this characteristic can only have one of a defined set of values (like an enum). Define the values as static members of our subclass.
@@ -40,23 +63,14 @@ for (var index in metadata.Characteristics) {
     output.write('\n');
   }
 
-  output.write(`        public ${classyName}Characteristic() : base(\n`);
+  output.write(`        public ${classyName}Characteristic(): base(\n`);
   output.write(`            uuid: "${characteristic.UUID}",\n`);
   output.write(`            displayName: "${characteristic.Name}",\n`);
 
-  output.write(`            format: CharacteristicFormat.${capitalize(characteristic.Format)},\n`);
-
-  output.write(`            permissions: new List<CharacteristicPermission>\n            {\n`);
-  for (var i in characteristic.Properties) {
-    var perms = getCharacteristicPermsKey(characteristic.Properties[i]);
-    if (perms) {
-        output.write(`                CharacteristicPermission.${getCharacteristicPermsKey(characteristic.Properties[i])},\n`);
-    }
-  }
-  output.write(`            },\n`);
+  output.write(`            format: CharacteristicFormat.${getCharacteristicFormat(characteristic.Format)},\n`);
 
   if (characteristic.Unit)
-    output.write(`            unit: CharacteristicUnit.${capitalize(characteristic.Unit)},\n`);
+    output.write(`            unit: CharacteristicUnit.${getCharacteristicUnit(characteristic.Unit)},\n`);
 
   // apply any basic constraints if present
   if (characteristic.Constraints && typeof characteristic.Constraints.MaximumValue !== 'undefined')
@@ -73,18 +87,37 @@ for (var index in metadata.Characteristics) {
     for (var value in characteristic.Constraints.ValidValues) {
       output.write(`                ${value},\n`);
     }
-    output.write(`            }\n`);
+    output.write(`            },\n`);
   }
 
-  output.write(`            )\n`);
-  output.write(`        {\n        }\n    }\n}\n`);
+  output.write(`            permissions: new List<CharacteristicPermission>\n            {\n`);
+  for (var i in characteristic.Properties) {
+    var perms = getCharacteristicPermsKey(characteristic.Properties[i]);
+    if (perms) {
+        output.write(`                CharacteristicPermission.${getCharacteristicPermsKey(characteristic.Properties[i])},\n`);
+    }
+  }
+  output.write(`            })\n`);
 
-  output.write(`\n\n`);
+  output.write(`        {\n        }\n    }\n}\n`);
+  output.end()
 }
 
 function capitalize(s) {
   if (typeof s !== 'string') return ''
   return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+function getCharacteristicUnit(unit) {
+  unit = capitalize(unit);
+  if (unit == 'Arcdegrees') unit = 'ArcDegree'
+  return unit;
+}
+
+function getCharacteristicFormat(format) {
+  format = capitalize(format);
+  if (format == 'Int32') format = 'Int'
+  return format;
 }
 
 function getCharacteristicPermsKey(perm) {

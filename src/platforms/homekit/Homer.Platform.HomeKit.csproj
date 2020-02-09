@@ -31,4 +31,8 @@
     <ProjectReference Include="..\..\..\contrib\uuid.net\uuid.net.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Characteristics\Definitions\" />
+  </ItemGroup>
+
 </Project>
