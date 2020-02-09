@@ -10,32 +10,37 @@ const plist = require('simple-plist');
 var plistPath = './data/default.metadata.plist';
 var metadata = plist.readFileSync(plistPath);
 
-var characteristics = {};
+readCharacteristics(metadata);
+readServices(metadata);
 
-for (var index in metadata.Characteristics) {
-  var characteristic = metadata.Characteristics[index];
-  var classyName = characteristic.Name.replace(/[\s\-]/g, ""); // "Target Door State" -> "TargetDoorState"
-  classyName = classyName.replace(/[.]/g, "_"); // "PM2.5" -> "PM2_5"
+function readCharacteristics(metadata) {
+  for (var index in metadata.Characteristics) {
+    var characteristic = metadata.Characteristics[index];
+    var classyName = characteristic.Name.replace(/[\s\-]/g, ""); // "Target Door State" -> "TargetDoorState"
+    classyName = classyName.replace(/[.]/g, "_"); // "PM2.5" -> "PM2_5"
 
-  characteristics[characteristic.UUID] = classyName;
+    var outputPath = path.join(__dirname, '..', '..', 'src', 'platforms', 'homekit', 'Characteristics',  'Definitions', `${classyName}Characteristic.cs`);
+    var output = fs.createWriteStream(outputPath);
 
-  var outputPath = path.join(__dirname, '..', '..', 'src', 'platforms', 'homekit', 'Characteristics',  'Definitions', `${classyName}Characteristic.cs`);
-  var output = fs.createWriteStream(outputPath);
+    var res = nunjucks.render('characteristic.html', {
+      classyName: classyName,
+      characteristic: characteristic,
+      capitalize: capitalize,
+      getCharacteristicUnit: getCharacteristicUnit,
+      getCharacteristicFormat: getCharacteristicFormat,
+      getCharacteristicPermsKey: getCharacteristicPermsKey,
+      gotMaximumValue: gotMaximumValue,
+      gotMinimumValue: gotMinimumValue,
+      gotStepValue: gotStepValue,
+    });
 
-  var res = nunjucks.render('characteristic.html', {
-    classyName: classyName,
-    characteristic: characteristic,
-    capitalize: capitalize,
-    getCharacteristicUnit: getCharacteristicUnit,
-    getCharacteristicFormat: getCharacteristicFormat,
-    getCharacteristicPermsKey: getCharacteristicPermsKey,
-    gotMaximumValue: gotMaximumValue,
-    gotMinimumValue: gotMinimumValue,
-    gotStepValue: gotStepValue,
-  });
+    output.write(res);
+    output.end();
+  }
+}
 
-  output.write(res);
-  output.end();
+function readServices(metadata) {
+
 }
 
 function capitalize(s) {
