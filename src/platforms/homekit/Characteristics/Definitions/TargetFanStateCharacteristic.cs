@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class TargetFanStateCharacteristic: Characteristic
     {
     
-        public static int MANUAL = 0;
-        public static int AUTO = 1;
+        public const int MANUAL = 0;
+        public const int AUTO = 1;
 
         public TargetFanStateCharacteristic(): base(
             uuid: "000000BF-0000-1000-8000-0026BB765291",

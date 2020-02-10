@@ -28,10 +28,10 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class CurrentHumidifierDehumidifierStateCharacteristic: Characteristic
     {
     
-        public static int INACTIVE = 0;
-        public static int IDLE = 1;
-        public static int HUMIDIFYING = 2;
-        public static int DEHUMIDIFYING = 3;
+        public const int INACTIVE = 0;
+        public const int IDLE = 1;
+        public const int HUMIDIFYING = 2;
+        public const int DEHUMIDIFYING = 3;
 
         public CurrentHumidifierDehumidifierStateCharacteristic(): base(
             uuid: "000000B3-0000-1000-8000-0026BB765291",

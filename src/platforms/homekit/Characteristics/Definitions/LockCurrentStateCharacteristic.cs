@@ -28,10 +28,10 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class LockCurrentStateCharacteristic: Characteristic
     {
     
-        public static int UNSECURED = 0;
-        public static int SECURED = 1;
-        public static int JAMMED = 2;
-        public static int UNKNOWN = 3;
+        public const int UNSECURED = 0;
+        public const int SECURED = 1;
+        public const int JAMMED = 2;
+        public const int UNKNOWN = 3;
 
         public LockCurrentStateCharacteristic(): base(
             uuid: "0000001D-0000-1000-8000-0026BB765291",

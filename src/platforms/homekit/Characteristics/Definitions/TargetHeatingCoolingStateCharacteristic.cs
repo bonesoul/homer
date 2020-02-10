@@ -28,10 +28,10 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class TargetHeatingCoolingStateCharacteristic: Characteristic
     {
     
-        public static int OFF = 0;
-        public static int HEAT = 1;
-        public static int COOL = 2;
-        public static int AUTO = 3;
+        public const int OFF = 0;
+        public const int HEAT = 1;
+        public const int COOL = 2;
+        public const int AUTO = 3;
 
         public TargetHeatingCoolingStateCharacteristic(): base(
             uuid: "00000033-0000-1000-8000-0026BB765291",

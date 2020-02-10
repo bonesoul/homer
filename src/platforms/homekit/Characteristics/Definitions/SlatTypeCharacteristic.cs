@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class SlatTypeCharacteristic: Characteristic
     {
     
-        public static int HORIZONTAL = 0;
-        public static int VERTICAL = 1;
+        public const int HORIZONTAL = 0;
+        public const int VERTICAL = 1;
 
         public SlatTypeCharacteristic(): base(
             uuid: "000000C0-0000-1000-8000-0026BB765291",

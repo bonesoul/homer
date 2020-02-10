@@ -28,9 +28,9 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class CurrentFanStateCharacteristic: Characteristic
     {
     
-        public static int INACTIVE = 0;
-        public static int IDLE = 1;
-        public static int BLOWING_AIR = 2;
+        public const int INACTIVE = 0;
+        public const int IDLE = 1;
+        public const int BLOWING_AIR = 2;
 
         public CurrentFanStateCharacteristic(): base(
             uuid: "000000AF-0000-1000-8000-0026BB765291",

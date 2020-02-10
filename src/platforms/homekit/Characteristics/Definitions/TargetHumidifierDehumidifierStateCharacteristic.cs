@@ -28,9 +28,9 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class TargetHumidifierDehumidifierStateCharacteristic: Characteristic
     {
     
-        public static int HUMIDIFIER_OR_DEHUMIDIFIER = 0;
-        public static int HUMIDIFIER = 1;
-        public static int DEHUMIDIFIER = 2;
+        public const int HUMIDIFIER_OR_DEHUMIDIFIER = 0;
+        public const int HUMIDIFIER = 1;
+        public const int DEHUMIDIFIER = 2;
 
         public TargetHumidifierDehumidifierStateCharacteristic(): base(
             uuid: "000000B4-0000-1000-8000-0026BB765291",

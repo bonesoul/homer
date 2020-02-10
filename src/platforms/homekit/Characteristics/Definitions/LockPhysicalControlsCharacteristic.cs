@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class LockPhysicalControlsCharacteristic: Characteristic
     {
     
-        public static int CONTROL_LOCK_DISABLED = 0;
-        public static int CONTROL_LOCK_ENABLED = 1;
+        public const int CONTROL_LOCK_DISABLED = 0;
+        public const int CONTROL_LOCK_ENABLED = 1;
 
         public LockPhysicalControlsCharacteristic(): base(
             uuid: "000000A7-0000-1000-8000-0026BB765291",

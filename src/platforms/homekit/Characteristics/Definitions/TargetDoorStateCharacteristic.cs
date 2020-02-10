@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class TargetDoorStateCharacteristic: Characteristic
     {
     
-        public static int OPEN = 0;
-        public static int CLOSED = 1;
+        public const int OPEN = 0;
+        public const int CLOSED = 1;
 
         public TargetDoorStateCharacteristic(): base(
             uuid: "00000032-0000-1000-8000-0026BB765291",

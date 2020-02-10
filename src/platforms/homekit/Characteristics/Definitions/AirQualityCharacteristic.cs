@@ -28,12 +28,12 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class AirQualityCharacteristic: Characteristic
     {
     
-        public static int UNKNOWN = 0;
-        public static int EXCELLENT = 1;
-        public static int GOOD = 2;
-        public static int FAIR = 3;
-        public static int INFERIOR = 4;
-        public static int POOR = 5;
+        public const int UNKNOWN = 0;
+        public const int EXCELLENT = 1;
+        public const int GOOD = 2;
+        public const int FAIR = 3;
+        public const int INFERIOR = 4;
+        public const int POOR = 5;
 
         public AirQualityCharacteristic(): base(
             uuid: "00000095-0000-1000-8000-0026BB765291",

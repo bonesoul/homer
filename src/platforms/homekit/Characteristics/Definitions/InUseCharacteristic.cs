@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class InUseCharacteristic: Characteristic
     {
     
-        public static int NOT_IN_USE = 0;
-        public static int IN_USE = 1;
+        public const int NOT_IN_USE = 0;
+        public const int IN_USE = 1;
 
         public InUseCharacteristic(): base(
             uuid: "000000D2-0000-1000-8000-0026BB765291",

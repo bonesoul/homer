@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class AirParticulateSizeCharacteristic: Characteristic
     {
     
-        public static int _2_5_M = 0;
-        public static int _10_M = 1;
+        public const int _2_5_M = 0;
+        public const int _10_M = 1;
 
         public AirParticulateSizeCharacteristic(): base(
             uuid: "00000065-0000-1000-8000-0026BB765291",

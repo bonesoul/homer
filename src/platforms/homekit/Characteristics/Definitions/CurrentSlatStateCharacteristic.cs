@@ -28,9 +28,9 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class CurrentSlatStateCharacteristic: Characteristic
     {
     
-        public static int FIXED = 0;
-        public static int JAMMED = 1;
-        public static int SWINGING = 2;
+        public const int FIXED = 0;
+        public const int JAMMED = 1;
+        public const int SWINGING = 2;
 
         public CurrentSlatStateCharacteristic(): base(
             uuid: "000000AA-0000-1000-8000-0026BB765291",

@@ -28,10 +28,10 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class ValveTypeCharacteristic: Characteristic
     {
     
-        public static int GENERIC_VALVE = 0;
-        public static int IRRIGATION = 1;
-        public static int SHOWER_HEAD = 2;
-        public static int WATER_FAUCET = 3;
+        public const int GENERIC_VALVE = 0;
+        public const int IRRIGATION = 1;
+        public const int SHOWER_HEAD = 2;
+        public const int WATER_FAUCET = 3;
 
         public ValveTypeCharacteristic(): base(
             uuid: "000000D5-0000-1000-8000-0026BB765291",

@@ -28,11 +28,11 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class CurrentDoorStateCharacteristic: Characteristic
     {
     
-        public static int OPEN = 0;
-        public static int CLOSED = 1;
-        public static int OPENING = 2;
-        public static int CLOSING = 3;
-        public static int STOPPED = 4;
+        public const int OPEN = 0;
+        public const int CLOSED = 1;
+        public const int OPENING = 2;
+        public const int CLOSING = 3;
+        public const int STOPPED = 4;
 
         public CurrentDoorStateCharacteristic(): base(
             uuid: "0000000E-0000-1000-8000-0026BB765291",

@@ -28,11 +28,11 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class SecuritySystemCurrentStateCharacteristic: Characteristic
     {
     
-        public static int STAY_ARM = 0;
-        public static int AWAY_ARM = 1;
-        public static int NIGHT_ARM = 2;
-        public static int DISARMED = 3;
-        public static int ALARM_TRIGGERED = 4;
+        public const int STAY_ARM = 0;
+        public const int AWAY_ARM = 1;
+        public const int NIGHT_ARM = 2;
+        public const int DISARMED = 3;
+        public const int ALARM_TRIGGERED = 4;
 
         public SecuritySystemCurrentStateCharacteristic(): base(
             uuid: "00000066-0000-1000-8000-0026BB765291",

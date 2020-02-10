@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class StatusLowBatteryCharacteristic: Characteristic
     {
     
-        public static int BATTERY_LEVEL_NORMAL = 0;
-        public static int BATTERY_LEVEL_LOW = 1;
+        public const int BATTERY_LEVEL_NORMAL = 0;
+        public const int BATTERY_LEVEL_LOW = 1;
 
         public StatusLowBatteryCharacteristic(): base(
             uuid: "00000079-0000-1000-8000-0026BB765291",

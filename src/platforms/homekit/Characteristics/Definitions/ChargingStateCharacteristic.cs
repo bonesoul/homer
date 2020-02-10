@@ -28,9 +28,9 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class ChargingStateCharacteristic: Characteristic
     {
     
-        public static int NOT_CHARGING = 0;
-        public static int CHARGING = 1;
-        public static int NOT_CHARGEABLE = 2;
+        public const int NOT_CHARGING = 0;
+        public const int CHARGING = 1;
+        public const int NOT_CHARGEABLE = 2;
 
         public ChargingStateCharacteristic(): base(
             uuid: "0000008F-0000-1000-8000-0026BB765291",

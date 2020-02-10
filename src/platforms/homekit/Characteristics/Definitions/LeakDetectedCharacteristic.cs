@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class LeakDetectedCharacteristic: Characteristic
     {
     
-        public static int LEAK_NOT_DETECTED = 0;
-        public static int LEAK_DETECTED = 1;
+        public const int LEAK_NOT_DETECTED = 0;
+        public const int LEAK_DETECTED = 1;
 
         public LeakDetectedCharacteristic(): base(
             uuid: "00000070-0000-1000-8000-0026BB765291",

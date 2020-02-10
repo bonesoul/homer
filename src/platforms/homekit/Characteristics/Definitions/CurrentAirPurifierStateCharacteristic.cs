@@ -28,9 +28,9 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class CurrentAirPurifierStateCharacteristic: Characteristic
     {
     
-        public static int INACTIVE = 0;
-        public static int IDLE = 1;
-        public static int PURIFYING_AIR = 2;
+        public const int INACTIVE = 0;
+        public const int IDLE = 1;
+        public const int PURIFYING_AIR = 2;
 
         public CurrentAirPurifierStateCharacteristic(): base(
             uuid: "000000A9-0000-1000-8000-0026BB765291",

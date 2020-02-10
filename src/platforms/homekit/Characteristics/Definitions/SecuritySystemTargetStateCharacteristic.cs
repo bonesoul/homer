@@ -28,10 +28,10 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class SecuritySystemTargetStateCharacteristic: Characteristic
     {
     
-        public static int STAY_ARM = 0;
-        public static int AWAY_ARM = 1;
-        public static int NIGHT_ARM = 2;
-        public static int DISARM = 3;
+        public const int STAY_ARM = 0;
+        public const int AWAY_ARM = 1;
+        public const int NIGHT_ARM = 2;
+        public const int DISARM = 3;
 
         public SecuritySystemTargetStateCharacteristic(): base(
             uuid: "00000067-0000-1000-8000-0026BB765291",
