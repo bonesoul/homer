@@ -23,6 +23,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Homer.Core.Host;
 using Homer.Platform.HomeKit.Bridges.Setup;
 using Makaretu.Dns;
 using Serilog;
@@ -32,7 +33,12 @@ namespace Homer.Servers
 {
     public class Server : IServer
     {
-        public ILogger Logger { get; set; }
+        private ILogger _logger;
+
+        public Server()
+        {
+            _logger = Log.ForContext<Server>();
+        }
 
         public async Task RunAsync()
         {
@@ -47,13 +53,13 @@ namespace Homer.Servers
 
                 foreach (var a in MulticastService.GetIPAddresses())
                 {
-                    Logger.Information($"IP address {a}");
+                    _logger.Information($"IP address {a}");
                 }
 
             }
             catch (Exception e)
             {
-                Logger.Error("server initialization failed...");
+                _logger.Error("server initialization failed...");
             }
         }
     }

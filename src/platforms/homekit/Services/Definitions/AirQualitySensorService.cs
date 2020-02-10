@@ -35,19 +35,19 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(StatusActiveCharacteristic))
-              .AddCharacteristic(typeof(StatusFaultCharacteristic))
-              .AddCharacteristic(typeof(StatusTamperedCharacteristic))
-              .AddCharacteristic(typeof(StatusLowBatteryCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(OzoneDensityCharacteristic))
-              .AddCharacteristic(typeof(NitrogenDioxideDensityCharacteristic))
-              .AddCharacteristic(typeof(SulphurDioxideDensityCharacteristic))
-              .AddCharacteristic(typeof(PM2_5DensityCharacteristic))
-              .AddCharacteristic(typeof(PM10DensityCharacteristic))
-              .AddCharacteristic(typeof(VOCDensityCharacteristic))
-              .AddCharacteristic(typeof(CarbonMonoxideLevelCharacteristic))
-              .AddCharacteristic(typeof(CarbonDioxideLevelCharacteristic))
+            AddOptionalCharacteristic(typeof(StatusActiveCharacteristic))
+              .AddOptionalCharacteristic(typeof(StatusFaultCharacteristic))
+              .AddOptionalCharacteristic(typeof(StatusTamperedCharacteristic))
+              .AddOptionalCharacteristic(typeof(StatusLowBatteryCharacteristic))
+              .AddOptionalCharacteristic(typeof(NameCharacteristic))
+              .AddOptionalCharacteristic(typeof(OzoneDensityCharacteristic))
+              .AddOptionalCharacteristic(typeof(NitrogenDioxideDensityCharacteristic))
+              .AddOptionalCharacteristic(typeof(SulphurDioxideDensityCharacteristic))
+              .AddOptionalCharacteristic(typeof(PM2_5DensityCharacteristic))
+              .AddOptionalCharacteristic(typeof(PM10DensityCharacteristic))
+              .AddOptionalCharacteristic(typeof(VOCDensityCharacteristic))
+              .AddOptionalCharacteristic(typeof(CarbonMonoxideLevelCharacteristic))
+              .AddOptionalCharacteristic(typeof(CarbonDioxideLevelCharacteristic))
               ;
         }
     }

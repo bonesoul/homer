@@ -36,10 +36,10 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(CurrentTiltAngleCharacteristic))
-              .AddCharacteristic(typeof(TargetTiltAngleCharacteristic))
-              .AddCharacteristic(typeof(SwingModeCharacteristic))
+            AddOptionalCharacteristic(typeof(NameCharacteristic))
+              .AddOptionalCharacteristic(typeof(CurrentTiltAngleCharacteristic))
+              .AddOptionalCharacteristic(typeof(TargetTiltAngleCharacteristic))
+              .AddOptionalCharacteristic(typeof(SwingModeCharacteristic))
               ;
         }
     }

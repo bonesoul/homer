@@ -117,6 +117,7 @@ namespace Homer.Platform.HomeKit.Services
         public IService AddCharacteristic(ICharacteristic characteristic)
         {
             if (characteristic == null) throw new ArgumentNullException(nameof(characteristic));
+            if (_characteristics.ContainsKey(characteristic.GetType())) return this; // if characteristic already exists, just skip the call.
 
             _characteristics.Add(characteristic.GetType(), characteristic);
             OnEvent(ServiceConfigurationChange, EventArgs.Empty); // notify listeners.
@@ -125,6 +126,8 @@ namespace Homer.Platform.HomeKit.Services
 
         public IService AddCharacteristic(Type t)
         {
+            if (_characteristics.ContainsKey(t)) return this; // if characteristic already exists, just skip the call.
+
             var characteristic = (ICharacteristic)Activator.CreateInstance(t);
             AddCharacteristic(characteristic);
             return this; // allow chaining.
@@ -132,6 +135,9 @@ namespace Homer.Platform.HomeKit.Services
 
         public IService AddOptionalCharacteristic(ICharacteristic characteristic)
         {
+            if (characteristic == null) throw new ArgumentNullException(nameof(characteristic));
+            if (_optionalCharacteristics.ContainsKey(characteristic.GetType())) return this; // if characteristic already exists, just skip the call.
+
             _optionalCharacteristics.Add(characteristic.GetType(), characteristic);
             OnEvent(ServiceConfigurationChange, EventArgs.Empty); // notify listeners.
             return this; // allow chaining.
@@ -139,6 +145,8 @@ namespace Homer.Platform.HomeKit.Services
 
         public IService AddOptionalCharacteristic(Type t)
         {
+            if (_optionalCharacteristics.ContainsKey(t)) return this; // if characteristic already exists, just skip the call.
+
             var optionalCharacteristic = (ICharacteristic)Activator.CreateInstance(t);
             AddOptionalCharacteristic(optionalCharacteristic);
             return this; // allow chaining.

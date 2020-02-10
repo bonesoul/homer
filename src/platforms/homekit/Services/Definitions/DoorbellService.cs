@@ -35,9 +35,9 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(BrightnessCharacteristic))
-              .AddCharacteristic(typeof(VolumeCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
+            AddOptionalCharacteristic(typeof(BrightnessCharacteristic))
+              .AddOptionalCharacteristic(typeof(VolumeCharacteristic))
+              .AddOptionalCharacteristic(typeof(NameCharacteristic))
               ;
         }
     }

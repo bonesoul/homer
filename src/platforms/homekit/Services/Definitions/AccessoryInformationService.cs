@@ -40,8 +40,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(HardwareRevisionCharacteristic))
-              .AddCharacteristic(typeof(AccessoryFlagsCharacteristic))
+            AddOptionalCharacteristic(typeof(HardwareRevisionCharacteristic))
+              .AddOptionalCharacteristic(typeof(AccessoryFlagsCharacteristic))
               ;
         }
     }

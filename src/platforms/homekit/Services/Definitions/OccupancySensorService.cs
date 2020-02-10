@@ -35,11 +35,11 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(StatusActiveCharacteristic))
-              .AddCharacteristic(typeof(StatusFaultCharacteristic))
-              .AddCharacteristic(typeof(StatusTamperedCharacteristic))
-              .AddCharacteristic(typeof(StatusLowBatteryCharacteristic))
+            AddOptionalCharacteristic(typeof(NameCharacteristic))
+              .AddOptionalCharacteristic(typeof(StatusActiveCharacteristic))
+              .AddOptionalCharacteristic(typeof(StatusFaultCharacteristic))
+              .AddOptionalCharacteristic(typeof(StatusTamperedCharacteristic))
+              .AddOptionalCharacteristic(typeof(StatusLowBatteryCharacteristic))
               ;
         }
     }

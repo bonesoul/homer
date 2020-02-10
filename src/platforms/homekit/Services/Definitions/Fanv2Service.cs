@@ -35,13 +35,13 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(CurrentFanStateCharacteristic))
-              .AddCharacteristic(typeof(TargetFanStateCharacteristic))
-              .AddCharacteristic(typeof(LockPhysicalControlsCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(RotationDirectionCharacteristic))
-              .AddCharacteristic(typeof(RotationSpeedCharacteristic))
-              .AddCharacteristic(typeof(SwingModeCharacteristic))
+            AddOptionalCharacteristic(typeof(CurrentFanStateCharacteristic))
+              .AddOptionalCharacteristic(typeof(TargetFanStateCharacteristic))
+              .AddOptionalCharacteristic(typeof(LockPhysicalControlsCharacteristic))
+              .AddOptionalCharacteristic(typeof(NameCharacteristic))
+              .AddOptionalCharacteristic(typeof(RotationDirectionCharacteristic))
+              .AddOptionalCharacteristic(typeof(RotationSpeedCharacteristic))
+              .AddOptionalCharacteristic(typeof(SwingModeCharacteristic))
               ;
         }
     }

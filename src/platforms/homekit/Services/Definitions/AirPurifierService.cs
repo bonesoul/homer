@@ -37,10 +37,10 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(LockPhysicalControlsCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(SwingModeCharacteristic))
-              .AddCharacteristic(typeof(RotationSpeedCharacteristic))
+            AddOptionalCharacteristic(typeof(LockPhysicalControlsCharacteristic))
+              .AddOptionalCharacteristic(typeof(NameCharacteristic))
+              .AddOptionalCharacteristic(typeof(SwingModeCharacteristic))
+              .AddOptionalCharacteristic(typeof(RotationSpeedCharacteristic))
               ;
         }
     }

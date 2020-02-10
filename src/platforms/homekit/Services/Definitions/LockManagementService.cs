@@ -36,14 +36,14 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(LogsCharacteristic))
-              .AddCharacteristic(typeof(AudioFeedbackCharacteristic))
-              .AddCharacteristic(typeof(LockManagementAutoSecurityTimeoutCharacteristic))
-              .AddCharacteristic(typeof(AdministratorOnlyAccessCharacteristic))
-              .AddCharacteristic(typeof(LockLastKnownActionCharacteristic))
-              .AddCharacteristic(typeof(CurrentDoorStateCharacteristic))
-              .AddCharacteristic(typeof(MotionDetectedCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
+            AddOptionalCharacteristic(typeof(LogsCharacteristic))
+              .AddOptionalCharacteristic(typeof(AudioFeedbackCharacteristic))
+              .AddOptionalCharacteristic(typeof(LockManagementAutoSecurityTimeoutCharacteristic))
+              .AddOptionalCharacteristic(typeof(AdministratorOnlyAccessCharacteristic))
+              .AddOptionalCharacteristic(typeof(LockLastKnownActionCharacteristic))
+              .AddOptionalCharacteristic(typeof(CurrentDoorStateCharacteristic))
+              .AddOptionalCharacteristic(typeof(MotionDetectedCharacteristic))
+              .AddOptionalCharacteristic(typeof(NameCharacteristic))
               ;
         }
     }
