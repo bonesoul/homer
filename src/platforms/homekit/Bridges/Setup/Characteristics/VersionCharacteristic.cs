@@ -28,7 +28,7 @@ namespace Homer.Platform.HomeKit.Bridges.Setup.Characteristics
 {
     public class VersionCharacteristic : Characteristic
     {
-        public VersionCharacteristic() : base(
+        public VersionCharacteristic(string value) : base(
             "FD9FE4CC-D06F-4FFE-96C6-595D464E1026",
             "Version",
             CharacteristicFormat.String,
@@ -36,7 +36,7 @@ namespace Homer.Platform.HomeKit.Bridges.Setup.Characteristics
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events
-            }, value: "1.0")
+            }, value: value)
         {
         }
     }

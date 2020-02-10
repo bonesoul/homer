@@ -86,5 +86,10 @@ namespace Homer.Platform.HomeKit.Accessories
         {
             return _services.ContainsKey(service) ? _services[service] : null;
         }
+
+        public void Publish()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

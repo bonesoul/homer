@@ -37,7 +37,7 @@ namespace Homer.Platform.HomeKit.Bridges.Setup.Characteristics
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.WriteResponse,
                 CharacteristicPermission.Events
-            })
+            }, value: null)
         {
         }
     }

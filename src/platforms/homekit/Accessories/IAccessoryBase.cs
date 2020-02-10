@@ -61,5 +61,7 @@ namespace Homer.Platform.HomeKit.Accessories
         IService AddService(IService service);
 
         IService GetService(Type t);
+
+        void Publish();
     }
 }

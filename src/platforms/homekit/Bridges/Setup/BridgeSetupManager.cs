@@ -44,8 +44,8 @@ namespace Homer.Platform.HomeKit.Bridges.Setup
 
             // create setup service.
             AddService(new SetupService())
-                .AddCharacteristic(new StateCharacteristic())
-                .AddCharacteristic(new VersionCharacteristic())
+                .AddCharacteristic(new StateCharacteristic(0))
+                .AddCharacteristic(new VersionCharacteristic("1.0"))
                 .AddCharacteristic(controlPointCharacteristic);
 
             // set accessory information service characteristics

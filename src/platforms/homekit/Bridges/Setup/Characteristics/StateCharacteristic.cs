@@ -28,7 +28,7 @@ namespace Homer.Platform.HomeKit.Bridges.Setup.Characteristics
 {
     public class StateCharacteristic: Characteristic
     {
-        public StateCharacteristic() : base(
+        public StateCharacteristic(byte value) : base(
             "77474A2F-FA98-485E-97BE-4762458774D8",
             "State",
             CharacteristicFormat.Uint8,
@@ -36,7 +36,7 @@ namespace Homer.Platform.HomeKit.Bridges.Setup.Characteristics
             {
                 CharacteristicPermission.PairedRead,
                 CharacteristicPermission.Events
-            }, minValue: 0, maxValue: 1, minStep: 1,  value: 0)
+            }, minValue: 0, maxValue: 1, minStep: 1, value: value)
         {
         }
     }
