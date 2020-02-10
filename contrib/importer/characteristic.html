@@ -52,7 +52,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
             {%- endif %}
             permissions: new List<CharacteristicPermission>
             {
-                {% for value in  characteristic.Properties %}
+                {% for value in characteristic.Properties %}
                   {%- set perm = getCharacteristicPermsKey(value) -%}
                   {% if perm %}CharacteristicPermission.{{perm}},{% endif %}
                 {% endfor %}

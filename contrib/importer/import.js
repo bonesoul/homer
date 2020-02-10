@@ -10,6 +10,8 @@ const plist = require('simple-plist');
 var plistPath = './data/default.metadata.plist';
 var metadata = plist.readFileSync(plistPath);
 
+var characteristics = []; // index characteristics for quick access while building services.
+
 readCharacteristics(metadata);
 readServices(metadata);
 
@@ -18,6 +20,7 @@ function readCharacteristics(metadata) {
     var characteristic = metadata.Characteristics[index];
     var classyName = characteristic.Name.replace(/[\s\-]/g, ""); // "Target Door State" -> "TargetDoorState"
     classyName = classyName.replace(/[.]/g, "_"); // "PM2.5" -> "PM2_5"
+    characteristics[characteristic.UUID] = classyName; // build characteristics list for later reference to use in services.
 
     var outputPath = path.join(__dirname, '..', '..', 'src', 'platforms', 'homekit', 'Characteristics',  'Definitions', `${classyName}Characteristic.cs`);
     var output = fs.createWriteStream(outputPath);
@@ -40,7 +43,23 @@ function readCharacteristics(metadata) {
 }
 
 function readServices(metadata) {
+  for (var index in metadata.Services) {
+    var service = metadata.Services[index];
+    var classyName = service.Name.replace(/[\s\-]/g, "");
 
+    var outputPath = path.join(__dirname, '..', '..', 'src', 'platforms', 'homekit', 'Services',  'Definitions', `${classyName}Service.cs`);
+    var output = fs.createWriteStream(outputPath);
+
+    var res = nunjucks.render('service.html', {
+      classyName: classyName,
+      service: service,
+      characteristics: characteristics,
+      capitalize: capitalize,
+    });
+
+    output.write(res);
+    output.end();
+  }
 }
 
 function capitalize(s) {

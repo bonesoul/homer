@@ -25,27 +25,17 @@ using Homer.Platform.HomeKit.Characteristics.Definitions;
 
 namespace Homer.Platform.HomeKit.Services.Definitions
 {
-    public class AccessoryInformationService: Service
+    public class Fanv2Service: Service
     {
-        public AccessoryInformationService()
-            : base("0000003E-0000-1000-8000-0026BB765291", "Accessory Information")
+        public Fanv2Service()
+            : base("000000B7-0000-1000-8000-0026BB765291", "Fan v2")
         {
           // required characteristics
-            AddCharacteristic(typeof(IdentifyCharacteristic))
-              .AddCharacteristic(typeof(ManufacturerCharacteristic))
-              .AddCharacteristic(typeof(ModelCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(SerialNumberCharacteristic))
-              .AddCharacteristic(typeof(FirmwareRevisionCharacteristic))
+            AddCharacteristic(typeof(ActiveCharacteristic))
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(IdentifyCharacteristic))
-              .AddCharacteristic(typeof(ManufacturerCharacteristic))
-              .AddCharacteristic(typeof(ModelCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(SerialNumberCharacteristic))
-              .AddCharacteristic(typeof(FirmwareRevisionCharacteristic))
+            AddCharacteristic(typeof(ActiveCharacteristic))
               ;
         }
     }

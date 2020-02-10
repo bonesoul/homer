@@ -25,28 +25,28 @@ using Homer.Platform.HomeKit.Characteristics.Definitions;
 
 namespace Homer.Platform.HomeKit.Services.Definitions
 {
-    public class AccessoryInformationService: Service
+    public class {{classyName}}Service: Service
     {
-        public AccessoryInformationService()
-            : base("0000003E-0000-1000-8000-0026BB765291", "Accessory Information")
+        public {{classyName}}Service()
+            : base("{{ service.UUID }}", "{{ service.Name }}")
         {
-          // required characteristics
-            AddCharacteristic(typeof(IdentifyCharacteristic))
-              .AddCharacteristic(typeof(ManufacturerCharacteristic))
-              .AddCharacteristic(typeof(ModelCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(SerialNumberCharacteristic))
-              .AddCharacteristic(typeof(FirmwareRevisionCharacteristic))
-              ;
+          {% if service.RequiredCharacteristics -%}
+            // required characteristics
+            {% for value in service.RequiredCharacteristics -%}
+              {%- if not loop.first %}.{% endif -%}
+              AddCharacteristic(typeof({{ characteristics[value] }}Characteristic))
+              {% if loop.last -%};{%- endif %}
+            {%- endfor %}
+          {%- endif %}
 
-          // optional characteristics
-            AddCharacteristic(typeof(IdentifyCharacteristic))
-              .AddCharacteristic(typeof(ManufacturerCharacteristic))
-              .AddCharacteristic(typeof(ModelCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(SerialNumberCharacteristic))
-              .AddCharacteristic(typeof(FirmwareRevisionCharacteristic))
-              ;
+          {% if service.OptionalCharacteristics -%}
+            // optional characteristics
+            {% for value in service.RequiredCharacteristics -%}
+              {%- if not loop.first %}.{% endif -%}
+              AddCharacteristic(typeof({{ characteristics[value] }}Characteristic))
+              {% if loop.last -%};{%- endif %}
+            {%- endfor %}
+          {%- endif %}
         }
     }
 }

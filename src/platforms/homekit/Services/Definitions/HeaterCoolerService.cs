@@ -25,27 +25,23 @@ using Homer.Platform.HomeKit.Characteristics.Definitions;
 
 namespace Homer.Platform.HomeKit.Services.Definitions
 {
-    public class AccessoryInformationService: Service
+    public class HeaterCoolerService: Service
     {
-        public AccessoryInformationService()
-            : base("0000003E-0000-1000-8000-0026BB765291", "Accessory Information")
+        public HeaterCoolerService()
+            : base("000000BC-0000-1000-8000-0026BB765291", "Heater Cooler")
         {
           // required characteristics
-            AddCharacteristic(typeof(IdentifyCharacteristic))
-              .AddCharacteristic(typeof(ManufacturerCharacteristic))
-              .AddCharacteristic(typeof(ModelCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(SerialNumberCharacteristic))
-              .AddCharacteristic(typeof(FirmwareRevisionCharacteristic))
+            AddCharacteristic(typeof(ActiveCharacteristic))
+              .AddCharacteristic(typeof(CurrentHeaterCoolerStateCharacteristic))
+              .AddCharacteristic(typeof(TargetHeaterCoolerStateCharacteristic))
+              .AddCharacteristic(typeof(CurrentTemperatureCharacteristic))
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(IdentifyCharacteristic))
-              .AddCharacteristic(typeof(ManufacturerCharacteristic))
-              .AddCharacteristic(typeof(ModelCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(SerialNumberCharacteristic))
-              .AddCharacteristic(typeof(FirmwareRevisionCharacteristic))
+            AddCharacteristic(typeof(ActiveCharacteristic))
+              .AddCharacteristic(typeof(CurrentHeaterCoolerStateCharacteristic))
+              .AddCharacteristic(typeof(TargetHeaterCoolerStateCharacteristic))
+              .AddCharacteristic(typeof(CurrentTemperatureCharacteristic))
               ;
         }
     }

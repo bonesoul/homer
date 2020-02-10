@@ -25,27 +25,17 @@ using Homer.Platform.HomeKit.Characteristics.Definitions;
 
 namespace Homer.Platform.HomeKit.Services.Definitions
 {
-    public class AccessoryInformationService: Service
+    public class SpeakerService: Service
     {
-        public AccessoryInformationService()
-            : base("0000003E-0000-1000-8000-0026BB765291", "Accessory Information")
+        public SpeakerService()
+            : base("00000113-0000-1000-8000-0026BB765291", "Speaker")
         {
           // required characteristics
-            AddCharacteristic(typeof(IdentifyCharacteristic))
-              .AddCharacteristic(typeof(ManufacturerCharacteristic))
-              .AddCharacteristic(typeof(ModelCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(SerialNumberCharacteristic))
-              .AddCharacteristic(typeof(FirmwareRevisionCharacteristic))
+            AddCharacteristic(typeof(MuteCharacteristic))
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(IdentifyCharacteristic))
-              .AddCharacteristic(typeof(ManufacturerCharacteristic))
-              .AddCharacteristic(typeof(ModelCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(SerialNumberCharacteristic))
-              .AddCharacteristic(typeof(FirmwareRevisionCharacteristic))
+            AddCharacteristic(typeof(MuteCharacteristic))
               ;
         }
     }

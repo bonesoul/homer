@@ -25,27 +25,19 @@ using Homer.Platform.HomeKit.Characteristics.Definitions;
 
 namespace Homer.Platform.HomeKit.Services.Definitions
 {
-    public class AccessoryInformationService: Service
+    public class LockMechanismService: Service
     {
-        public AccessoryInformationService()
-            : base("0000003E-0000-1000-8000-0026BB765291", "Accessory Information")
+        public LockMechanismService()
+            : base("00000045-0000-1000-8000-0026BB765291", "Lock Mechanism")
         {
           // required characteristics
-            AddCharacteristic(typeof(IdentifyCharacteristic))
-              .AddCharacteristic(typeof(ManufacturerCharacteristic))
-              .AddCharacteristic(typeof(ModelCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(SerialNumberCharacteristic))
-              .AddCharacteristic(typeof(FirmwareRevisionCharacteristic))
+            AddCharacteristic(typeof(LockCurrentStateCharacteristic))
+              .AddCharacteristic(typeof(LockTargetStateCharacteristic))
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(IdentifyCharacteristic))
-              .AddCharacteristic(typeof(ManufacturerCharacteristic))
-              .AddCharacteristic(typeof(ModelCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(SerialNumberCharacteristic))
-              .AddCharacteristic(typeof(FirmwareRevisionCharacteristic))
+            AddCharacteristic(typeof(LockCurrentStateCharacteristic))
+              .AddCharacteristic(typeof(LockTargetStateCharacteristic))
               ;
         }
     }

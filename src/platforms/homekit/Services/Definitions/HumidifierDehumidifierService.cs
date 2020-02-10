@@ -25,27 +25,23 @@ using Homer.Platform.HomeKit.Characteristics.Definitions;
 
 namespace Homer.Platform.HomeKit.Services.Definitions
 {
-    public class AccessoryInformationService: Service
+    public class HumidifierDehumidifierService: Service
     {
-        public AccessoryInformationService()
-            : base("0000003E-0000-1000-8000-0026BB765291", "Accessory Information")
+        public HumidifierDehumidifierService()
+            : base("000000BD-0000-1000-8000-0026BB765291", "Humidifier Dehumidifier")
         {
           // required characteristics
-            AddCharacteristic(typeof(IdentifyCharacteristic))
-              .AddCharacteristic(typeof(ManufacturerCharacteristic))
-              .AddCharacteristic(typeof(ModelCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(SerialNumberCharacteristic))
-              .AddCharacteristic(typeof(FirmwareRevisionCharacteristic))
+            AddCharacteristic(typeof(CurrentRelativeHumidityCharacteristic))
+              .AddCharacteristic(typeof(CurrentHumidifierDehumidifierStateCharacteristic))
+              .AddCharacteristic(typeof(TargetHumidifierDehumidifierStateCharacteristic))
+              .AddCharacteristic(typeof(ActiveCharacteristic))
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(IdentifyCharacteristic))
-              .AddCharacteristic(typeof(ManufacturerCharacteristic))
-              .AddCharacteristic(typeof(ModelCharacteristic))
-              .AddCharacteristic(typeof(NameCharacteristic))
-              .AddCharacteristic(typeof(SerialNumberCharacteristic))
-              .AddCharacteristic(typeof(FirmwareRevisionCharacteristic))
+            AddCharacteristic(typeof(CurrentRelativeHumidityCharacteristic))
+              .AddCharacteristic(typeof(CurrentHumidifierDehumidifierStateCharacteristic))
+              .AddCharacteristic(typeof(TargetHumidifierDehumidifierStateCharacteristic))
+              .AddCharacteristic(typeof(ActiveCharacteristic))
               ;
         }
     }
