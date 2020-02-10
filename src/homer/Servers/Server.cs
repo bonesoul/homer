@@ -22,6 +22,7 @@
 #endregion
 
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Homer.Core.Host;
 using Homer.Platform.HomeKit.Bridges.Setup;
@@ -51,11 +52,33 @@ namespace Homer.Servers
 
                 var mdns = new MulticastService();
 
+                mdns.QueryReceived += (s, e) =>
+                {
+                    var names = e.Message.Questions.Select(q => q.Name + " " + q.Type);
+                    _logger.Information($"got a query for {string.Join(", ", names)}");
+                };
+                mdns.AnswerReceived += (s, e) =>
+                {
+                    var names = e.Message.Answers.Select(q => q.Name + " " + q.Type).Distinct();
+                    _logger.Information($"got answer for {string.Join(", ", names)}");
+                };
+                mdns.NetworkInterfaceDiscovered += (s, e) =>
+                {
+                    foreach (var nic in e.NetworkInterfaces)
+                    {
+                        _logger.Information($"discovered NIC '{nic.Name}'");
+                    }
+                };
+
                 foreach (var a in MulticastService.GetIPAddresses())
                 {
                     _logger.Information($"IP address {a}");
                 }
 
+                var serviceDiscovery = new ServiceDiscovery(mdns);
+                var hap = new ServiceProfile("hap", "_hap._tcp", 5012);
+                serviceDiscovery.Advertise(hap);
+                mdns.Start();
             }
             catch (Exception e)
             {
