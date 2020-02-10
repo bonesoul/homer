@@ -21,16 +21,15 @@
 //      Licensor: Hüseyin Uslu
 #endregion
 
-using System.Threading.Tasks;
+using Homer.Core.Internals.Services.Configuration.Models.Platforms.Homekit.Setup;
 
-namespace Homer.Servers
+namespace Homer.Core.Internals.Services.Configuration.Models.Platforms.Homekit
 {
-    public interface IServer
+    public class HomekitModel
     {
         /// <summary>
-        /// Runs the server.
+        /// Setup config.
         /// </summary>
-        /// <returns></returns>
-        Task RunAsync();
+        public SetupModel Setup { get; set; }
     }
 }

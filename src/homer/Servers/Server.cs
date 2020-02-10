@@ -24,7 +24,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Homer.Core.Host;
+using Homer.Core.Internals.Services.Configuration;
 using Homer.Platform.HomeKit.Bridges.Setup;
 using Makaretu.Dns;
 using Serilog;
@@ -34,10 +34,14 @@ namespace Homer.Servers
 {
     public class Server : IServer
     {
+        private IConfigurationService _configurationService;
+
         private ILogger _logger;
 
-        public Server()
+        public Server(IConfigurationService configurationService)
         {
+            _configurationService = configurationService ?? throw new ArgumentNullException(nameof(configurationService));
+
             _logger = Log.ForContext<Server>();
         }
 
@@ -50,7 +54,7 @@ namespace Homer.Servers
                 var generator = UUIDFactory.CreateGenerator(5, 1);
                 var uuid = generator.Generate("homer");
 
-                var bridge =  new BridgeSetupManager(uuid, "homer");
+                var bridge =  new BridgeSetupManager(uuid, "homer", _configurationService);
 
                 var mdns = new MulticastService();
 
@@ -84,7 +88,7 @@ namespace Homer.Servers
             }
             catch (Exception e)
             {
-                _logger.Error("server initialization failed...");
+                _logger.Error(e, "server initialization failed...");
             }
         }
     }

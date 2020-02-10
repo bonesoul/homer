@@ -104,11 +104,11 @@ namespace Homer.Core.Internals.Logging
                 .Enrich.With(new SourceEnricher()) // used for enriching logs with sources.
                 .MinimumLevel.Verbose(); // lower the default minimum level to verbose as sinks can only rise them but not lower.
 
-            if (_configurationService.Configuration.Logs.Jobs.Console.Enabled) // if console log is enabled.
-                builder = builder.WriteTo.Console(GetLogLevel(_configurationService.Configuration.Logs.Jobs.Console.Level), JobConsoleLoggerTemplate, theme: AnsiConsoleTheme.Code);
+            if (_configurationService.Configuration.Logs.Accessories.Console.Enabled) // if console log is enabled.
+                builder = builder.WriteTo.Console(GetLogLevel(_configurationService.Configuration.Logs.Accessories.Console.Level), JobConsoleLoggerTemplate, theme: AnsiConsoleTheme.Code);
 
-            if (_configurationService.Configuration.Logs.Jobs.File.Enabled) // if file log is enabled.
-                builder = builder.WriteTo.File(path, GetLogLevel(_configurationService.Configuration.Logs.Jobs.File.Level), JobFileLoggerTemplate);
+            if (_configurationService.Configuration.Logs.Accessories.File.Enabled) // if file log is enabled.
+                builder = builder.WriteTo.File(path, GetLogLevel(_configurationService.Configuration.Logs.Accessories.File.Level), JobFileLoggerTemplate);
 
             _pluginLoggers[name] = builder.CreateLogger(); // create the logger.
 

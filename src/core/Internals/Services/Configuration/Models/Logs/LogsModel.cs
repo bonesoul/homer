@@ -18,8 +18,8 @@ namespace Homer.Core.Internals.Services.Configuration.Models.Logs
         public MasterLogModel Master { get; set; }
 
         /// <summary>
-        /// Scheduler log.
+        /// Accessory log.
         /// </summary>
-        public JobsLogModel Jobs { get; set; }
+        public AccessoryLogModel Accessories { get; set; }
     }
 }

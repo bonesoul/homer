@@ -39,7 +39,7 @@ namespace Homer.Core.Internals.Services.Configuration
                 _builder = new ConfigurationBuilder()
                     .SetBasePath(basePath) // set the base path.
                     .LoadCoreYamlConfiguration(_runtimeInfoService) // load core yaml configuration.
-                    //.LoadPluginYamlConfiguration(_runtimeInfoService) // load services yaml configuration.
+                    .LoadPlatformsYamlConfiguration(_runtimeInfoService, basePath) // load platforms yaml configuration.
                     .AddEnvironmentVariables() // add environment variables.
                     .AddCommandLine(args) // add command line arguments.
                     .Build(); // build the configuration root.
@@ -83,18 +83,16 @@ namespace Homer.Core.Internals.Services.Configuration
             return builder.LoadYamlFiles(runtimeInfoService);
         }
 
-        public static IConfigurationBuilder LoadPluginYamlConfiguration(this IConfigurationBuilder builder, IRuntimeInfoService runtimeInfoService)
+        public static IConfigurationBuilder LoadPlatformsYamlConfiguration(this IConfigurationBuilder builder, IRuntimeInfoService runtimeInfoService, string basePath)
         {
             if (runtimeInfoService == null) throw new ArgumentNullException(nameof(runtimeInfoService));
 
-            // get services config path;
-            var servicePath = $"{Assembly.GetEntryAssembly()?.GetName().Name}/";
-            servicePath = servicePath?.Substring(servicePath.IndexOf('.', StringComparison.CurrentCulture) + 1);
-            servicePath = servicePath?.Replace('.', '/');
+            // get platforms config path;
+            var platformsPath = Path.Combine(basePath, "platforms", "homekit/");
 
-            return servicePath == "testhost/"
+            return Assembly.GetEntryAssembly()?.GetName().Name == "testhost"
                 ? builder  // skip loading per-service configuration files while testing core project.
-                : builder.LoadYamlFiles(runtimeInfoService, servicePath); // load per-service configuration.
+                : builder.LoadYamlFiles(runtimeInfoService, platformsPath); // load per-service configuration.
         }
 
         private static IConfigurationBuilder LoadYamlFiles(this IConfigurationBuilder builder, IRuntimeInfoService runtimeInfoService, string root = "")

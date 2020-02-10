@@ -24,7 +24,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq.Expressions;
 using Homer.Platform.HomeKit.Characteristics;
 using Homer.Platform.HomeKit.Characteristics.Definitions;
 using Homer.Platform.HomeKit.Services;
@@ -99,7 +98,7 @@ namespace Homer.Platform.HomeKit.Accessories
             return _services.ContainsKey(service) ? _services[service] : null;
         }
 
-        public void Publish()
+        public void Publish(dynamic info, bool allowInsecureAccess = false)
         {
             LogAccessorySummary();
         }

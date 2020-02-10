@@ -21,60 +21,28 @@
 //      Licensor: Hüseyin Uslu
 #endregion
 
-using System;
-using System.Collections.Generic;
-using Homer.Platform.HomeKit.Entity;
-using Homer.Platform.HomeKit.Services;
-using Serilog;
-
-namespace Homer.Platform.HomeKit.Accessories
+namespace Homer.Core.Internals.Services.Configuration.Models.Platforms.Homekit.Setup
 {
-    /// <summary>
-    /// Base accessory interface.
-    /// </summary>
-    public interface IAccessoryBase : IEntity
+    public class SetupModel
     {
         /// <summary>
-        /// Master logger instance.
+        /// Setup bridge serial.
         /// </summary>
-        ILogger Logger { get; }
+        public string Serial { get; set; }
 
         /// <summary>
-        /// Accessory logger.
+        /// Pin code.
         /// </summary>
-        ILogger AccessoryLogger { get; }
+        public string Pin { get; set; }
 
         /// <summary>
-        /// true if we are hosted "behind" a Bridge Accessory
+        /// Setup port.
         /// </summary>
-        bool IsBridged { get; }
+        public int Port { get; set; }
 
         /// <summary>
-        /// Is accessory reachable?
+        /// Aloow insecure access?
         /// </summary>
-        bool IsReachable { get; }
-
-        /// <summary>
-        /// Accessory category.
-        /// </summary>
-        AccessoryCategory Category { get; }
-
-        /// <summary>
-        /// Services exposed by accessory.
-        /// </summary>
-        IReadOnlyDictionary<Type, IService> Services { get; }
-
-        /// <summary>
-        /// Adds service.
-        /// </summary>
-        /// <param name="service"></param>
-        /// <returns></returns>
-        IService AddService(IService service);
-
-        IService GetService(Type t);
-
-        void Publish(dynamic info, bool allowInsecureAccess = false);
-
-        void LogAccessorySummary();
+        public bool Insecure { get; set; }
     }
 }

@@ -21,7 +21,6 @@
 //      Licensor: Hüseyin Uslu
 #endregion
 
-using System;
 using Homer.Platform.HomeKit.Bridges;
 using Serilog;
 

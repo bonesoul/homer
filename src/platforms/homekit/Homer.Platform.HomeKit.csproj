@@ -29,10 +29,26 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\contrib\uuid.net\uuid.net.csproj" />
+    <ProjectReference Include="..\..\core\Homer.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Characteristics\Definitions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="config\platforms\homekit\default.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="config\platforms\homekit\development.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="config\platforms\homekit\production.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="config\platforms\homekit\test.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

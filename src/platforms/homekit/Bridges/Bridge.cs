@@ -37,7 +37,7 @@ namespace Homer.Platform.HomeKit.Bridges
         /// <summary>
         /// internal list of accessories.
         /// </summary>
-        private List<IAccessoryBase> _accessories;
+        private readonly List<IAccessoryBase> _accessories;
 
         protected Bridge(string uuid, string displayName, bool isReachable = true) 
             : base(uuid, displayName, isReachable, true, AccessoryCategory.Bridge)

@@ -9,7 +9,7 @@ logs:
     file: # file logging.
       enabled: true # enable loggin to file?
       level: verbose # minimum log level.
-  jobs:
+  accessories:
     console: # console logging.
       enabled: true # enable console log?
       level: verbose #  minimum log level.

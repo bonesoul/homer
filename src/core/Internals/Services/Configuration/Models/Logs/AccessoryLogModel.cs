@@ -10,7 +10,7 @@
 
 namespace Homer.Core.Internals.Services.Configuration.Models.Logs
 {
-    public class JobsLogModel
+    public class AccessoryLogModel
     {
         /// <summary>
         /// Console log.

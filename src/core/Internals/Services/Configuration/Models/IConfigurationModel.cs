@@ -1,4 +1,5 @@
 ﻿using Homer.Core.Internals.Services.Configuration.Models.Logs;
+using Homer.Core.Internals.Services.Configuration.Models.Platforms;
 
 namespace Homer.Core.Internals.Services.Configuration.Models
 {
@@ -11,5 +12,10 @@ namespace Homer.Core.Internals.Services.Configuration.Models
         /// Logs configuration.
         /// </summary>
         LogsModel Logs { get; set; }
+
+        /// <summary>
+        /// Platforms configuration.
+        /// </summary>
+        PlatformsModel Platforms { get; set; }
     }
 }

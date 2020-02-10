@@ -22,6 +22,8 @@
 #endregion
 
 using System;
+using System.Dynamic;
+using Homer.Core.Internals.Services.Configuration;
 using Homer.Platform.HomeKit.Bridges.Setup.Characteristics;
 using Homer.Platform.HomeKit.Bridges.Setup.Setup;
 using Homer.Platform.HomeKit.Characteristics.Definitions;
@@ -32,10 +34,12 @@ namespace Homer.Platform.HomeKit.Bridges.Setup
 {
     public class BridgeSetupManager : Bridge
     {
-        public BridgeSetupManager(string uuid, string displayName) 
+        private IConfigurationService _configurationService;
+
+        public BridgeSetupManager(string uuid, string displayName, IConfigurationService configurationService) 
             : base(uuid, displayName)
         {
-            
+            _configurationService = configurationService ?? throw new ArgumentNullException(nameof(configurationService));
 
             // create handler characteristic.
             var controlPointCharacteristic = new ControlPointCharacteristic();
@@ -54,10 +58,16 @@ namespace Homer.Platform.HomeKit.Bridges.Setup
             GetService(typeof(AccessoryInformationService))
                 .SetCharacteristic(typeof(ManufacturerCharacteristic), "Hüseyin Uslu")
                 .SetCharacteristic(typeof(ModelCharacteristic), "Homer")
-                .SetCharacteristic(typeof(SerialNumberCharacteristic), "CC:22:3D:E3:CE:30")
+                .SetCharacteristic(typeof(SerialNumberCharacteristic), _configurationService.Configuration.Platforms.Homekit.Setup.Serial)
                 .SetCharacteristic(typeof(FirmwareRevisionCharacteristic), "0.1");
 
-            Publish();
+            dynamic info = new ExpandoObject();
+            info.serial = _configurationService.Configuration.Platforms.Homekit.Setup.Serial;
+            info.port = _configurationService.Configuration.Platforms.Homekit.Setup.Port;
+            info.pin = _configurationService.Configuration.Platforms.Homekit.Setup.Pin;
+            info.category = Category;
+
+            Publish(info, _configurationService.Configuration.Platforms.Homekit.Setup.Insecure);
         }
 
 
