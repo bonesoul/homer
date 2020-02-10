@@ -1,0 +1,18 @@
+# The default config that will be merged with the mode config [development, production, test] and then local.yaml.
+
+############################
+# Logging config.
+############################
+logging:
+  console: # console logging.
+    enabled: true # enable console log?
+    level: debug #  minimum log level.
+    requests: true # log http requests?
+  file: # file logging.
+    enabled: true # enable loggin to file?
+    level: debug # minimum log level.
+    accesslog: true # enable access.log ?
+    errorlog: true # enable error.log?
+  task: # task specific logger.
+    enabled: true # enable the task speciffic loggers?
+    level: info # minimum log level

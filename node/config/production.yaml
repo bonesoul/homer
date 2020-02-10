@@ -1,0 +1,8 @@
+logging:
+  console:
+    level: info
+    requests: false
+  file:
+    level: info
+  task:
+    level: info
