@@ -35,7 +35,9 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(OnCharacteristic))
+            AddCharacteristic(typeof(RotationDirectionCharacteristic))
+              .AddCharacteristic(typeof(RotationSpeedCharacteristic))
+              .AddCharacteristic(typeof(NameCharacteristic))
               ;
         }
     }

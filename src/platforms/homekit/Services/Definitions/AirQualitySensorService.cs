@@ -35,7 +35,19 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(AirQualityCharacteristic))
+            AddCharacteristic(typeof(StatusActiveCharacteristic))
+              .AddCharacteristic(typeof(StatusFaultCharacteristic))
+              .AddCharacteristic(typeof(StatusTamperedCharacteristic))
+              .AddCharacteristic(typeof(StatusLowBatteryCharacteristic))
+              .AddCharacteristic(typeof(NameCharacteristic))
+              .AddCharacteristic(typeof(OzoneDensityCharacteristic))
+              .AddCharacteristic(typeof(NitrogenDioxideDensityCharacteristic))
+              .AddCharacteristic(typeof(SulphurDioxideDensityCharacteristic))
+              .AddCharacteristic(typeof(PM2_5DensityCharacteristic))
+              .AddCharacteristic(typeof(PM10DensityCharacteristic))
+              .AddCharacteristic(typeof(VOCDensityCharacteristic))
+              .AddCharacteristic(typeof(CarbonMonoxideLevelCharacteristic))
+              .AddCharacteristic(typeof(CarbonDioxideLevelCharacteristic))
               ;
         }
     }

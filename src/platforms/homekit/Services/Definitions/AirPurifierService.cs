@@ -37,9 +37,10 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(ActiveCharacteristic))
-              .AddCharacteristic(typeof(CurrentAirPurifierStateCharacteristic))
-              .AddCharacteristic(typeof(TargetAirPurifierStateCharacteristic))
+            AddCharacteristic(typeof(LockPhysicalControlsCharacteristic))
+              .AddCharacteristic(typeof(NameCharacteristic))
+              .AddCharacteristic(typeof(SwingModeCharacteristic))
+              .AddCharacteristic(typeof(RotationSpeedCharacteristic))
               ;
         }
     }

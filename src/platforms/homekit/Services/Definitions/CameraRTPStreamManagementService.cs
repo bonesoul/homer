@@ -40,12 +40,7 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(SupportedVideoStreamConfigurationCharacteristic))
-              .AddCharacteristic(typeof(SupportedAudioStreamConfigurationCharacteristic))
-              .AddCharacteristic(typeof(SupportedRTPConfigurationCharacteristic))
-              .AddCharacteristic(typeof(SelectedRTPStreamConfigurationCharacteristic))
-              .AddCharacteristic(typeof(StreamingStatusCharacteristic))
-              .AddCharacteristic(typeof(SetupEndpointsCharacteristic))
+            AddCharacteristic(typeof(NameCharacteristic))
               ;
         }
     }

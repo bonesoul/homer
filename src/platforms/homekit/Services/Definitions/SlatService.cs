@@ -36,8 +36,10 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(SlatTypeCharacteristic))
-              .AddCharacteristic(typeof(CurrentSlatStateCharacteristic))
+            AddCharacteristic(typeof(NameCharacteristic))
+              .AddCharacteristic(typeof(CurrentTiltAngleCharacteristic))
+              .AddCharacteristic(typeof(TargetTiltAngleCharacteristic))
+              .AddCharacteristic(typeof(SwingModeCharacteristic))
               ;
         }
     }

@@ -39,11 +39,11 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(CurrentHeatingCoolingStateCharacteristic))
-              .AddCharacteristic(typeof(TargetHeatingCoolingStateCharacteristic))
-              .AddCharacteristic(typeof(CurrentTemperatureCharacteristic))
-              .AddCharacteristic(typeof(TargetTemperatureCharacteristic))
-              .AddCharacteristic(typeof(TemperatureDisplayUnitsCharacteristic))
+            AddCharacteristic(typeof(CurrentRelativeHumidityCharacteristic))
+              .AddCharacteristic(typeof(TargetRelativeHumidityCharacteristic))
+              .AddCharacteristic(typeof(CoolingThresholdTemperatureCharacteristic))
+              .AddCharacteristic(typeof(HeatingThresholdTemperatureCharacteristic))
+              .AddCharacteristic(typeof(NameCharacteristic))
               ;
         }
     }

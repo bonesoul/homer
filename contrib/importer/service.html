@@ -41,7 +41,7 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 
           {% if service.OptionalCharacteristics -%}
             // optional characteristics
-            {% for value in service.RequiredCharacteristics -%}
+            {% for value in service.OptionalCharacteristics -%}
               {%- if not loop.first %}.{% endif -%}
               AddCharacteristic(typeof({{ characteristics[value] }}Characteristic))
               {% if loop.last -%};{%- endif %}

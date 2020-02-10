@@ -37,9 +37,12 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(ActiveCharacteristic))
-              .AddCharacteristic(typeof(InUseCharacteristic))
-              .AddCharacteristic(typeof(ValveTypeCharacteristic))
+            AddCharacteristic(typeof(SetDurationCharacteristic))
+              .AddCharacteristic(typeof(RemainingDurationCharacteristic))
+              .AddCharacteristic(typeof(IsConfiguredCharacteristic))
+              .AddCharacteristic(typeof(ServiceLabelIndexCharacteristic))
+              .AddCharacteristic(typeof(StatusFaultCharacteristic))
+              .AddCharacteristic(typeof(NameCharacteristic))
               ;
         }
     }

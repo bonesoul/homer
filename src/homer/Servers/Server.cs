@@ -24,6 +24,7 @@
 using System;
 using System.Threading.Tasks;
 using Homer.Platform.HomeKit.Bridges.Setup;
+using Makaretu.Dns;
 using Serilog;
 using uuid.net.Static_Classes.UUID_Factory;
 
@@ -41,6 +42,14 @@ namespace Homer.Servers
                 var uuid = generator.Generate("homer");
 
                 var bridge =  new BridgeSetupManager(uuid, "homer");
+
+                var mdns = new MulticastService();
+
+                foreach (var a in MulticastService.GetIPAddresses())
+                {
+                    Logger.Information($"IP address {a}");
+                }
+
             }
             catch (Exception e)
             {

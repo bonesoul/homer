@@ -36,8 +36,7 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(LockCurrentStateCharacteristic))
-              .AddCharacteristic(typeof(LockTargetStateCharacteristic))
+            AddCharacteristic(typeof(NameCharacteristic))
               ;
         }
     }

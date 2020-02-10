@@ -36,8 +36,10 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(SecuritySystemCurrentStateCharacteristic))
-              .AddCharacteristic(typeof(SecuritySystemTargetStateCharacteristic))
+            AddCharacteristic(typeof(StatusFaultCharacteristic))
+              .AddCharacteristic(typeof(StatusTamperedCharacteristic))
+              .AddCharacteristic(typeof(SecuritySystemAlarmTypeCharacteristic))
+              .AddCharacteristic(typeof(NameCharacteristic))
               ;
         }
     }

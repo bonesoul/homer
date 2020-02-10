@@ -35,7 +35,13 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(CarbonMonoxideDetectedCharacteristic))
+            AddCharacteristic(typeof(StatusActiveCharacteristic))
+              .AddCharacteristic(typeof(StatusFaultCharacteristic))
+              .AddCharacteristic(typeof(StatusLowBatteryCharacteristic))
+              .AddCharacteristic(typeof(StatusTamperedCharacteristic))
+              .AddCharacteristic(typeof(CarbonMonoxideLevelCharacteristic))
+              .AddCharacteristic(typeof(CarbonMonoxidePeakLevelCharacteristic))
+              .AddCharacteristic(typeof(NameCharacteristic))
               ;
         }
     }

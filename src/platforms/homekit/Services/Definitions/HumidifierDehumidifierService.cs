@@ -38,10 +38,13 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(CurrentRelativeHumidityCharacteristic))
-              .AddCharacteristic(typeof(CurrentHumidifierDehumidifierStateCharacteristic))
-              .AddCharacteristic(typeof(TargetHumidifierDehumidifierStateCharacteristic))
-              .AddCharacteristic(typeof(ActiveCharacteristic))
+            AddCharacteristic(typeof(LockPhysicalControlsCharacteristic))
+              .AddCharacteristic(typeof(NameCharacteristic))
+              .AddCharacteristic(typeof(SwingModeCharacteristic))
+              .AddCharacteristic(typeof(WaterLevelCharacteristic))
+              .AddCharacteristic(typeof(RelativeHumidityDehumidifierThresholdCharacteristic))
+              .AddCharacteristic(typeof(RelativeHumidityHumidifierThresholdCharacteristic))
+              .AddCharacteristic(typeof(RotationSpeedCharacteristic))
               ;
         }
     }

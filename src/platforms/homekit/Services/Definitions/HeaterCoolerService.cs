@@ -38,10 +38,13 @@ namespace Homer.Platform.HomeKit.Services.Definitions
               ;
 
           // optional characteristics
-            AddCharacteristic(typeof(ActiveCharacteristic))
-              .AddCharacteristic(typeof(CurrentHeaterCoolerStateCharacteristic))
-              .AddCharacteristic(typeof(TargetHeaterCoolerStateCharacteristic))
-              .AddCharacteristic(typeof(CurrentTemperatureCharacteristic))
+            AddCharacteristic(typeof(LockPhysicalControlsCharacteristic))
+              .AddCharacteristic(typeof(NameCharacteristic))
+              .AddCharacteristic(typeof(SwingModeCharacteristic))
+              .AddCharacteristic(typeof(CoolingThresholdTemperatureCharacteristic))
+              .AddCharacteristic(typeof(HeatingThresholdTemperatureCharacteristic))
+              .AddCharacteristic(typeof(TemperatureDisplayUnitsCharacteristic))
+              .AddCharacteristic(typeof(RotationSpeedCharacteristic))
               ;
         }
     }
