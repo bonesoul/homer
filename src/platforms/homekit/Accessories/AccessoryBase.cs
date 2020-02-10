@@ -24,9 +24,12 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq.Expressions;
+using Homer.Platform.HomeKit.Characteristics;
 using Homer.Platform.HomeKit.Characteristics.Definitions;
 using Homer.Platform.HomeKit.Services;
 using Homer.Platform.HomeKit.Services.Definitions;
+using Serilog;
 using uuid.net.Classes.UUID;
 using uuid.net.Static_Classes.UUID_Validator;
 
@@ -34,6 +37,10 @@ namespace Homer.Platform.HomeKit.Accessories
 {
     public class AccessoryBase : IAccessoryBase
     {
+        public ILogger Logger { get; protected set; }
+
+        public ILogger AccessoryLogger { get; protected set; }
+
         public UUID Uuid { get; }
 
         public string DisplayName { get; }
@@ -59,6 +66,8 @@ namespace Homer.Platform.HomeKit.Accessories
             if (!string.IsNullOrEmpty(displayName)) DisplayName = displayName;
             else throw new ArgumentException("Must be created with a non-empty displayName.", nameof(displayName));
 
+            Logger = Log.ForContext<AccessoryBase>();
+
             IsBridged = isBridged;
             IsReachable = isReachable;
             Category = category;
@@ -72,6 +81,33 @@ namespace Homer.Platform.HomeKit.Accessories
                 .SetCharacteristic(typeof(ModelCharacteristic), "Default-Model")
                 .SetCharacteristic(typeof(SerialNumberCharacteristic), "Default-SerialNumber")
                 .SetCharacteristic(typeof(FirmwareRevisionCharacteristic), "0.1");
+
+            AddService(new ProtocolInformationService())
+                .SetCharacteristic(typeof(VersionCharacteristic), "1.1.0");
+
+            LogAccessorySummary();
+        }
+
+        private void LogAccessorySummary()
+        {
+            Logger.Information("[{Type}] name: {Name}", this.GetType().Name, DisplayName);
+            Logger.Information("-------------------------------------------------");
+            Logger.Information("uuid: {Uuid}", Uuid);
+
+            foreach (var kvpService in _services)
+            {
+                Logger.Information("service: [{Type}]", kvpService.Key.Name);
+
+                foreach (var kvpCharacteristic in kvpService.Value.Characteristics)
+                {
+                    Logger.Information("characteristic: [{Type}] => ({Format}) {Value}", kvpCharacteristic.Key.Name, ((ICharacteristicProps)kvpCharacteristic.Value).Format, kvpCharacteristic.Value.Value);
+                }
+
+                foreach (var kvpOptionalCharacteristic in kvpService.Value.OptionalCharacteristics)
+                {
+                    Logger.Information("optional characteristic: [{Type}] => ({Format}) {Value}", kvpOptionalCharacteristic.Key.Name, ((ICharacteristicProps)kvpOptionalCharacteristic.Value).Format, kvpOptionalCharacteristic.Value.Value);
+                }
+            }
         }
 
         public IService AddService(IService service)
@@ -89,7 +125,8 @@ namespace Homer.Platform.HomeKit.Accessories
 
         public void Publish()
         {
-            throw new NotImplementedException();
+            
+
         }
     }
 }

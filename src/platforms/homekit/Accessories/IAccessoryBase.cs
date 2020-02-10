@@ -25,6 +25,7 @@ using System;
 using System.Collections.Generic;
 using Homer.Platform.HomeKit.Entity;
 using Homer.Platform.HomeKit.Services;
+using Serilog;
 
 namespace Homer.Platform.HomeKit.Accessories
 {
@@ -33,6 +34,16 @@ namespace Homer.Platform.HomeKit.Accessories
     /// </summary>
     public interface IAccessoryBase : IEntity
     {
+        /// <summary>
+        /// Master logger instance.
+        /// </summary>
+        ILogger Logger { get; }
+
+        /// <summary>
+        /// Accessory logger.
+        /// </summary>
+        ILogger AccessoryLogger { get; }
+
         /// <summary>
         /// true if we are hosted "behind" a Bridge Accessory
         /// </summary>

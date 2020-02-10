@@ -45,6 +45,8 @@ namespace Homer.Servers
         {
             try
             {
+                _logger.Information("initializing server..");
+
                 var generator = UUIDFactory.CreateGenerator(5, 1);
                 var uuid = generator.Generate("homer");
 

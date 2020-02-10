@@ -35,6 +35,8 @@ namespace Homer.Platform.HomeKit.Bridges.Setup
         public BridgeSetupManager(string uuid, string displayName) 
             : base(uuid, displayName)
         {
+            
+
             // create handler characteristic.
             var controlPointCharacteristic = new ControlPointCharacteristic();
             controlPointCharacteristic.Get += HandleReadRequest;
@@ -54,6 +56,8 @@ namespace Homer.Platform.HomeKit.Bridges.Setup
                 .SetCharacteristic(typeof(ModelCharacteristic), "Homer")
                 .SetCharacteristic(typeof(SerialNumberCharacteristic), "CC:22:3D:E3:CE:30")
                 .SetCharacteristic(typeof(FirmwareRevisionCharacteristic), "0.1");
+
+            Publish();
         }
 
 
