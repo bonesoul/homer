@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class CurrentTemperatureCharacteristic: Characteristic
     {
+      public const string Uuid = "00000011-0000-1000-8000-0026BB765291";
+
     
 
         public CurrentTemperatureCharacteristic(): base(

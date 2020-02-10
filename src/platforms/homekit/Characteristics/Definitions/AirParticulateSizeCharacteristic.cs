@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class AirParticulateSizeCharacteristic: Characteristic
     {
+      public const string Uuid = "00000065-0000-1000-8000-0026BB765291";
+
     
         public const int _2_5_m = 0;
         public const int _10_m = 1;

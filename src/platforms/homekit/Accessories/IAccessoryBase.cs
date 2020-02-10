@@ -23,6 +23,9 @@
 
 using System;
 using System.Collections.Generic;
+using Homer.Platform.HomeKit.Accessories.Info;
+using Homer.Platform.HomeKit.Caches;
+using Homer.Platform.HomeKit.Caches.Identifiers;
 using Homer.Platform.HomeKit.Entity;
 using Homer.Platform.HomeKit.Services;
 using Serilog;
@@ -34,15 +37,7 @@ namespace Homer.Platform.HomeKit.Accessories
     /// </summary>
     public interface IAccessoryBase : IEntity
     {
-        /// <summary>
-        /// Master logger instance.
-        /// </summary>
-        ILogger Logger { get; }
-
-        /// <summary>
-        /// Accessory logger.
-        /// </summary>
-        ILogger AccessoryLogger { get; }
+        int? AccessoryId { get; }
 
         /// <summary>
         /// true if we are hosted "behind" a Bridge Accessory
@@ -64,6 +59,20 @@ namespace Homer.Platform.HomeKit.Accessories
         /// </summary>
         IReadOnlyDictionary<Type, IService> Services { get; }
 
+        IAccessoryInfo AccessoryInfo { get; }
+
+        IIdentifierCache IdentifierCache { get; }
+
+        /// <summary>
+        /// Master logger instance.
+        /// </summary>
+        ILogger Logger { get; }
+
+        /// <summary>
+        /// Accessory logger.
+        /// </summary>
+        ILogger AccessoryLogger { get; }
+
         /// <summary>
         /// Adds service.
         /// </summary>
@@ -76,5 +85,7 @@ namespace Homer.Platform.HomeKit.Accessories
         void Publish(dynamic info, bool allowInsecureAccess = false);
 
         void LogAccessorySummary();
+
+        void AssignIds(IIdentifierCache identifierCache);
     }
 }

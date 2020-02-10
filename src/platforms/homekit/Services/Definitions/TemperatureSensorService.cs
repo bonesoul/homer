@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class TemperatureSensorService: Service
     {
+      public const string Uuid = "0000008A-0000-1000-8000-0026BB765291";
+
         public TemperatureSensorService()
             : base("0000008A-0000-1000-8000-0026BB765291", "Temperature Sensor")
         {

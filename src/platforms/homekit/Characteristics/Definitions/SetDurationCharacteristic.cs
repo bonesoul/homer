@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SetDurationCharacteristic: Characteristic
     {
+      public const string Uuid = "000000D3-0000-1000-8000-0026BB765291";
+
     
 
         public SetDurationCharacteristic(): base(

@@ -23,6 +23,9 @@
 
 using System;
 using System.Collections.Generic;
+using Homer.Platform.HomeKit.Accessories;
+using Homer.Platform.HomeKit.Caches;
+using Homer.Platform.HomeKit.Caches.Identifiers;
 using Homer.Platform.HomeKit.Characteristics;
 using Homer.Platform.HomeKit.Entity;
 
@@ -143,5 +146,7 @@ namespace Homer.Platform.HomeKit.Services
         ICharacteristic GetOptionalCharacteristicByInstanceId(int iid);
 
         string ToHapJson();
+
+        void AssignIds(IIdentifierCache identifierCache, IAccessoryBase accessory, int baseInstanceId = 0);
     }
 }

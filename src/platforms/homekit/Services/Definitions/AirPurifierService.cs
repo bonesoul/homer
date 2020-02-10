@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class AirPurifierService: Service
     {
+      public const string Uuid = "000000BB-0000-1000-8000-0026BB765291";
+
         public AirPurifierService()
             : base("000000BB-0000-1000-8000-0026BB765291", "Air Purifier")
         {

@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class AudioFeedbackCharacteristic: Characteristic
     {
+      public const string Uuid = "00000005-0000-1000-8000-0026BB765291";
+
     
 
         public AudioFeedbackCharacteristic(): base(

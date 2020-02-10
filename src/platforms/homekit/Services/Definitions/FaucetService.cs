@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class FaucetService: Service
     {
+      public const string Uuid = "000000D7-0000-1000-8000-0026BB765291";
+
         public FaucetService()
             : base("000000D7-0000-1000-8000-0026BB765291", "Faucet")
         {

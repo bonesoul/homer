@@ -24,6 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Homer.Platform.HomeKit.Accessories.Info;
+using Homer.Platform.HomeKit.Bridges;
+using Homer.Platform.HomeKit.Caches;
+using Homer.Platform.HomeKit.Caches.Identifiers;
 using Homer.Platform.HomeKit.Characteristics;
 using Homer.Platform.HomeKit.Characteristics.Definitions;
 using Homer.Platform.HomeKit.Services;
@@ -36,13 +40,11 @@ namespace Homer.Platform.HomeKit.Accessories
 {
     public class AccessoryBase : IAccessoryBase
     {
-        public ILogger Logger { get; protected set; }
-
-        public ILogger AccessoryLogger { get; protected set; }
-
         public UUID Uuid { get; }
 
         public string DisplayName { get; }
+
+        public int? AccessoryId { get; private set; }
 
         public bool IsBridged { get; }
 
@@ -51,6 +53,14 @@ namespace Homer.Platform.HomeKit.Accessories
         public AccessoryCategory Category { get; }
 
         public IReadOnlyDictionary<Type, IService> Services { get; }
+
+        public IAccessoryInfo AccessoryInfo { get; private set; }
+
+        public IIdentifierCache IdentifierCache { get; private set; }
+
+        public ILogger Logger { get; protected set; }
+
+        public ILogger AccessoryLogger { get; protected set; }
 
         /// <summary>
         /// internal list of services.
@@ -67,6 +77,7 @@ namespace Homer.Platform.HomeKit.Accessories
 
             Logger = Log.ForContext<AccessoryBase>();
 
+            AccessoryId = null;
             IsBridged = isBridged;
             IsReachable = isReachable;
             Category = category;
@@ -100,6 +111,10 @@ namespace Homer.Platform.HomeKit.Accessories
 
         public void Publish(dynamic info, bool allowInsecureAccess = false)
         {
+            AccessoryInfo = new AccessoryInfo(this, info);
+            IdentifierCache = new IdentifierCache(info);
+            AssignIds(IdentifierCache);
+
             LogAccessorySummary();
         }
 
@@ -108,6 +123,7 @@ namespace Homer.Platform.HomeKit.Accessories
             Logger.Verbose("[{Type}] name: {Name}", this.GetType().Name, DisplayName);
             Logger.Verbose("-------------------------------------------------");
             Logger.Verbose("uuid: {Uuid}", Uuid);
+            Logger.Verbose("accessory id: {Aid}", AccessoryId);
 
             foreach (var (key, service) in _services)
             {
@@ -122,6 +138,28 @@ namespace Homer.Platform.HomeKit.Accessories
                 {
                     Logger.Verbose("optional characteristic: [{Type}] => ({Format}) {Value}", type.Name, ((ICharacteristicProps)characteristic).Format, characteristic.Value);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Assigns aid/iid to ourselves, any Accessories we are bridging, and all associated Services+Characteristics. Uses
+        /// the provided identifierCache to keep IDs stable.
+        /// </summary>
+        /// <param name="identifierCache"></param>
+        public void AssignIds(IIdentifierCache identifierCache)
+        {
+            if (!IsBridged && this is IBridge)
+            {
+                // as we are the bridge, we must have id = 1.
+                AccessoryId = 1;
+            }
+
+            foreach (var (_, service) in Services)
+            {
+                if (this is IBridge)
+                    service.AssignIds(IdentifierCache, this, 2000000000);
+                else
+                    service.AssignIds(identifierCache, this);
             }
         }
     }

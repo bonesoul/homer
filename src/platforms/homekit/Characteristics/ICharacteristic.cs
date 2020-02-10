@@ -22,6 +22,10 @@
 #endregion
 
 using System;
+using Homer.Platform.HomeKit.Accessories;
+using Homer.Platform.HomeKit.Caches;
+using Homer.Platform.HomeKit.Caches.Identifiers;
+using Homer.Platform.HomeKit.Services;
 using uuid.net.Classes.UUID;
 
 namespace Homer.Platform.HomeKit.Characteristics
@@ -116,5 +120,7 @@ namespace Homer.Platform.HomeKit.Characteristics
         void SetValue(dynamic value);
 
         string ToHapJson();
+
+        void AssignId(IIdentifierCache identifierCache, IAccessoryBase accessory, IService service);
     }
 }

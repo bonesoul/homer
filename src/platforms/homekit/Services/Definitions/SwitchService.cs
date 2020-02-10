@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class SwitchService: Service
     {
+      public const string Uuid = "00000049-0000-1000-8000-0026BB765291";
+
         public SwitchService()
             : base("00000049-0000-1000-8000-0026BB765291", "Switch")
         {

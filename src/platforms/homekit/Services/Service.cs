@@ -26,9 +26,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using Homer.Platform.HomeKit.Accessories;
+using Homer.Platform.HomeKit.Caches;
+using Homer.Platform.HomeKit.Caches.Identifiers;
 using Homer.Platform.HomeKit.Characteristics;
 using Homer.Platform.HomeKit.Characteristics.Definitions;
 using Homer.Platform.HomeKit.Events;
+using Homer.Platform.HomeKit.Services.Definitions;
 using uuid.net.Classes.UUID;
 using uuid.net.Static_Classes.UUID_Validator;
 
@@ -44,7 +48,7 @@ namespace Homer.Platform.HomeKit.Services
         public string DisplayName { get; }
 
         /// <inheritdoc />
-        public int InstanceId { get; }
+        public int InstanceId { get; private set; }
 
         /// <inheritdoc />
         public IReadOnlyDictionary<Type, ICharacteristic> Characteristics { get; }
@@ -227,6 +231,19 @@ namespace Homer.Platform.HomeKit.Services
         public string ToHapJson()
         {
             return "";
+        }
+
+        public void AssignIds(IIdentifierCache identifierCache, IAccessoryBase accessory, int baseInstanceId = 0)
+        {
+            // Accessory Information service must have a (reserved by IdentifierCache) ID of 1
+            if (Uuid == AccessoryInformationService.Uuid)
+                InstanceId = 1;
+
+            // assign id's to characteristics.
+            foreach (var (_, characteristic) in this.Characteristics)
+            {
+                characteristic.AssignId(identifierCache, accessory, this);
+            }
         }
     }
 }

@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class CurrentPositionCharacteristic: Characteristic
     {
+      public const string Uuid = "0000006D-0000-1000-8000-0026BB765291";
+
     
 
         public CurrentPositionCharacteristic(): base(

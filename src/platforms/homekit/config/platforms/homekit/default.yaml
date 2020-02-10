@@ -1,7 +1,7 @@
 ﻿platforms:
   homekit:
     setup:
-      serial: CC:22:3D:E3:CE:30
-      pin: 031-45-154
+      serial: F1:F6:AC:2B:7E:8B
+      pin: 069-39-561
       port: 25777
       insecure: true # allow insecure access?

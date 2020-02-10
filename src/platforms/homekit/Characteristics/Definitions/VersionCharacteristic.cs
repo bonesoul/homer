@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class VersionCharacteristic: Characteristic
     {
+      public const string Uuid = "00000037-0000-1000-8000-0026BB765291";
+
     
 
         public VersionCharacteristic(): base(

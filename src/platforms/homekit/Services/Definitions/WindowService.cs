@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class WindowService: Service
     {
+      public const string Uuid = "0000008B-0000-1000-8000-0026BB765291";
+
         public WindowService()
             : base("0000008B-0000-1000-8000-0026BB765291", "Window")
         {

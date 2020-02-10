@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class PositionStateCharacteristic: Characteristic
     {
+      public const string Uuid = "00000072-0000-1000-8000-0026BB765291";
+
     
         public const int Decreasing = 0;
         public const int Increasing = 1;

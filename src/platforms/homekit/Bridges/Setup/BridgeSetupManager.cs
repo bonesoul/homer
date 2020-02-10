@@ -62,7 +62,7 @@ namespace Homer.Platform.HomeKit.Bridges.Setup
                 .SetCharacteristic(typeof(FirmwareRevisionCharacteristic), "0.1");
 
             dynamic info = new ExpandoObject();
-            info.serial = _configurationService.Configuration.Platforms.Homekit.Setup.Serial;
+            info.username = _configurationService.Configuration.Platforms.Homekit.Setup.Serial;
             info.port = _configurationService.Configuration.Platforms.Homekit.Setup.Port;
             info.pin = _configurationService.Configuration.Platforms.Homekit.Setup.Pin;
             info.category = Category;

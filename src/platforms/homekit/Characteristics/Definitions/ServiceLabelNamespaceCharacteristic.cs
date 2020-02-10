@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ServiceLabelNamespaceCharacteristic: Characteristic
     {
+      public const string Uuid = "000000CD-0000-1000-8000-0026BB765291";
+
     
         public const int Dots = 0;
         public const int Arabic_Numerals = 1;

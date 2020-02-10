@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class SmokeSensorService: Service
     {
+      public const string Uuid = "00000087-0000-1000-8000-0026BB765291";
+
         public SmokeSensorService()
             : base("00000087-0000-1000-8000-0026BB765291", "Smoke Sensor")
         {

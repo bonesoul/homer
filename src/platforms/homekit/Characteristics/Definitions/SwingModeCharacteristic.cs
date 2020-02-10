@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SwingModeCharacteristic: Characteristic
     {
+      public const string Uuid = "000000B6-0000-1000-8000-0026BB765291";
+
     
         public const int Swing_Disabled = 0;
         public const int Swing_Enabled = 1;

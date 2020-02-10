@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class OutletService: Service
     {
+      public const string Uuid = "00000047-0000-1000-8000-0026BB765291";
+
         public OutletService()
             : base("00000047-0000-1000-8000-0026BB765291", "Outlet")
         {

@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class LockManagementService: Service
     {
+      public const string Uuid = "00000044-0000-1000-8000-0026BB765291";
+
         public LockManagementService()
             : base("00000044-0000-1000-8000-0026BB765291", "Lock Management")
         {

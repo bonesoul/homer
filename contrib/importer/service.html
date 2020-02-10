@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class {{classyName}}Service: Service
     {
+      public const string Uuid = "{{service.UUID}}";
+
         public {{classyName}}Service()
             : base("{{ service.UUID }}", "{{ service.Name }}")
         {

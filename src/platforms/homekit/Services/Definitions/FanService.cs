@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class FanService: Service
     {
+      public const string Uuid = "00000040-0000-1000-8000-0026BB765291";
+
         public FanService()
             : base("00000040-0000-1000-8000-0026BB765291", "Fan")
         {

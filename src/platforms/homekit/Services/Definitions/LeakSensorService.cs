@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class LeakSensorService: Service
     {
+      public const string Uuid = "00000083-0000-1000-8000-0026BB765291";
+
         public LeakSensorService()
             : base("00000083-0000-1000-8000-0026BB765291", "Leak Sensor")
         {

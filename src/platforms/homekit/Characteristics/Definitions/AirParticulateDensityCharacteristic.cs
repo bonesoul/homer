@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class AirParticulateDensityCharacteristic: Characteristic
     {
+      public const string Uuid = "00000064-0000-1000-8000-0026BB765291";
+
     
 
         public AirParticulateDensityCharacteristic(): base(

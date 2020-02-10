@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class StatelessProgrammableSwitchService: Service
     {
+      public const string Uuid = "00000089-0000-1000-8000-0026BB765291";
+
         public StatelessProgrammableSwitchService()
             : base("00000089-0000-1000-8000-0026BB765291", "Stateless Programmable Switch")
         {

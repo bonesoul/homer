@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class FilterMaintenanceService: Service
     {
+      public const string Uuid = "000000BA-0000-1000-8000-0026BB765291";
+
         public FilterMaintenanceService()
             : base("000000BA-0000-1000-8000-0026BB765291", "Filter Maintenance")
         {

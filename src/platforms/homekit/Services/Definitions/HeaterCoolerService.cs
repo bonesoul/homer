@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class HeaterCoolerService: Service
     {
+      public const string Uuid = "000000BC-0000-1000-8000-0026BB765291";
+
         public HeaterCoolerService()
             : base("000000BC-0000-1000-8000-0026BB765291", "Heater Cooler")
         {

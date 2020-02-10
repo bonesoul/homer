@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class StatusTamperedCharacteristic: Characteristic
     {
+      public const string Uuid = "0000007A-0000-1000-8000-0026BB765291";
+
     
         public const int Not_Tampered = 0;
         public const int Tampered = 1;

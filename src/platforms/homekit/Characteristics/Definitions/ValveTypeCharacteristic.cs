@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ValveTypeCharacteristic: Characteristic
     {
+      public const string Uuid = "000000D5-0000-1000-8000-0026BB765291";
+
     
         public const int Generic_Valve = 0;
         public const int Irrigation = 1;

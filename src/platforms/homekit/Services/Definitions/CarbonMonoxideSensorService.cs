@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class CarbonMonoxideSensorService: Service
     {
+      public const string Uuid = "0000007F-0000-1000-8000-0026BB765291";
+
         public CarbonMonoxideSensorService()
             : base("0000007F-0000-1000-8000-0026BB765291", "Carbon Monoxide Sensor")
         {

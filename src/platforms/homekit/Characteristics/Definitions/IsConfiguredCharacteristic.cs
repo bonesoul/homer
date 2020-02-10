@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class IsConfiguredCharacteristic: Characteristic
     {
+      public const string Uuid = "000000D6-0000-1000-8000-0026BB765291";
+
     
         public const int Not_Configured = 0;
         public const int Configured = 1;

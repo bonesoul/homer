@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class InUseCharacteristic: Characteristic
     {
+      public const string Uuid = "000000D2-0000-1000-8000-0026BB765291";
+
     
         public const int Not_In_Use = 0;
         public const int In_Use = 1;

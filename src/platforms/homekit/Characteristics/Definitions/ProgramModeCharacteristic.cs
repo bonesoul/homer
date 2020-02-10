@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ProgramModeCharacteristic: Characteristic
     {
+      public const string Uuid = "000000D1-0000-1000-8000-0026BB765291";
+
     
         public const int No_Program_Scheduled = 0;
         public const int Program_Scheduled = 1;

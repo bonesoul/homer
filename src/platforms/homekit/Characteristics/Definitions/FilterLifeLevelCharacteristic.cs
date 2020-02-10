@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class FilterLifeLevelCharacteristic: Characteristic
     {
+      public const string Uuid = "000000AB-0000-1000-8000-0026BB765291";
+
     
 
         public FilterLifeLevelCharacteristic(): base(

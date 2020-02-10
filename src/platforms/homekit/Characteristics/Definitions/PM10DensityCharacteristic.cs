@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class PM10DensityCharacteristic: Characteristic
     {
+      public const string Uuid = "000000C7-0000-1000-8000-0026BB765291";
+
     
 
         public PM10DensityCharacteristic(): base(

@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ProgrammableSwitchEventCharacteristic: Characteristic
     {
+      public const string Uuid = "00000073-0000-1000-8000-0026BB765291";
+
     
         public const int Single_Press = 0;
         public const int Double_Press = 1;

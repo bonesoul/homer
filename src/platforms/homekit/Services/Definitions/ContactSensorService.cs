@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class ContactSensorService: Service
     {
+      public const string Uuid = "00000080-0000-1000-8000-0026BB765291";
+
         public ContactSensorService()
             : base("00000080-0000-1000-8000-0026BB765291", "Contact Sensor")
         {

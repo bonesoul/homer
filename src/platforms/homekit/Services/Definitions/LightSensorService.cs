@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class LightSensorService: Service
     {
+      public const string Uuid = "00000084-0000-1000-8000-0026BB765291";
+
         public LightSensorService()
             : base("00000084-0000-1000-8000-0026BB765291", "Light Sensor")
         {

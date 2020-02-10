@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class CarbonDioxideDetectedCharacteristic: Characteristic
     {
+      public const string Uuid = "00000092-0000-1000-8000-0026BB765291";
+
     
         public const int CO2_Levels_Normal = 0;
         public const int CO2_Levels_Abnormal = 1;

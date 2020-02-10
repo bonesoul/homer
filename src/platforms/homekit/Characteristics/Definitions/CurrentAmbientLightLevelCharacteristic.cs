@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class CurrentAmbientLightLevelCharacteristic: Characteristic
     {
+      public const string Uuid = "0000006B-0000-1000-8000-0026BB765291";
+
     
 
         public CurrentAmbientLightLevelCharacteristic(): base(

@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SecuritySystemCurrentStateCharacteristic: Characteristic
     {
+      public const string Uuid = "00000066-0000-1000-8000-0026BB765291";
+
     
         public const int Stay_Arm = 0;
         public const int Away_Arm = 1;

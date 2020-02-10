@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class ChargingStateCharacteristic: Characteristic
     {
+      public const string Uuid = "0000008F-0000-1000-8000-0026BB765291";
+
     
         public const int Not_Charging = 0;
         public const int Charging = 1;

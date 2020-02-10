@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class MicrophoneService: Service
     {
+      public const string Uuid = "00000112-0000-1000-8000-0026BB765291";
+
         public MicrophoneService()
             : base("00000112-0000-1000-8000-0026BB765291", "Microphone")
         {

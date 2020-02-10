@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class CameraRTPStreamManagementService: Service
     {
+      public const string Uuid = "00000110-0000-1000-8000-0026BB765291";
+
         public CameraRTPStreamManagementService()
             : base("00000110-0000-1000-8000-0026BB765291", "Camera RTP Stream Management")
         {

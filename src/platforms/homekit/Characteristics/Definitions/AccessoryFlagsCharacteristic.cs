@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class AccessoryFlagsCharacteristic: Characteristic
     {
+      public const string Uuid = "000000A6-0000-1000-8000-0026BB765291";
+
     
 
         public AccessoryFlagsCharacteristic(): base(

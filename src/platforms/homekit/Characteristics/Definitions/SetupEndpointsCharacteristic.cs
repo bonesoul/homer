@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SetupEndpointsCharacteristic: Characteristic
     {
+      public const string Uuid = "00000118-0000-1000-8000-0026BB765291";
+
     
 
         public SetupEndpointsCharacteristic(): base(

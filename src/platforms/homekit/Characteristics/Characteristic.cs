@@ -24,7 +24,11 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Homer.Platform.HomeKit.Accessories;
+using Homer.Platform.HomeKit.Caches;
+using Homer.Platform.HomeKit.Caches.Identifiers;
 using Homer.Platform.HomeKit.Events;
+using Homer.Platform.HomeKit.Services;
 using uuid.net.Classes.UUID;
 using uuid.net.Static_Classes.UUID_Validator;
 
@@ -182,6 +186,11 @@ namespace Homer.Platform.HomeKit.Characteristics
         }
 
         public string ToHapJson()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AssignId(IIdentifierCache identifierCache, IAccessoryBase accessory, IService service)
         {
             throw new NotImplementedException();
         }

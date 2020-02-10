@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class SlatService: Service
     {
+      public const string Uuid = "000000B9-0000-1000-8000-0026BB765291";
+
         public SlatService()
             : base("000000B9-0000-1000-8000-0026BB765291", "Slat")
         {

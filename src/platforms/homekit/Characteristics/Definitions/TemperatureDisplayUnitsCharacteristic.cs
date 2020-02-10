@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class TemperatureDisplayUnitsCharacteristic: Characteristic
     {
+      public const string Uuid = "00000036-0000-1000-8000-0026BB765291";
+
     
         public const int Celsius = 0;
         public const int Fahrenheit = 1;

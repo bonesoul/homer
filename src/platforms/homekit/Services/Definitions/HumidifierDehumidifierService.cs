@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class HumidifierDehumidifierService: Service
     {
+      public const string Uuid = "000000BD-0000-1000-8000-0026BB765291";
+
         public HumidifierDehumidifierService()
             : base("000000BD-0000-1000-8000-0026BB765291", "Humidifier Dehumidifier")
         {

@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class StatusJammedCharacteristic: Characteristic
     {
+      public const string Uuid = "00000078-0000-1000-8000-0026BB765291";
+
     
         public const int Not_Jammed = 0;
         public const int Jammed = 1;

@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class ServiceLabelService: Service
     {
+      public const string Uuid = "000000CC-0000-1000-8000-0026BB765291";
+
         public ServiceLabelService()
             : base("000000CC-0000-1000-8000-0026BB765291", "Service Label")
         {

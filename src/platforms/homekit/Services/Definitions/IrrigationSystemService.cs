@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class IrrigationSystemService: Service
     {
+      public const string Uuid = "000000CF-0000-1000-8000-0026BB765291";
+
         public IrrigationSystemService()
             : base("000000CF-0000-1000-8000-0026BB765291", "Irrigation System")
         {

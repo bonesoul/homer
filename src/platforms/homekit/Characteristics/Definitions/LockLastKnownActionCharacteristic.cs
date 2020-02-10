@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class LockLastKnownActionCharacteristic: Characteristic
     {
+      public const string Uuid = "0000001C-0000-1000-8000-0026BB765291";
+
     
         public const int Secured_Physically_Interior = 0;
         public const int Unsecured_Physically_Interior = 1;

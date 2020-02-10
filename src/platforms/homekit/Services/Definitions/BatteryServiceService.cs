@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class BatteryServiceService: Service
     {
+      public const string Uuid = "00000096-0000-1000-8000-0026BB765291";
+
         public BatteryServiceService()
             : base("00000096-0000-1000-8000-0026BB765291", "Battery Service")
         {

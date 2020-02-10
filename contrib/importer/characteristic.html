@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class {{classyName}}Characteristic: Characteristic
     {
+      public const string Uuid = "{{characteristic.UUID}}";
+
     {% if characteristic.Constraints and characteristic.Constraints.ValidValues -%}
         {% for key,value in characteristic.Constraints.ValidValues -%}
             {%- set name = ucwords(value).replace(r/[^\w]+/g, '_') -%}

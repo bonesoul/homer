@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Services.Definitions
 {
     public class SecuritySystemService: Service
     {
+      public const string Uuid = "0000007E-0000-1000-8000-0026BB765291";
+
         public SecuritySystemService()
             : base("0000007E-0000-1000-8000-0026BB765291", "Security System")
         {

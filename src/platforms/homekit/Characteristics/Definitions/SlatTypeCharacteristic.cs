@@ -27,6 +27,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
 {
     public class SlatTypeCharacteristic: Characteristic
     {
+      public const string Uuid = "000000C0-0000-1000-8000-0026BB765291";
+
     
         public const int Horizontal = 0;
         public const int Vertical = 1;
