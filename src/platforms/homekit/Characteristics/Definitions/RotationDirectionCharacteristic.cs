@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class RotationDirectionCharacteristic: Characteristic
     {
     
-        public const int CLOCKWISE = 0;
-        public const int COUNTER_CLOCKWISE = 1;
+        public const int Clockwise = 0;
+        public const int Counter_clockwise = 1;
 
         public RotationDirectionCharacteristic(): base(
             uuid: "00000028-0000-1000-8000-0026BB765291",

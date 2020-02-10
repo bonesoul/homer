@@ -29,7 +29,7 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     {
     {% if characteristic.Constraints and characteristic.Constraints.ValidValues -%}
         {% for key,value in characteristic.Constraints.ValidValues -%}
-            {%- set name = value.toUpperCase().replace(r/[^\w]+/g, '_') -%}
+            {%- set name = ucwords(value).replace(r/[^\w]+/g, '_') -%}
             {% if r/^[1-9]/.test(name) -%}{%- set name = '_' + name -%}{%- endif %}
         public const int {{ name }} = {{ key }};
         {%- endfor %}

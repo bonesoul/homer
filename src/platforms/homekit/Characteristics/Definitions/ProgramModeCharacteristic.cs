@@ -28,9 +28,9 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class ProgramModeCharacteristic: Characteristic
     {
     
-        public const int NO_PROGRAM_SCHEDULED = 0;
-        public const int PROGRAM_SCHEDULED = 1;
-        public const int PROGRAM_SCHEDULED_MANUAL_MODE_ = 2;
+        public const int No_Program_Scheduled = 0;
+        public const int Program_Scheduled = 1;
+        public const int Program_Scheduled_Manual_Mode_ = 2;
 
         public ProgramModeCharacteristic(): base(
             uuid: "000000D1-0000-1000-8000-0026BB765291",

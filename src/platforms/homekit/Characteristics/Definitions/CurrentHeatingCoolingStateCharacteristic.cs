@@ -28,9 +28,9 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class CurrentHeatingCoolingStateCharacteristic: Characteristic
     {
     
-        public const int OFF = 0;
-        public const int HEAT = 1;
-        public const int COOL = 2;
+        public const int Off = 0;
+        public const int Heat = 1;
+        public const int Cool = 2;
 
         public CurrentHeatingCoolingStateCharacteristic(): base(
             uuid: "0000000F-0000-1000-8000-0026BB765291",

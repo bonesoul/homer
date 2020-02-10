@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class StatusFaultCharacteristic: Characteristic
     {
     
-        public const int NO_FAULT = 0;
-        public const int GENERAL_FAULT = 1;
+        public const int No_Fault = 0;
+        public const int General_Fault = 1;
 
         public StatusFaultCharacteristic(): base(
             uuid: "00000077-0000-1000-8000-0026BB765291",

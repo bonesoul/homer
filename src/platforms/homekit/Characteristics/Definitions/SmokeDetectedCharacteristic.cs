@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class SmokeDetectedCharacteristic: Characteristic
     {
     
-        public const int SMOKE_NOT_DETECTED = 0;
-        public const int SMOKE_DETECTED = 1;
+        public const int Smoke_Not_Detected = 0;
+        public const int Smoke_Detected = 1;
 
         public SmokeDetectedCharacteristic(): base(
             uuid: "00000076-0000-1000-8000-0026BB765291",

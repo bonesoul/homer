@@ -28,9 +28,9 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class TargetAirQualityCharacteristic: Characteristic
     {
     
-        public const int EXCELLENT = 0;
-        public const int GOOD = 1;
-        public const int FAIR = 2;
+        public const int Excellent = 0;
+        public const int Good = 1;
+        public const int Fair = 2;
 
         public TargetAirQualityCharacteristic(): base(
             uuid: "000000AE-0000-1000-8000-0026BB765291",

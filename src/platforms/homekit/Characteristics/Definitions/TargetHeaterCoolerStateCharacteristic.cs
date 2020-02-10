@@ -28,9 +28,9 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class TargetHeaterCoolerStateCharacteristic: Characteristic
     {
     
-        public const int AUTO = 0;
-        public const int HEAT = 1;
-        public const int COOL = 2;
+        public const int Auto = 0;
+        public const int Heat = 1;
+        public const int Cool = 2;
 
         public TargetHeaterCoolerStateCharacteristic(): base(
             uuid: "000000B2-0000-1000-8000-0026BB765291",

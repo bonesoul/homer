@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class LockTargetStateCharacteristic: Characteristic
     {
     
-        public const int UNSECURED = 0;
-        public const int SECURED = 1;
+        public const int Unsecured = 0;
+        public const int Secured = 1;
 
         public LockTargetStateCharacteristic(): base(
             uuid: "0000001E-0000-1000-8000-0026BB765291",

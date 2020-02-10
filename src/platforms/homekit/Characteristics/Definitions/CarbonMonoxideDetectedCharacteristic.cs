@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class CarbonMonoxideDetectedCharacteristic: Characteristic
     {
     
-        public const int CO_LEVELS_NORMAL = 0;
-        public const int CO_LEVELS_ABNORMAL = 1;
+        public const int CO_Levels_Normal = 0;
+        public const int CO_Levels_Abnormal = 1;
 
         public CarbonMonoxideDetectedCharacteristic(): base(
             uuid: "00000069-0000-1000-8000-0026BB765291",

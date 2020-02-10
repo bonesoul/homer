@@ -28,15 +28,15 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class LockLastKnownActionCharacteristic: Characteristic
     {
     
-        public const int SECURED_PHYSICALLY_INTERIOR = 0;
-        public const int UNSECURED_PHYSICALLY_INTERIOR = 1;
-        public const int SECURED_PHYSICALLY_EXTERIOR = 2;
-        public const int UNSECURED_PHYSICALLY_EXTERIOR = 3;
-        public const int SECURED_BY_KEYPAD = 4;
-        public const int UNSECURED_BY_KEYPAD = 5;
-        public const int SECURED_REMOTELY = 6;
-        public const int UNSECURED_REMOTELY = 7;
-        public const int SECURED_BY_AUTO_SECURE_TIMEOUT = 8;
+        public const int Secured_Physically_Interior = 0;
+        public const int Unsecured_Physically_Interior = 1;
+        public const int Secured_Physically_Exterior = 2;
+        public const int Unsecured_Physically_Exterior = 3;
+        public const int Secured_By_Keypad = 4;
+        public const int Unsecured_By_Keypad = 5;
+        public const int Secured_Remotely = 6;
+        public const int Unsecured_Remotely = 7;
+        public const int Secured_By_Auto_Secure_Timeout = 8;
 
         public LockLastKnownActionCharacteristic(): base(
             uuid: "0000001C-0000-1000-8000-0026BB765291",

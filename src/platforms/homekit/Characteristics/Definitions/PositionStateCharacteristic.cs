@@ -28,9 +28,9 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class PositionStateCharacteristic: Characteristic
     {
     
-        public const int DECREASING = 0;
-        public const int INCREASING = 1;
-        public const int STOPPED = 2;
+        public const int Decreasing = 0;
+        public const int Increasing = 1;
+        public const int Stopped = 2;
 
         public PositionStateCharacteristic(): base(
             uuid: "00000072-0000-1000-8000-0026BB765291",

@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class OccupancyDetectedCharacteristic: Characteristic
     {
     
-        public const int OCCUPANCY_NOT_DETECTED = 0;
-        public const int OCCUPANCY_DETECTED = 1;
+        public const int Occupancy_Not_Detected = 0;
+        public const int Occupancy_Detected = 1;
 
         public OccupancyDetectedCharacteristic(): base(
             uuid: "00000071-0000-1000-8000-0026BB765291",

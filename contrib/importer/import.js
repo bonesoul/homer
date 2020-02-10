@@ -28,7 +28,7 @@ function readCharacteristics(metadata) {
     var res = nunjucks.render('characteristic.html', {
       classyName: classyName,
       characteristic: characteristic,
-      capitalize: capitalize,
+      ucwords: ucwords,
       getCharacteristicUnit: getCharacteristicUnit,
       getCharacteristicFormat: getCharacteristicFormat,
       getCharacteristicPermsKey: getCharacteristicPermsKey,
@@ -53,8 +53,7 @@ function readServices(metadata) {
     var res = nunjucks.render('service.html', {
       classyName: classyName,
       service: service,
-      characteristics: characteristics,
-      capitalize: capitalize,
+      characteristics: characteristics
     });
 
     output.write(res);
@@ -99,4 +98,11 @@ function getCharacteristicPermsKey(perm) {
     case "uncnotify": return undefined;
     default: throw new Error("Unknown characteristic permission '" + perm + "'");
   }
+}
+
+function ucwords (str) {
+  return (str + '')
+    .replace(/^(.)|\s+(.)/g, function ($1) {
+      return $1.toUpperCase()
+    })
 }

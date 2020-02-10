@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class StatusTamperedCharacteristic: Characteristic
     {
     
-        public const int NOT_TAMPERED = 0;
-        public const int TAMPERED = 1;
+        public const int Not_Tampered = 0;
+        public const int Tampered = 1;
 
         public StatusTamperedCharacteristic(): base(
             uuid: "0000007A-0000-1000-8000-0026BB765291",

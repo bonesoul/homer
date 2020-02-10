@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class TargetAirPurifierStateCharacteristic: Characteristic
     {
     
-        public const int MANUAL = 0;
-        public const int AUTO = 1;
+        public const int Manual = 0;
+        public const int Auto = 1;
 
         public TargetAirPurifierStateCharacteristic(): base(
             uuid: "000000A8-0000-1000-8000-0026BB765291",

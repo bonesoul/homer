@@ -28,10 +28,10 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class CurrentHeaterCoolerStateCharacteristic: Characteristic
     {
     
-        public const int INACTIVE = 0;
-        public const int IDLE = 1;
-        public const int HEATING = 2;
-        public const int COOLING = 3;
+        public const int Inactive = 0;
+        public const int Idle = 1;
+        public const int Heating = 2;
+        public const int Cooling = 3;
 
         public CurrentHeaterCoolerStateCharacteristic(): base(
             uuid: "000000B1-0000-1000-8000-0026BB765291",

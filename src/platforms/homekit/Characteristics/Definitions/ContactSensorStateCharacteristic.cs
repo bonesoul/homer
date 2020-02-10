@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class ContactSensorStateCharacteristic: Characteristic
     {
     
-        public const int CONTACT_DETECTED = 0;
-        public const int CONTACT_NOT_DETECTED = 1;
+        public const int Contact_Detected = 0;
+        public const int Contact_Not_Detected = 1;
 
         public ContactSensorStateCharacteristic(): base(
             uuid: "0000006A-0000-1000-8000-0026BB765291",

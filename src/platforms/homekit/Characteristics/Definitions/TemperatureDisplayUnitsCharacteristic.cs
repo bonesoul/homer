@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class TemperatureDisplayUnitsCharacteristic: Characteristic
     {
     
-        public const int CELSIUS = 0;
-        public const int FAHRENHEIT = 1;
+        public const int Celsius = 0;
+        public const int Fahrenheit = 1;
 
         public TemperatureDisplayUnitsCharacteristic(): base(
             uuid: "00000036-0000-1000-8000-0026BB765291",

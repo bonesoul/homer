@@ -28,8 +28,8 @@ namespace Homer.Platform.HomeKit.Characteristics.Definitions
     public class ActiveCharacteristic: Characteristic
     {
     
-        public const int INACTIVE = 0;
-        public const int ACTIVE = 1;
+        public const int Inactive = 0;
+        public const int Active = 1;
 
         public ActiveCharacteristic(): base(
             uuid: "000000B0-0000-1000-8000-0026BB765291",
