@@ -74,5 +74,7 @@ namespace Homer.Platform.HomeKit.Accessories
         IService GetService(Type t);
 
         void Publish();
+
+        void LogAccessorySummary();
     }
 }

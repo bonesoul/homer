@@ -84,30 +84,6 @@ namespace Homer.Platform.HomeKit.Accessories
 
             AddService(new ProtocolInformationService())
                 .SetCharacteristic(typeof(VersionCharacteristic), "1.1.0");
-
-            LogAccessorySummary();
-        }
-
-        private void LogAccessorySummary()
-        {
-            Logger.Information("[{Type}] name: {Name}", this.GetType().Name, DisplayName);
-            Logger.Information("-------------------------------------------------");
-            Logger.Information("uuid: {Uuid}", Uuid);
-
-            foreach (var kvpService in _services)
-            {
-                Logger.Information("service: [{Type}]", kvpService.Key.Name);
-
-                foreach (var kvpCharacteristic in kvpService.Value.Characteristics)
-                {
-                    Logger.Information("characteristic: [{Type}] => ({Format}) {Value}", kvpCharacteristic.Key.Name, ((ICharacteristicProps)kvpCharacteristic.Value).Format, kvpCharacteristic.Value.Value);
-                }
-
-                foreach (var kvpOptionalCharacteristic in kvpService.Value.OptionalCharacteristics)
-                {
-                    Logger.Information("optional characteristic: [{Type}] => ({Format}) {Value}", kvpOptionalCharacteristic.Key.Name, ((ICharacteristicProps)kvpOptionalCharacteristic.Value).Format, kvpOptionalCharacteristic.Value.Value);
-                }
-            }
         }
 
         public IService AddService(IService service)
@@ -125,8 +101,29 @@ namespace Homer.Platform.HomeKit.Accessories
 
         public void Publish()
         {
-            
+            LogAccessorySummary();
+        }
 
+        public void LogAccessorySummary()
+        {
+            Logger.Verbose("[{Type}] name: {Name}", this.GetType().Name, DisplayName);
+            Logger.Verbose("-------------------------------------------------");
+            Logger.Verbose("uuid: {Uuid}", Uuid);
+
+            foreach (var (key, service) in _services)
+            {
+                Logger.Verbose("service: [{Type}]", key.Name);
+
+                foreach (var (type, characteristic) in service.Characteristics)
+                {
+                    Logger.Verbose("characteristic: [{Type}] => ({Format}) {Value}", type.Name, ((ICharacteristicProps)characteristic).Format, characteristic.Value);
+                }
+
+                foreach (var (type, characteristic) in service.OptionalCharacteristics)
+                {
+                    Logger.Verbose("optional characteristic: [{Type}] => ({Format}) {Value}", type.Name, ((ICharacteristicProps)characteristic).Format, characteristic.Value);
+                }
+            }
         }
     }
 }
