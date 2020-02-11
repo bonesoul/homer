@@ -25,7 +25,11 @@ const winston = require('winston');
 const path = require('path');
 const fs = require('fs-extra')
 const _ = require('lodash');
+const semver = require('semver');
 const globalDirectories = require('global-dirs');
+const packageInfo = require('../../../package.json');
+
+const homebridge_compatiblity_version = "0.4.5";
 
 module.exports = class PluginManager {
   discover = async () => {
@@ -55,6 +59,54 @@ module.exports = class PluginManager {
 
   load = async(name, dir) => {
     winston.info(`[PLUGIN_MANAGER] loading plugin ${name}..`);
+
+    var json = await this._loadPluginJson(dir);
+
+    // make sure it has a valid json.
+    if (json === undefined) 
+      throw new Error(`[PLUGIN_MANAGER] error loading plugin: ${name}..`);
+
+    // check if it has homebridge or homer as engine.
+    if (!json.engines || (!json.engines.homebridge && !json.engines.homer))
+      throw new Error(`Plugin ${name} does not contain correct engines definitions..`);
+
+    // check if homer version is satisfied.
+    if (json.engines.homer && !semver.satisfies(packageInfo.version, json.engines.homer) )
+      throw new Error(`Plugin ${name} requires homer version ${json.engines.homer} which is not satisfied by current version ${packageInfo.version}. Please consider upgrading your homer installation..`);
+
+    // check if homebridge version is satisfied.
+    if (json.engines.homebridge && !semver.satisfies(homebridge_compatiblity_version, json.engines.homebridge) ) 
+      throw new Error(`Plugin ${name} requires homebridge compatability version ${json.engines.homebridge} which is not satisfied by current version ${homebridge_compatiblity_version}. Please consider upgrading your homer installation..`);
+
+    // check node version.
+    if (json.engines.node && !semver.satisfies(process.version, json.engines.node)) 
+      winston.warn(`Plugin ${name} required node version ${json.engines.node} which is not satisfied by current version ${process.version}. Consider upgrading your node installation..`);
+
+    // get plugin entrance
+    let entrance = json.main || "./index.js";
+    let entrancePath = path.join(dir, entrance);
+
+    // try getting the plugin initializer.
+    var module = require(entrancePath);
+
+    if (typeof module === "function")
+      return module;
+     else if (module && typeof module.default === "function")
+      return module.default;
+     else
+      throw new Error(`Plugin ${name} does not export an initializer..`)
+  }
+
+  initialize = async(name, dir) => {
+    try {
+      let initializer = await this.load(name, dir);
+      initializer(this._pluginApi);
+      return true;
+    }
+    catch (err) {
+      winston.error(`[PLUGIN_MANAGER] error loading plugin ${name}: ${err.stack}`);
+      return false;
+    }
   }
 
   _discoverPath = async (dir) => {

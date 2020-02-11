@@ -89,17 +89,17 @@ module.exports = class Server {
   _loadPlugins = async () => {
     winston.verbose('[SERVER] loading plugins..');
 
+    let plugins = [];
     let pluginManager = new PluginManager();
-    let plugins = await pluginManager.discover();
-    
-    Object.entries(plugins).forEach(async ([name, dir]) => {
-      try {        
-        await pluginManager.load(name, dir);
-      }
-      catch (err) {
-        winston.error(`[SERVER] error loading plugin ${name}: ${err}`);
-      }
+    let discovered = await pluginManager.discover();
+
+    Object.entries(discovered).forEach(async ([name, dir]) => {
+      if (await pluginManager.initialize(name, dir))
+      plugins.push(name);
     });
+
+    if (plugins.length === 0)
+      winston.warn('no plugins found. See the README for information on installing plugins..')
   };
 
   _createBridge = async () => {
