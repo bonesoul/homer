@@ -49,6 +49,16 @@ module.exports = class AccessoryRepository {
       var accessory = await this._createAccessory(instance, accessoryConfig.name, accessoryConfig.accessory, accessoryConfig.uuid_base); // create accessory.
       this._bridge.addBridgedAccessory(accessory); // add accessory to our bridge.
 
+      var characteristic = accessory.getService(Service.Switch).getCharacteristic(Characteristic.On)
+
+      console.dir(characteristic);
+      characteristic.setValue(false)
+      console.dir(characteristic);
+
+      accessory.on('service-characteristic-change', function(change) {
+        console.dir(change);
+      }.bind(this));
+
     } catch (err) {
       winston.error(`[ACCESSORY_REPOSITORY] error loading accessory; ${err.stack}`)
     }
