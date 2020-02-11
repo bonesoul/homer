@@ -33,6 +33,7 @@ const qrcode = require('qrcode-terminal');
 const chalk = require('chalk');
 const user = require('lib/user');
 const PluginApi = require('homekit/plugin/api/api');
+const PluginManager = require('homekit/plugin/manager');
 const accessoryStorage = require('node-persist').create();
 const packageInfo = require('../../package.json');
 
@@ -87,6 +88,18 @@ module.exports = class Server {
 
   _loadPlugins = async () => {
     winston.verbose('[SERVER] loading plugins..');
+
+    let pluginManager = new PluginManager();
+    let plugins = await pluginManager.discover();
+    
+    Object.entries(plugins).forEach(async ([name, dir]) => {
+      try {        
+        await pluginManager.load(name, dir);
+      }
+      catch (err) {
+        winston.error(`[SERVER] error loading plugin ${name}: ${err}`);
+      }
+    });
   };
 
   _createBridge = async () => {
