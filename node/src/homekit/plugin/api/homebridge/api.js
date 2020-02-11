@@ -24,8 +24,9 @@
 const hap = require("hap-nodejs");
 const winston = require('winston');
 const user = require('lib/user');
+const HomebridgeApiVersion = require('homekit/plugin/api/homebridge/version');
 
-module.exports = class PluginApi {
+module.exports = class HomebridgePluginApi {
   constructor() {
     this._accessories = {};
     this._configurableAccessories = {};
@@ -37,7 +38,7 @@ module.exports = class PluginApi {
     this.version = 2.4;
 
     // expose the homebridge server version
-    this.serverVersion =  "0.4.5";
+    this.serverVersion =  HomebridgeApiVersion.ApiCompatibilityVersion;
 
     // expose the User class methods to plugins to get paths. Example: homebridge.user.storagePath()
     this.user = user;

@@ -25,8 +25,8 @@ const path = require('path');
 const winston = require('winston');
 const fs = require('fs-extra')
 const semver = require('semver');
-
-const homebridge_compatiblity_version = "0.4.5";
+const HomebridgeApiVersion = require('homekit/plugin/api/homebridge/version');
+const HomerApiVersion = require('homekit/plugin/api/homer/version');
 
 module.exports = class Plugin {
   constructor(name, dir) {
@@ -49,11 +49,11 @@ module.exports = class Plugin {
       throw new Error(`[PLUGIN:${this.name}] plugin does not contain correct engines definitions..`);
 
     // check if homer version is satisfied.
-    if (json.engines.homer && !semver.satisfies(packageInfo.version, json.engines.homer) )
+    if (json.engines.homer && !semver.satisfies(HomerApiVersion.ApiCompatibilityVersion, json.engines.homer) )
       throw new Error(`[PLUGIN:${this.name}] plugin requires homer version ${json.engines.homer} which is not satisfied by current version ${packageInfo.version}. Please consider upgrading your homer installation..`);
 
     // check if homebridge version is satisfied.
-    if (json.engines.homebridge && !semver.satisfies(homebridge_compatiblity_version, json.engines.homebridge) ) 
+    if (json.engines.homebridge && !semver.satisfies(HomebridgeApiVersion.ApiCompatibilityVersion, json.engines.homebridge) ) 
       throw new Error(`[PLUGIN:${this.name}] plugin requires homebridge compatability version ${json.engines.homebridge} which is not satisfied by current version ${homebridge_compatiblity_version}. Please consider upgrading your homer installation..`);
 
     // check node version.
