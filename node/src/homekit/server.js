@@ -33,6 +33,8 @@ const qrcode = require('qrcode-terminal');
 const chalk = require('chalk');
 const user = require('lib/user');
 const PluginManager = require('homekit/plugin/manager');
+const AccessoryRepository = require('homekit/repository/accessory');
+const HomebridgePluginApi = require('homekit/plugin/api/homebridge/api');
 const accessoryStorage = require('node-persist').create();
 const packageInfo = require('../../package.json');
 
@@ -40,23 +42,21 @@ module.exports = class Server {
   constructor() {
     return (async () => {
       this._cleanCachedAccessories = false;
-      this._allowInsecureAccess = config.get('platforms.homekit.setup.insecure'); // should be only allowed for debugging purposes as this will allow unauthenticated requests.
+      this._allowInsecureAccess = config.get('homekit.setup.insecure'); // should be only allowed for debugging purposes as this will allow unauthenticated requests.
+
+      this._bridge = await this._createBridge();
+      this._pluginApi = new HomebridgePluginApi();
+      this._pluginManager = new PluginManager(this._pluginApi);
+      this._accessoryRepository = new AccessoryRepository(this._pluginApi, this._bridge);
 
       // init accessory storage.
       winston.verbose(`[SERVER] initializing accessory storage over path ${user.cachedAccessoryPath()}`);
       accessoryStorage.initSync({ dir: user.cachedAccessoryPath() });
 
-      // load plugins.
-      let pluginManager = new PluginManager();
-      await pluginManager.discover();
+      await this._pluginManager.discover(); // discover plugins.
+      await this._pluginManager.load(); // load plugins.
+      await this._pluginManager.initialize(); // initialize plugins.
 
-      // load plugins.
-      await pluginManager.load();
-
-      // initialize plugins.
-      await pluginManager.initialize();
-
-      this._bridge = await this._createBridge();
       this._bridge.on('listening', function(port) {
         winston.info(`[SERVER] homer is running on port ${port}.`);
       });
@@ -66,6 +66,9 @@ module.exports = class Server {
   }
 
   run = async () => {
+    if (config.get('homekit.accessories'))
+      await this._accessoryRepository.load();
+
     await this._publish();
   }
 
@@ -73,13 +76,13 @@ module.exports = class Server {
     let accessoryInformationService = this._bridge.getService(Service.AccessoryInformation)
       .setCharacteristic(Characteristic.Manufacturer, packageInfo.author.name)
       .setCharacteristic(Characteristic.Model, packageInfo.name)
-      .setCharacteristic(Characteristic.SerialNumber, config.get('platforms.homekit.setup.serial'))
+      .setCharacteristic(Characteristic.SerialNumber, config.get('homekit.setup.serial'))
       .setCharacteristic(Characteristic.FirmwareRevision, packageInfo.version);
 
     var publishInfo = {
-      username: config.get('platforms.homekit.setup.serial'),
-      port: config.get('platforms.homekit.setup.port'),
-      pincode: config.get('platforms.homekit.setup.pin'),
+      username: config.get('homekit.setup.serial'),
+      port: config.get('homekit.setup.port'),
+      pincode: config.get('homekit.setup.pin'),
       category: Accessory.Categories.BRIDGE,
     }
 
@@ -102,7 +105,7 @@ module.exports = class Server {
     winston.info(`[SERVER] or enter this pin on your Homekit device to pair..`);
     winston.info(chalk.black.bgYellow(`                       `));
     winston.info(chalk.black.bgYellow(`    ┌────────────┐     `));
-    winston.info(chalk.black.bgYellow(`    │ ${config.get('platforms.homekit.setup.pin')} │     `));
+    winston.info(chalk.black.bgYellow(`    │ ${config.get('homekit.setup.pin')} │     `));
     winston.info(chalk.black.bgYellow(`    └────────────┘     `));
     winston.info(chalk.black.bgYellow(`                       `));
   }

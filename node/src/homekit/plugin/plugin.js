@@ -36,12 +36,12 @@ module.exports = class Plugin {
   }
 
   load = async() => {
-    winston.info(`[PLUGIN:${this.name}] loading plugin..`);
+    winston.verbose(`[PLUGIN:${this.name}] loading plugin..`);
 
     var json = await Plugin.getJson(this.dir);
 
     // make sure it has a valid json.
-    if (json === undefined) 
+    if (json === undefined)
       throw new Error(`[PLUGIN:${this.name}] plugin does not have a valid package.json..`);
 
     // check if it has homebridge or homer as engine.
@@ -77,7 +77,7 @@ module.exports = class Plugin {
 
   initialize = async (api) => {
     try {
-      winston.info(`[PLUGIN:${this.name}] initializing plugin..`);
+      winston.verbose(`[PLUGIN:${this.name}] initializing plugin..`);
       this.initializer(api);
     } catch (err) {
       throw new Error(`[PLUGIN:${this.name}] error initializing plugin ${err.stack}`)

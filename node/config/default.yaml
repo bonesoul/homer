@@ -1,19 +1,18 @@
 # The default config that will be merged with the mode config [development, production, test] and then local.yaml.
 
 ############################
-# platforms config.
+# homekit config.
 ############################
-platforms:
-
-  ############################
-  # homekit config.
-  ############################
-  homekit:
-    setup:
-      serial: F1:F6:AC:2B:7E:8B
-      pin: 069-39-561
-      port: 25777
-      insecure: true # allow insecure access?
+homekit:
+  setup:
+    serial: F1:F6:AC:2B:7E:8B
+    pin: 069-39-561
+    port: 25777
+    insecure: true # allow insecure access?
+  accessories:
+    - type: SamsungTV
+      name: UE42
+      ip_address: 10.0.0.32
 
 ############################
 # Logging config.
@@ -28,6 +27,6 @@ logging:
     level: debug # minimum log level.
     accesslog: true # enable access.log ?
     errorlog: true # enable error.log?
-  task: # task specific logger.
+  plugin: # task specific logger.
     enabled: true # enable the task speciffic loggers?
     level: info # minimum log level

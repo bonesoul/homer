@@ -48,20 +48,54 @@ module.exports = class HomebridgePluginApi {
   }
 
   registerAccessory = (pluginName, accessoryName, constructor, configurationRequestHandler) => {
-    let name = `${pluginName}.${accessoryName}`;
+    let fullName = `${pluginName}.${accessoryName}`;
 
-    if (this._accessories[name])
-      throw new Error(`plugin ${pluginName} attempted to registern an accessory: ${accessoryName} which has been already registered!`);
+    if (this._accessories[fullName])
+      throw new Error(`[API] plugin ${pluginName} attempted to registern an accessory: ${accessoryName} which has been already registered!`);
 
-    winston.info(`[PLUGIN:${pluginName}] registering accessory: ${accessoryName}..`);
+    winston.verbose(`[API] registering accessory: ${pluginName}.${accessoryName}..`);
+
+    this._accessories[fullName] = constructor;
+
+    if (configurationRequestHandler)
+      this._configurableAccessories[fullName] = configurationRequestHandler;
+  }
+
+  accessory = async (name) => {
+    if (name.indexOf('.')  == -1 ) { // if we got a short name supplied
+      let matches = [];
+
+      // loop through all accessories and try matching ones.
+      for(const fullName in this._accessories) {
+        if (fullName.split(".")[1] == name)
+        matches.push(fullName);
+      }
+
+      if (matches.length == 1) // if only found a single match
+        return this._accessories[matches[0]]; // return it.
+      else if (matches.length > 1) // if we found multiple matches
+        throw new Error(`found multiple matches for given accessory name ${name}. Please expilicitly spesify by writing one of these; ${matches.join(', ')}`);
+      else
+        throw new Error(`can't find a matching accessory for given name ${name}`);
+    } else { // if we got a full name in form of plugin.accessory notation.
+      if (!this._accessories[name])
+        throw new Error(`can't find a matching accessory for given name ${name}`);
+
+      return this._accessories[name];
+    }
   }
 
   registerPlatform = (pluginName, platformName, constructor, dynamic) => {
-    let name = `${pluginName}.${platformName}`;
+    let fullName = `${pluginName}.${platformName}`;
 
-    if (this._platforms[name])
-      throw new Error(`plugin ${pluginName} attempted to registern an platform: ${platformName} which has been already registered!`);
+    if (this._platforms[fullName])
+      throw new Error(`[API] plugin ${pluginName} attempted to registern an platform: ${platformName} which has been already registered!`);
 
-      winston.info(`[PLUGIN:${pluginName}] registering platform: ${platformName}..`);
+      winston.verbose(`[API] registering platform: ${pluginName}.${platformName}..`);
+
+      this._platforms[fullName] = constructor;
+
+      if (dynamic)
+        this._dynamicPlatforms[fullName] = constructor;
   }
 }
