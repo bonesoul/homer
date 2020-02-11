@@ -25,8 +25,8 @@ const path = require('path');
 const winston = require('winston');
 const fs = require('fs-extra')
 const semver = require('semver');
-const HomebridgeApiVersion = require('homekit/plugin/api/homebridge/version');
-const HomerApiVersion = require('homekit/plugin/api/homer/version');
+const HomerVersion = require('homekit/plugin/api/homer/version');
+const HomebridgVersion = require('homekit/plugin/api/homebridge/version');
 
 module.exports = class Plugin {
   constructor(name, dir) {
@@ -49,15 +49,15 @@ module.exports = class Plugin {
       throw new Error(`[PLUGIN:${this.name}] plugin does not contain correct engines definitions..`);
 
     // check if homer version is satisfied.
-    if (json.engines.homer && !semver.satisfies(HomerApiVersion.ApiCompatibilityVersion, json.engines.homer) )
-      throw new Error(`[PLUGIN:${this.name}] plugin requires homer version ${json.engines.homer} which is not satisfied by current version ${packageInfo.version}. Please consider upgrading your homer installation..`);
+    if (json.engines.homer && !semver.satisfies(HomerVersion.ServerVersion, json.engines.homer) )
+      throw new Error(`[PLUGIN:${this.name}] plugin requires homer version ${json.engines.homer} which is not satisfied by current version ${HomerVersion.ServerVersion}. Please consider upgrading your homer installation..`);
 
     // check if homebridge version is satisfied.
-    if (json.engines.homebridge && !semver.satisfies(HomebridgeApiVersion.ApiCompatibilityVersion, json.engines.homebridge) ) 
-      throw new Error(`[PLUGIN:${this.name}] plugin requires homebridge compatability version ${json.engines.homebridge} which is not satisfied by current version ${homebridge_compatiblity_version}. Please consider upgrading your homer installation..`);
+    if (json.engines.homebridge && !semver.satisfies(HomebridgVersion.ServerCompatibilityVersion, json.engines.homebridge))
+      throw new Error(`[PLUGIN:${this.name}] plugin requires homebridge compatability version ${json.engines.homebridge} which is not satisfied by current version ${HomebridgVersion.ServerCompatibilityVersion}. Please consider upgrading your homer installation..`);
 
     // check node version.
-    if (json.engines.node && !semver.satisfies(process.version, json.engines.node)) 
+    if (json.engines.node && !semver.satisfies(process.version, json.engines.node))
       winston.warn(`[PLUGIN:${this.name}] plugin requires node version ${json.engines.node} which is not satisfied by current version ${process.version}. Consider upgrading your node installation..`);
 
     // get plugin entrance

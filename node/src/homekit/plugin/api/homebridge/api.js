@@ -55,4 +55,13 @@ module.exports = class HomebridgePluginApi {
 
     winston.info(`[PLUGIN:${pluginName}] registering accessory: ${accessoryName}..`);
   }
+
+  registerPlatform = (pluginName, platformName, constructor, dynamic) => {
+    let name = `${pluginName}.${platformName}`;
+
+    if (this._platforms[name])
+      throw new Error(`plugin ${pluginName} attempted to registern an platform: ${platformName} which has been already registered!`);
+
+      winston.info(`[PLUGIN:${pluginName}] registering platform: ${platformName}..`);
+  }
 }

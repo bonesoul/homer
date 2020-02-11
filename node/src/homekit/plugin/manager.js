@@ -28,13 +28,13 @@ const globalDirectories = require('global-dirs');
 const Plugin = require('homekit/plugin/plugin');
 const chalk = require('chalk');
 const HomebridgePluginApi = require('homekit/plugin/api/homebridge/api');
-const HomebridgeApiVersion = require('homekit/plugin/api/homebridge/version');
-const HomerApiVersion = require('homekit/plugin/api/homer/version');
+const HomebridgVersion = require('homekit/plugin/api/homebridge/version');
+const HomerVersion = require('homekit/plugin/api/homer/version');
 
 module.exports = class PluginManager {
   constructor() {
     this._homebridgePluginApi = new HomebridgePluginApi(); // init plugin apis.
-    winston.info(`[PLUGIN_MANAGER] api compatibilities levels; homer: ${HomerApiVersion.ApiCompatibilityVersion}, homebridge: ${HomebridgeApiVersion.ApiCompatibilityVersion}..`)
+    winston.info(`[PLUGIN_MANAGER] api compatibilities levels; homer: ${HomerVersion.ServerVersion} api: ${HomerVersion.ApiVersion}, homebridge: ${HomebridgVersion.ServerCompatibilityVersion} api: ${HomebridgVersion.ApiCompatibilityVersion}..`)
   }
 
   discover = async() => {
@@ -44,7 +44,7 @@ module.exports = class PluginManager {
 
     this._plugins.length > 0 
       ? winston.info(`[PLUGIN_MANAGER] discovered a total of ${this._plugins.length} plugins..`)
-      : winston.warn(`[PLUGIN_MANAGER] no plugins found. See the README for information on installing plugins..`)    
+      : winston.warn(`[PLUGIN_MANAGER] no plugins found. See the README for information on installing plugins..`)
   }
 
   load = async() => {

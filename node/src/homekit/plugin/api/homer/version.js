@@ -24,5 +24,6 @@
 const packageInfo = require('../../../../../package.json');
 
 module.exports = Object.freeze({
-  ApiCompatibilityVersion: packageInfo.version
+  ServerVersion: packageInfo.version,
+  ApiVersion: 0.1
 });
