@@ -21,28 +21,7 @@
 //      Licensor: Hüseyin Uslu
 'use strict';
 
-const hap = require("hap-nodejs");
-const user = require('lib/user');
-const winston = require('winston');
-const Server = require('homekit/server');
-
-module.exports = async () => {
-  try {
-    let user = await require('lib/user');
-
-    // ========================================
-    // init hap-nodejs.
-    // ========================================
-    winston.verbose(`initializing hap-nodejs over path ${user.persistPath()}`);
-    hap.init(user.persistPath());
-
-    // ========================================
-    // start homekit server.
-    // ========================================
-    var server = new Server({cleanCachedAccessories: false});
-    server.run();
-
-  } catch (err) {
-    throw new Error(`[HOMEKIT] error initializing homekit server: ${err}`);
-  }
-};
+module.exports = class PluginApi {
+  constructor() {
+  };
+}

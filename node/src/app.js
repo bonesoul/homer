@@ -47,7 +47,6 @@ const startup = async () => {
     // ========================================
     // print startup banner.
     // ========================================
-
     winston.info('      ___  _____						          ');
     winston.info('    .\'/,-Y"     "~-.					        ');
     winston.info('    l.Y             ^.				        ');

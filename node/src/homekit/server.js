@@ -31,15 +31,26 @@ const winston = require('winston');
 const config = require('config');
 const qrcode = require('qrcode-terminal');
 const chalk = require('chalk');
+const user = require('lib/user');
+const PluginApi = require('homekit/plugin/api/api');
+const accessoryStorage = require('node-persist').create();
 const packageInfo = require('../../package.json');
 
 module.exports = class Server {
 
   constructor(cleanCachedAccessories = false) {
     this._cleanCachedAccessories = cleanCachedAccessories;
+    this._allowInsecureAccess = config.get('platforms.homekit.setup.insecure'); // should be only allowed for debugging purposes as this will allow unauthenticated requests.
 
-    // should be only allowed for debugging purposes as this will allow unauthenticated requests.
-    this._allowInsecureAccess = config.get('platforms.homekit.setup.insecure');
+    // init accessory storage.
+    winston.verbose(`initializing accessory storage over path ${user.cachedAccessoryPath()}`);
+    accessoryStorage.initSync({ dir: user.cachedAccessoryPath() });
+
+    // init plugin apis.
+    this._pluginApi = new PluginApi();
+
+    // load plugins.
+    this._loadPlugins();
 
     this._bridge = this._createBridge();
     this._bridge.on('listening', function(port) {
@@ -70,6 +81,10 @@ module.exports = class Server {
     this._bridge.publish(publishInfo, this._allowInsecureAccess);
     this._printSetupInfo();
   }
+
+  _loadPlugins = () => {
+    winston.verbose('loading plugins..');
+  };
 
   _createBridge = () => {
     var uuid = Uuid.generate('homer');

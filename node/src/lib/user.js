@@ -31,3 +31,7 @@ module.exports.storagePath = () => {
 module.exports.persistPath = () => {
   return path.join(module.exports.storagePath(), "persist");
 };
+
+module.exports.cachedAccessoryPath = () => {
+  return path.join(module.exports.storagePath(), "accessories");
+};
