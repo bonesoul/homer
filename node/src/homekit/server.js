@@ -28,17 +28,23 @@ const Characteristic = require("hap-nodejs").Characteristic;
 const AccessoryLoader = require("hap-nodejs").AccessoryLoader;
 const Uuid = require("hap-nodejs").uuid;
 const winston = require('winston');
+const config = require('config');
+const qrcode = require('qrcode-terminal');
+const chalk = require('chalk');
 const packageInfo = require('../../package.json');
 
 module.exports = class Server {
 
-  constructor(cleanCachedAccessories = false, insecureAccess = false) {
+  constructor(cleanCachedAccessories = false) {
     this._cleanCachedAccessories = cleanCachedAccessories;
 
     // should be only allowed for debugging purposes as this will allow unauthenticated requests.
-    this._allowInsecureAccess = insecureAccess;
+    this._allowInsecureAccess = config.get('platforms.homekit.setup.insecure');
 
     this._bridge = this._createBridge();
+    this._bridge.on('listening', function(port) {
+      winston.info(`homer is running on port ${port}.`);
+    });
   }
 
   run = () => {
@@ -46,22 +52,40 @@ module.exports = class Server {
   }
 
   _publish = () => {
-    var bridgeConfig = {};
-
-    var accessoryInformation = this._bridge.getService(Service.AccessoryInformation)
+    let accessoryInformationService = this._bridge.getService(Service.AccessoryInformation)
       .setCharacteristic(Characteristic.Manufacturer, packageInfo.author.name)
       .setCharacteristic(Characteristic.Model, packageInfo.name)
-      .setCharacteristic(Characteristic.SerialNumber, bridgeConfig.username)
+      .setCharacteristic(Characteristic.SerialNumber, config.get('platforms.homekit.setup.serial'))
       .setCharacteristic(Characteristic.FirmwareRevision, packageInfo.version);
+
+    var publishInfo = {
+      username: config.get('platforms.homekit.setup.serial'),
+      port: config.get('platforms.homekit.setup.port'),
+      pincode: config.get('platforms.homekit.setup.pin'),
+      category: Accessory.Categories.BRIDGE,
+    }
+
+    winston.verbose(`[SERVER] publishing ${publishInfo.username} over port ${publishInfo.port} using pin ${publishInfo.pincode}..`);
+
+    this._bridge.publish(publishInfo, this._allowInsecureAccess);
+    this._printSetupInfo();
   }
 
   _createBridge = () => {
     var uuid = Uuid.generate('homer');
-    winston.verbose(`[HOMEKIT] creating bridge: homer, uuid: ${uuid}`)
+    winston.verbose(`[SERVER] creating bridge: homer, uuid: ${uuid}`)
     return new Bridge('homer', uuid);
   }
-}
 
-function toTitleCase(str) {
-  return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+  _printSetupInfo = () => {
+    winston.info(`[SERVER] setup payload ${this._bridge.setupURI()}`);
+    winston.info(`[SERVER] scan this code with your Homekit device to pair..`);
+    qrcode.generate(this._bridge.setupURI());
+    winston.info(`[SERVER] or enter this pin on your Homekit device to pair..`);
+    winston.info(chalk.black.bgYellow(`                       `));
+    winston.info(chalk.black.bgYellow(`    ┌────────────┐     `));
+    winston.info(chalk.black.bgYellow(`    │ ${config.get('platforms.homekit.setup.pin')} │     `));
+    winston.info(chalk.black.bgYellow(`    └────────────┘     `));
+    winston.info(chalk.black.bgYellow(`                       `));
+  }
 }

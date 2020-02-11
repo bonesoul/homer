@@ -30,17 +30,24 @@
     "home",
     "automation"
   ],
-  "author": "Hüseyin Uslu",
+  "author": {
+    "name": "Hüseyin Uslu",
+    "email": "shalafiraistlin@gmail.com",
+    "url": "https://github.com/bonesoul/homer"
+  },
   "license": "MIT",
   "homepage": "https://github.com/bonesoul/homer#readme",
   "dependencies": {
     "app-module-path": "2.2.0",
+    "chalk": "3.0.0",
     "config": "3.2.5",
     "hap-nodejs": "0.5.6",
     "hirestime": "4.0.0",
     "js-yaml": "3.13.1",
     "moment": "2.24.0",
     "moment-duration-format": "2.3.2",
+    "node-persist": "3.0.5",
+    "qrcode-terminal": "0.12.0",
     "winston": "2.4.4"
   },
   "engines": {

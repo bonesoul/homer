@@ -30,17 +30,17 @@ module.exports = async () => {
     let user = await require('lib/user');
 
     // ========================================
-    // start hap-nodejs.
+    // init hap-nodejs.
     // ========================================
     hap.init(user.persistPath());
 
     // ========================================
-    // start server.
+    // start homekit server.
     // ========================================
-    var server = new Server({cleanCachedAccessories: false, insecureAccess: false});
+    var server = new Server({cleanCachedAccessories: false});
     server.run();
 
   } catch (err) {
-    throw new Error(`error initializing homekit server: ${err}`);
+    throw new Error(`[HOMEKIT] error initializing homekit server: ${err}`);
   }
 };
