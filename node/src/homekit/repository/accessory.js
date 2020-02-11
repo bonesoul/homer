@@ -44,9 +44,9 @@ module.exports = class AccessoryRepository {
 
   _loadAccessory = async(accessoryConfig) => {
     try {
-      var ctor = await this._pluginApi.accessory(accessoryConfig.type); // get accessory's ctor.
+      var ctor = await this._pluginApi.accessory(accessoryConfig.accessory); // get accessory's ctor.
       var instance = new ctor(winston, accessoryConfig); // create an instance.
-      var accessory = await this._createAccessory(instance, accessoryConfig.name, accessoryConfig.type, accessoryConfig.uuid_base); // create accessory.
+      var accessory = await this._createAccessory(instance, accessoryConfig.name, accessoryConfig.accessory, accessoryConfig.uuid_base); // create accessory.
       this._bridge.addBridgedAccessory(accessory); // add accessory to our bridge.
 
     } catch (err) {

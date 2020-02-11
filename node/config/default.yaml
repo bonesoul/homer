@@ -10,7 +10,7 @@ homekit:
     port: 25777
     insecure: true # allow insecure access?
   accessories:
-    - type: SamsungTV
+    - accessory: SamsungTV
       name: UE42
       ip_address: 10.0.0.32
 
