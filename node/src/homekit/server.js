@@ -32,7 +32,6 @@ const config = require('config');
 const qrcode = require('qrcode-terminal');
 const chalk = require('chalk');
 const user = require('lib/user');
-const PluginApi = require('homekit/plugin/api/api');
 const PluginManager = require('homekit/plugin/manager');
 const accessoryStorage = require('node-persist').create();
 const packageInfo = require('../../package.json');
@@ -47,11 +46,15 @@ module.exports = class Server {
       winston.verbose(`[SERVER] initializing accessory storage over path ${user.cachedAccessoryPath()}`);
       accessoryStorage.initSync({ dir: user.cachedAccessoryPath() });
 
-      // init plugin apis.
-      this._pluginApi = new PluginApi();
+      // load plugins.
+      let pluginManager = new PluginManager();
+      await pluginManager.discover();
 
       // load plugins.
-      await this._loadPlugins();
+      await pluginManager.load();
+
+      // initialize plugins.
+      await pluginManager.initialize();
 
       this._bridge = await this._createBridge();
       this._bridge.on('listening', function(port) {
@@ -85,22 +88,6 @@ module.exports = class Server {
     await this._bridge.publish(publishInfo, this._allowInsecureAccess);
     await this._printSetupInfo();
   }
-
-  _loadPlugins = async () => {
-    winston.verbose('[SERVER] loading plugins..');
-
-    let plugins = [];
-    let pluginManager = new PluginManager();
-    let discovered = await pluginManager.discover();
-
-    Object.entries(discovered).forEach(async ([name, dir]) => {
-      if (await pluginManager.initialize(name, dir))
-      plugins.push(name);
-    });
-
-    if (plugins.length === 0)
-      winston.warn('no plugins found. See the README for information on installing plugins..')
-  };
 
   _createBridge = async () => {
     var uuid = Uuid.generate('homer');

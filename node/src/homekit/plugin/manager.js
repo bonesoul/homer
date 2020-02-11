@@ -24,15 +24,41 @@
 const winston = require('winston');
 const path = require('path');
 const fs = require('fs-extra')
-const _ = require('lodash');
-const semver = require('semver');
 const globalDirectories = require('global-dirs');
+const Plugin = require('homekit/plugin/plugin');
+const PluginApi = require('homekit/plugin/api/api');
 const packageInfo = require('../../../package.json');
 
-const homebridge_compatiblity_version = "0.4.5";
-
 module.exports = class PluginManager {
-  discover = async () => {
+  constructor() {
+    // init plugin apis.
+    this._pluginApi = new PluginApi();
+  }
+
+  discover = async() => {
+    winston.verbose('[PLUGIN_MANAGER] loading plugins..');
+
+    this._plugins = await this._discover();
+
+    if (this._plugins.length === 0)
+      winston.warn(`[PLUGIN_MANAGER] no plugins found. See the README for information on installing plugins..`)
+    else
+      winston.info(`[PLUGIN_MANAGER] discovered a total of ${this._plugins.length} plugins..`)
+  }
+
+  load = async() => {
+    for (const plugin of this._plugins) {
+      await plugin.load();
+    }
+  }
+
+  initialize = async() => {
+    for (const plugin of this._plugins) {
+      await plugin.initialize(this._pluginApi);
+    }
+  };
+
+  _discover = async () => {
     let discovered = [];
     let searchedPaths = {};
     let paths = await this._getPaths();
@@ -40,73 +66,23 @@ module.exports = class PluginManager {
     winston.verbose(`[PLUGIN_MANAGER] discovering plugins..`);
 
     for (const path of paths) {
-      if (searchedPaths[path]) return;
+      if (searchedPaths[path]) 
+        continue;
+
       searchedPaths[path] = true;
 
       let plugins = await this._discoverPath(path);
 
-      if (Object.keys(plugins).length === 0)
+      if (plugins.length === 0)
         continue;
-
-      Object.entries(plugins).forEach(([key, value]) => {
-        winston.verbose(`[PLUGIN_MANAGER] discovered plugin: ${key}..`);
-        discovered[key] = value;
-      });
+    
+      for(const plugin of plugins) {
+        winston.verbose(`[PLUGIN_MANAGER] discovered plugin: ${plugin.name}..`);
+        discovered.push(plugin);
+      }
     }
 
     return discovered;
-  }
-
-  load = async(name, dir) => {
-    winston.info(`[PLUGIN_MANAGER] loading plugin ${name}..`);
-
-    var json = await this._loadPluginJson(dir);
-
-    // make sure it has a valid json.
-    if (json === undefined) 
-      throw new Error(`[PLUGIN_MANAGER] error loading plugin: ${name}..`);
-
-    // check if it has homebridge or homer as engine.
-    if (!json.engines || (!json.engines.homebridge && !json.engines.homer))
-      throw new Error(`Plugin ${name} does not contain correct engines definitions..`);
-
-    // check if homer version is satisfied.
-    if (json.engines.homer && !semver.satisfies(packageInfo.version, json.engines.homer) )
-      throw new Error(`Plugin ${name} requires homer version ${json.engines.homer} which is not satisfied by current version ${packageInfo.version}. Please consider upgrading your homer installation..`);
-
-    // check if homebridge version is satisfied.
-    if (json.engines.homebridge && !semver.satisfies(homebridge_compatiblity_version, json.engines.homebridge) ) 
-      throw new Error(`Plugin ${name} requires homebridge compatability version ${json.engines.homebridge} which is not satisfied by current version ${homebridge_compatiblity_version}. Please consider upgrading your homer installation..`);
-
-    // check node version.
-    if (json.engines.node && !semver.satisfies(process.version, json.engines.node)) 
-      winston.warn(`Plugin ${name} required node version ${json.engines.node} which is not satisfied by current version ${process.version}. Consider upgrading your node installation..`);
-
-    // get plugin entrance
-    let entrance = json.main || "./index.js";
-    let entrancePath = path.join(dir, entrance);
-
-    // try getting the plugin initializer.
-    var module = require(entrancePath);
-
-    if (typeof module === "function")
-      return module;
-     else if (module && typeof module.default === "function")
-      return module.default;
-     else
-      throw new Error(`Plugin ${name} does not export an initializer..`)
-  }
-
-  initialize = async(name, dir) => {
-    try {
-      let initializer = await this.load(name, dir);
-      initializer(this._pluginApi);
-      return true;
-    }
-    catch (err) {
-      winston.error(`[PLUGIN_MANAGER] error loading plugin ${name}: ${err.stack}`);
-      return false;
-    }
   }
 
   _discoverPath = async (dir) => {
@@ -128,10 +104,11 @@ module.exports = class PluginManager {
 
       for (const name of names) {
         let pluginPath = path.join(dir, name);
-        var plugin = await this._checkPlugin(pluginPath);
-        if (!plugin) continue;
+        var json = await this._checkPlugin(pluginPath);
+        if (!json) continue;
 
-        plugins[plugin.name] = pluginPath;
+        var plugin = new Plugin(name, pluginPath)
+        plugins.push(plugin);
       }
 
       return plugins;
@@ -144,32 +121,8 @@ module.exports = class PluginManager {
     let stat = await fs.stat(dir);
     if (!stat.isDirectory()) return; // make sure it's a directory.
 
-    let json = await this._loadPluginJson(dir); // try loading the package.json of the plugin.
+    let json = await Plugin.getJson(dir); // try loading the package.json of the plugin.
     return json;
-  }
-
-  _loadPluginJson = async (dir) => {
-    let packageJsonPath = path.join(dir, "package.json");
-
-    if (!await fs.exists(packageJsonPath))
-      return;
-
-    try {
-      let file = await fs.readFile(packageJsonPath); // read the package.json.
-      let json = await JSON.parse(file); // try parsing it.
-
-      // make sure the plugin name starts with homebridge- or homer-
-      if (!json.name || (json.name.indexOf('homebridge-') !== 0 && json.name.indexOf('homer-') !== 0))
-        return;
-
-      // verify the plugin is correctly tagged with homebridge-plugin or homer-plugin.
-      if (!json.keywords || (json.keywords.indexOf("homebridge-plugin") == -1 && json.keywords.indexOf("homer-plugin") == -1))
-        return;
-
-      return json;
-    } catch (err) {
-      return;
-    }
   }
 
   _getPaths = async () => {

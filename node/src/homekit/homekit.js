@@ -42,7 +42,6 @@ module.exports = async () => {
     var server = await new Server();
     await server.run();
   } catch (err) {
-    winston.debug(err);
-    throw new Error(`[HOMEKIT] error initializing homekit server: ${err}`);
+    throw new Error(`[HOMEKIT] error initializing homekit server: ${err.stack}`);
   }
 };
