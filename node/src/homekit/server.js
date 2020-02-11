@@ -37,32 +37,35 @@ const accessoryStorage = require('node-persist').create();
 const packageInfo = require('../../package.json');
 
 module.exports = class Server {
+  constructor() {
+    return (async () => {
+      this._cleanCachedAccessories = false;
+      this._allowInsecureAccess = config.get('platforms.homekit.setup.insecure'); // should be only allowed for debugging purposes as this will allow unauthenticated requests.
 
-  constructor(cleanCachedAccessories = false) {
-    this._cleanCachedAccessories = cleanCachedAccessories;
-    this._allowInsecureAccess = config.get('platforms.homekit.setup.insecure'); // should be only allowed for debugging purposes as this will allow unauthenticated requests.
+      // init accessory storage.
+      winston.verbose(`[SERVER] initializing accessory storage over path ${user.cachedAccessoryPath()}`);
+      accessoryStorage.initSync({ dir: user.cachedAccessoryPath() });
 
-    // init accessory storage.
-    winston.verbose(`initializing accessory storage over path ${user.cachedAccessoryPath()}`);
-    accessoryStorage.initSync({ dir: user.cachedAccessoryPath() });
+      // init plugin apis.
+      this._pluginApi = new PluginApi();
 
-    // init plugin apis.
-    this._pluginApi = new PluginApi();
+      // load plugins.
+      await this._loadPlugins();
 
-    // load plugins.
-    this._loadPlugins();
+      this._bridge = await this._createBridge();
+      this._bridge.on('listening', function(port) {
+        winston.info(`[SERVER] homer is running on port ${port}.`);
+      });
 
-    this._bridge = this._createBridge();
-    this._bridge.on('listening', function(port) {
-      winston.info(`homer is running on port ${port}.`);
-    });
+      return this;
+    })();
   }
 
-  run = () => {
-    this._publish();
+  run = async () => {
+    await this._publish();
   }
 
-  _publish = () => {
+  _publish = async () => {
     let accessoryInformationService = this._bridge.getService(Service.AccessoryInformation)
       .setCharacteristic(Characteristic.Manufacturer, packageInfo.author.name)
       .setCharacteristic(Characteristic.Model, packageInfo.name)
@@ -78,21 +81,21 @@ module.exports = class Server {
 
     winston.verbose(`[SERVER] publishing ${publishInfo.username} over port ${publishInfo.port} using pin ${publishInfo.pincode}..`);
 
-    this._bridge.publish(publishInfo, this._allowInsecureAccess);
-    this._printSetupInfo();
+    await this._bridge.publish(publishInfo, this._allowInsecureAccess);
+    await this._printSetupInfo();
   }
 
-  _loadPlugins = () => {
-    winston.verbose('loading plugins..');
+  _loadPlugins = async () => {
+    winston.verbose('[SERVER] loading plugins..');
   };
 
-  _createBridge = () => {
+  _createBridge = async () => {
     var uuid = Uuid.generate('homer');
     winston.verbose(`[SERVER] creating bridge: homer, uuid: ${uuid}`)
     return new Bridge('homer', uuid);
   }
 
-  _printSetupInfo = () => {
+  _printSetupInfo = async () => {
     winston.info(`[SERVER] setup payload ${this._bridge.setupURI()}`);
     winston.info(`[SERVER] scan this code with your Homekit device to pair..`);
     qrcode.generate(this._bridge.setupURI());

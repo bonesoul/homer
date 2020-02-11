@@ -33,16 +33,16 @@ module.exports = async () => {
     // ========================================
     // init hap-nodejs.
     // ========================================
-    winston.verbose(`initializing hap-nodejs over path ${user.persistPath()}`);
-    hap.init(user.persistPath());
+    winston.verbose(`[HOMEKIT] initializing hap-nodejs over path ${user.persistPath()}`);
+    await hap.init(user.persistPath());
 
     // ========================================
     // start homekit server.
     // ========================================
-    var server = new Server({cleanCachedAccessories: false});
-    server.run();
-
+    var server = await new Server();
+    await server.run();
   } catch (err) {
+    winston.debug(err);
     throw new Error(`[HOMEKIT] error initializing homekit server: ${err}`);
   }
 };

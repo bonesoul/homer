@@ -65,10 +65,10 @@ const startup = async () => {
     winston.info('          |           \\			        ');
     winston.info('          j            Y				      ');
     winston.info('');
-    winston.info(`[APP] starting up homer version: ${packageInfo.version} [${env}]`); // eslint-disable-line no-undef
-    winston.info(`[APP] running on: ${os.platform()}-${os.arch()} [${os.type()} ${os.release()}]`);
-    winston.info(`[APP] node: ${process.versions.node}, v8: ${process.versions.v8}, uv: ${process.versions.uv}, openssl: ${process.versions.openssl}`);
-    winston.info(`[APP] running over ${os.cpus().length} core system.`);
+    winston.info(`[HOMER] starting up homer version: ${packageInfo.version} [${env}]`); // eslint-disable-line no-undef
+    winston.info(`[HOMER] running on: ${os.platform()}-${os.arch()} [${os.type()} ${os.release()}]`);
+    winston.info(`[HOMER] node: ${process.versions.node}, v8: ${process.versions.v8}, uv: ${process.versions.uv}, openssl: ${process.versions.openssl}`);
+    winston.info(`[HOMER] running over ${os.cpus().length} core system.`);
 
     // ========================================
     // start homekit support.
@@ -84,7 +84,7 @@ const startup = async () => {
     // ========================================
     // broadcast startup event.
     // ========================================
-    winston.info('[APP] startup done..');
+    winston.info('[HOMER] startup done..');
     emitter.emit('startup');
   } catch (err) {
     winston.error(`startup error: ${err}`);
@@ -92,7 +92,7 @@ const startup = async () => {
 };
 
 const gracefulExit = code => {
-  winston.info(`[APP] exiting process with code: ${code}`);
+  winston.info(`[HOMER] exiting process with code: ${code}`);
   process.exit(code);
 };
 
