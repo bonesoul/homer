@@ -23,13 +23,15 @@
 
 const winston = require('winston');
 const config = require('config');
-var uuid = require("hap-nodejs").uuid;
-var Accessory = require("hap-nodejs").Accessory;
-var Service = require("hap-nodejs").Service;
-var Characteristic = require("hap-nodejs").Characteristic;
+const Logger = require('homekit/plugin/logger').Logger;
+const uuid = require("hap-nodejs").uuid;
+const Accessory = require("hap-nodejs").Accessory;
+const Service = require("hap-nodejs").Service;
+const Characteristic = require("hap-nodejs").Characteristic;
 
 module.exports = class AccessoryRepository {
   constructor(pluginApi, bridge) {
+    this.active = {}
     this._pluginApi = pluginApi;
     this._bridge = bridge;
   }
@@ -44,29 +46,25 @@ module.exports = class AccessoryRepository {
 
   _loadAccessory = async(accessoryConfig) => {
     try {
-      var ctor = await this._pluginApi.accessory(accessoryConfig.accessory); // get accessory's ctor.
-      var instance = new ctor(winston, accessoryConfig); // create an instance.
-      var accessory = await this._createAccessory(instance, accessoryConfig.name, accessoryConfig.accessory, accessoryConfig.uuid_base); // create accessory.
+      var type = accessoryConfig.accessory;
+      var name = accessoryConfig.name;
+
+      var ctor = await this._pluginApi.accessory(type); // get accessory's ctor.
+      if (!ctor) throw new Error(`[ACCESSORY_REPOSITORY] requested unregistered accessory ${type}`);
+
+      var logger = Logger.withPrefix(`${type}:${name}`); // create logger for accessory.
+      var instance = new ctor(logger, accessoryConfig); // create an instance.
+      var accessory = await this.createAccessory(instance, name, type, accessoryConfig.uuid_base); // create accessory.
+
       this._bridge.addBridgedAccessory(accessory); // add accessory to our bridge.
-
-      var characteristic = accessory.getService(Service.Switch).getCharacteristic(Characteristic.On)
-
-      console.dir(characteristic);
-      characteristic.setValue(false)
-      console.dir(characteristic);
-
-      accessory.on('service-characteristic-change', function(change) {
-        console.dir(change);
-      }.bind(this));
-
     } catch (err) {
       winston.error(`[ACCESSORY_REPOSITORY] error loading accessory; ${err.stack}`)
     }
   }
 
-  _createAccessory = async(accessoryInstance, displayName, accessoryType, uuid_base) => {
+  createAccessory = async(accessoryInstance, displayName, accessoryType, uuid_base) => {
 
-    winston.verbose(`[ACCESSORY_REPOSITORY] loading accessory: ${accessoryType} => ${displayName}..`);
+    winston.verbose(`[ACCESSORY_REPOSITORY] creating accessory: ${accessoryType} => ${displayName}..`);
 
     var services = accessoryInstance.getServices();
 
@@ -105,6 +103,8 @@ module.exports = class AccessoryRepository {
           accessory.addService(service);
         }
       }
+
+      this.active[`${accessoryType}.${displayName}`] = accessory;
 
       return accessory;
     }

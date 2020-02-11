@@ -26,13 +26,16 @@ const Accessory = require("hap-nodejs").Accessory;
 const Service = require("hap-nodejs").Service;
 const Characteristic = require("hap-nodejs").Characteristic;
 const AccessoryLoader = require("hap-nodejs").AccessoryLoader;
+const once = require("hap-nodejs").once;
 const Uuid = require("hap-nodejs").uuid;
 const winston = require('winston');
 const config = require('config');
 const qrcode = require('qrcode-terminal');
 const chalk = require('chalk');
 const user = require('lib/user');
+const pify = require('pify');
 const PluginManager = require('homekit/plugin/manager');
+const PlatformRepository = require('homekit/repository/platform');
 const AccessoryRepository = require('homekit/repository/accessory');
 const HomebridgePluginApi = require('homekit/plugin/api/homebridge/api');
 const accessoryStorage = require('node-persist').create();
@@ -48,6 +51,7 @@ module.exports = class Server {
       this._pluginApi = new HomebridgePluginApi();
       this._pluginManager = new PluginManager(this._pluginApi);
       this._accessoryRepository = new AccessoryRepository(this._pluginApi, this._bridge);
+      this._platformRepository = new PlatformRepository(this._pluginApi, this._accessoryRepository, this._bridge);
 
       // init accessory storage.
       winston.verbose(`[SERVER] initializing accessory storage over path ${user.cachedAccessoryPath()}`);
@@ -66,10 +70,62 @@ module.exports = class Server {
   }
 
   run = async () => {
-    if (config.get('homekit.accessories'))
-      await this._accessoryRepository.load();
+    if (config.get('homekit.platforms')) await this._platformRepository.load();
+    if (config.get('homekit.accessories')) await this._accessoryRepository.load();
 
     await this._publish();
+
+    this._orchestrate();
+  }
+
+  _orchestrate = async () => {
+    // get hue bridge.
+    let huePlatform = this._platformRepository.active['Hue.Hue'];
+
+    // wait for hue bridge to expose the bulbs.
+    let lights = await this._getLights(huePlatform);
+
+    // start listening for plex events.
+    this._accessoryRepository.active['Plex.Plex'].getService(Service.OccupancySensor).getCharacteristic(Characteristic.OccupancyDetected).on('change', (data) => {
+      if (!data.oldValue && data.newValue) {
+        winston.info('plex started playing media, closing lights..')
+        this._closeLights(lights);
+      }
+      else if (data.oldValue && !data.newValue) {
+        winston.info('plex stopped playing media, opening lights..')
+        this._openLights(lights);
+      }
+    });
+  }
+
+  _getLights = async (hue) => {
+    return new Promise((resolve, reject) => {
+      try {
+        let lights = [];
+        hue.accessories((accessories) => {
+          for(const entry of accessories) {
+            if (entry.constructor.name === 'HueAccessory' && entry.lightService) {
+              lights.push(entry);
+            }
+          }
+          return resolve(lights);
+        });
+      } catch (err) {
+        return reject(err);
+      }
+    });
+  }
+
+  _openLights = (lights) => {
+    for(const entry of lights) {
+      entry.lightService.getCharacteristic(Characteristic.On).setValue(true);
+    }
+  }
+
+  _closeLights = (lights) => {
+    for(const entry of lights) {
+      entry.lightService.getCharacteristic(Characteristic.On).setValue(false);
+    }
   }
 
   _publish = async () => {

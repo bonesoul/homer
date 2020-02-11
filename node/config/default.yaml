@@ -13,6 +13,26 @@ homekit:
     - accessory: SamsungTV
       name: UE42
       ip_address: 10.0.0.32
+    - accessory: Plex
+      name: Plex
+      plex_token: CYjxgRwttBuPjChZH6ty
+      debug: true
+      filter:
+        - user: bonesoul
+        - player: "TV QE65Q70RATXTK"
+  platforms:
+    - platform: Hue
+      name: Hue
+      lights: true
+      forceCt: true
+      nativeHomeKitLights: false
+      nativeHomeKitSensors: true
+      nupnp: true
+      resource: true
+      sensors: false
+      anyOn: true
+      users:
+        001788FFFE4E4B97: iNPI0C1c3B8TRQjYIXWSfGR7umtIPr9gSYhssmp4
 
 ############################
 # Logging config.

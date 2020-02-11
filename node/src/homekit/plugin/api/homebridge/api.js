@@ -98,4 +98,28 @@ module.exports = class HomebridgePluginApi {
       if (dynamic)
         this._dynamicPlatforms[fullName] = constructor;
   }
+
+  platform = async (name) => {
+    if (name.indexOf('.')  == -1 ) { // if we got a short name supplied
+      let matches = [];
+
+      // loop through all accessories and try matching ones.
+      for(const fullName in this._platforms) {
+        if (fullName.split(".")[1] == name)
+        matches.push(fullName);
+      }
+
+      if (matches.length == 1) // if only found a single match
+        return this._platforms[matches[0]]; // return it.
+      else if (matches.length > 1) // if we found multiple matches
+        throw new Error(`found multiple matches for given platforms name ${name}. Please expilicitly spesify by writing one of these; ${matches.join(', ')}`);
+      else
+        throw new Error(`can't find a matching platforms for given name ${name}`);
+    } else { // if we got a full name in form of plugin.platforms notation.
+      if (!this._platforms[name])
+        throw new Error(`can't find a matching platforms for given name ${name}`);
+
+      return this._platforms[name];
+    }
+  }
 }

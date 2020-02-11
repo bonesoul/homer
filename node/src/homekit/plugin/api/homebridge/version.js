@@ -22,6 +22,6 @@
 'use strict';
 
 module.exports = Object.freeze({
-  ServerCompatibilityVersion: '0.4.46',
+  ServerCompatibilityVersion: '0.4.50',
   ApiCompatibilityVersion: '2.4'
 });
