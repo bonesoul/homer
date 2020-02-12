@@ -24,7 +24,6 @@
 using System;
 using System.Collections.Generic;
 using Homer.Platform.HomeKit.Accessories;
-using Homer.Platform.HomeKit.Caches;
 using Homer.Platform.HomeKit.Caches.Identifiers;
 using Homer.Platform.HomeKit.Characteristics;
 using Homer.Platform.HomeKit.Entity;

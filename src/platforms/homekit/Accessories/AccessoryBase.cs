@@ -25,10 +25,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Homer.Platform.HomeKit.Accessories.Info;
-using Homer.Platform.HomeKit.Bridges;
-using Homer.Platform.HomeKit.Caches;
-using Homer.Platform.HomeKit.Caches.Identifiers;
-using Homer.Platform.HomeKit.Characteristics;
 using Homer.Platform.HomeKit.Characteristics.Definitions;
 using Homer.Platform.HomeKit.Services;
 using Homer.Platform.HomeKit.Services.Definitions;
@@ -44,7 +40,7 @@ namespace Homer.Platform.HomeKit.Accessories
 
         public string DisplayName { get; }
 
-        public int? AccessoryId { get; private set; }
+        public int? AccessoryId { get; protected set; }
 
         public bool IsBridged { get; }
 
@@ -54,29 +50,24 @@ namespace Homer.Platform.HomeKit.Accessories
 
         public IReadOnlyDictionary<Type, IService> Services { get; }
 
-        public IAccessoryInfo AccessoryInfo { get; private set; }
-
-        public IIdentifierCache IdentifierCache { get; private set; }
+        public IAccessoryInfo AccessoryInfo { get; protected set; }
 
         public ILogger Logger { get; protected set; }
-
-        public ILogger AccessoryLogger { get; protected set; }
 
         /// <summary>
         /// internal list of services.
         /// </summary>
-        private Dictionary<Type, IService> _services;
+        private readonly Dictionary<Type, IService> _services;
 
         protected AccessoryBase(string uuid, string displayName, bool isBridged, bool isReachable, AccessoryCategory category)
         {
-            Uuid = uuid ?? throw new ArgumentException("Must be created with a valid UUID.", nameof(uuid));
+            Uuid = uuid ?? throw new ArgumentNullException(nameof(uuid));
             if (!UUIDValidator.IsValidUUID(Uuid)) throw new ArgumentException("Provided UUID is not valid.", nameof(uuid));
-
-            if (!string.IsNullOrEmpty(displayName)) DisplayName = displayName;
-            else throw new ArgumentException("Must be created with a non-empty displayName.", nameof(displayName));
+            if (string.IsNullOrEmpty(displayName)) throw new ArgumentException(nameof(displayName));
 
             Logger = Log.ForContext<AccessoryBase>();
 
+            DisplayName = displayName;
             AccessoryId = null;
             IsBridged = isBridged;
             IsReachable = isReachable;
@@ -92,6 +83,7 @@ namespace Homer.Platform.HomeKit.Accessories
                 .SetCharacteristic(typeof(SerialNumberCharacteristic), "Default-SerialNumber")
                 .SetCharacteristic(typeof(FirmwareRevisionCharacteristic), "0.1");
 
+            // needed for publishing..
             AddService(new ProtocolInformationService())
                 .SetCharacteristic(typeof(VersionCharacteristic), "1.1.0");
         }
@@ -107,60 +99,6 @@ namespace Homer.Platform.HomeKit.Accessories
         public IService GetService(Type service)
         {
             return _services.ContainsKey(service) ? _services[service] : null;
-        }
-
-        public void Publish(dynamic info, bool allowInsecureAccess = false)
-        {
-            AccessoryInfo = new AccessoryInfo(this, info);
-            IdentifierCache = new IdentifierCache(info);
-            AssignIds(IdentifierCache);
-
-            LogAccessorySummary();
-        }
-
-        public void LogAccessorySummary()
-        {
-            Logger.Verbose("[{Type}] name: {Name}", this.GetType().Name, DisplayName);
-            Logger.Verbose("-------------------------------------------------");
-            Logger.Verbose("uuid: {Uuid}", Uuid);
-            Logger.Verbose("accessory id: {Aid}", AccessoryId);
-
-            foreach (var (key, service) in _services)
-            {
-                Logger.Verbose("service: [{Type}]", key.Name);
-
-                foreach (var (type, characteristic) in service.Characteristics)
-                {
-                    Logger.Verbose("characteristic: [{Type}] => ({Format}) {Value}", type.Name, ((ICharacteristicProps)characteristic).Format, characteristic.Value);
-                }
-
-                foreach (var (type, characteristic) in service.OptionalCharacteristics)
-                {
-                    Logger.Verbose("optional characteristic: [{Type}] => ({Format}) {Value}", type.Name, ((ICharacteristicProps)characteristic).Format, characteristic.Value);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Assigns aid/iid to ourselves, any Accessories we are bridging, and all associated Services+Characteristics. Uses
-        /// the provided identifierCache to keep IDs stable.
-        /// </summary>
-        /// <param name="identifierCache"></param>
-        public void AssignIds(IIdentifierCache identifierCache)
-        {
-            if (identifierCache == null) throw new ArgumentNullException(nameof(identifierCache));
-
-            AccessoryId = this is IBridge 
-                ? 1  // as we are the bridge, we must have id = 1.
-                : identifierCache.GetInstanceIdForAccessory(this); // as we are bridged, get an id from the identfier cache.
-
-            foreach (var (_, service) in Services)
-            {
-                if (this is IBridge)
-                    service.AssignInstanceId(IdentifierCache, this, 2000000000);
-                else
-                    service.AssignInstanceId(identifierCache, this);
-            }
         }
     }
 }

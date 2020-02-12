@@ -23,7 +23,6 @@
 
 using System;
 using Homer.Platform.HomeKit.Accessories;
-using Homer.Platform.HomeKit.Caches;
 using Homer.Platform.HomeKit.Caches.Identifiers;
 using Homer.Platform.HomeKit.Services;
 using uuid.net.Classes.UUID;

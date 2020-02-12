@@ -23,6 +23,7 @@
 
 using System.Collections.Generic;
 using Homer.Platform.HomeKit.Accessories;
+using Homer.Platform.HomeKit.Caches.Identifiers;
 
 namespace Homer.Platform.HomeKit.Bridges
 {
@@ -35,5 +36,13 @@ namespace Homer.Platform.HomeKit.Bridges
         /// List of accessories we are bridging.
         /// </summary>
         IReadOnlyList<IAccessoryBase> Accessories { get; }
+
+        void Publish(dynamic info, bool allowInsecureAccess = false);
+
+        void LogAccessorySummary();
+
+        void AssignIds(IIdentifierCache identifierCache);
+
+        IIdentifierCache IdentifierCache { get; }
     }
 }

@@ -24,8 +24,6 @@
 using System;
 using System.Collections.Generic;
 using Homer.Platform.HomeKit.Accessories.Info;
-using Homer.Platform.HomeKit.Caches;
-using Homer.Platform.HomeKit.Caches.Identifiers;
 using Homer.Platform.HomeKit.Entity;
 using Homer.Platform.HomeKit.Services;
 using Serilog;
@@ -61,17 +59,10 @@ namespace Homer.Platform.HomeKit.Accessories
 
         IAccessoryInfo AccessoryInfo { get; }
 
-        IIdentifierCache IdentifierCache { get; }
-
         /// <summary>
         /// Master logger instance.
         /// </summary>
         ILogger Logger { get; }
-
-        /// <summary>
-        /// Accessory logger.
-        /// </summary>
-        ILogger AccessoryLogger { get; }
 
         /// <summary>
         /// Adds service.
@@ -81,11 +72,5 @@ namespace Homer.Platform.HomeKit.Accessories
         IService AddService(IService service);
 
         IService GetService(Type t);
-
-        void Publish(dynamic info, bool allowInsecureAccess = false);
-
-        void LogAccessorySummary();
-
-        void AssignIds(IIdentifierCache identifierCache);
     }
 }

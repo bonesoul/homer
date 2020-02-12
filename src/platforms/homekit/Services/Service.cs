@@ -27,7 +27,6 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using Homer.Platform.HomeKit.Accessories;
-using Homer.Platform.HomeKit.Caches;
 using Homer.Platform.HomeKit.Caches.Identifiers;
 using Homer.Platform.HomeKit.Characteristics;
 using Homer.Platform.HomeKit.Characteristics.Definitions;

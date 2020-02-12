@@ -27,6 +27,9 @@ using System.Collections.ObjectModel;
 using System.Dynamic;
 using Homer.Core.Internals.Services.Configuration;
 using Homer.Platform.HomeKit.Accessories;
+using Homer.Platform.HomeKit.Accessories.Info;
+using Homer.Platform.HomeKit.Caches.Identifiers;
+using Homer.Platform.HomeKit.Characteristics;
 using Homer.Platform.HomeKit.Characteristics.Definitions;
 using Homer.Platform.HomeKit.Services.Definitions;
 
@@ -39,6 +42,8 @@ namespace Homer.Platform.HomeKit.Bridges
 
         /// <inheritdoc />
         public IReadOnlyList<IAccessoryBase> Accessories { get; }
+
+        public IIdentifierCache IdentifierCache { get; private set; }
 
         /// <summary>
         /// internal list of accessories.
@@ -69,6 +74,60 @@ namespace Homer.Platform.HomeKit.Bridges
             info.category = Category;
 
             Publish(info, _configurationService.Configuration.Platforms.Homekit.Setup.Insecure);
+        }
+
+        public void Publish(dynamic info, bool allowInsecureAccess = false)
+        {
+            AccessoryInfo = new AccessoryInfo(this, info);
+            IdentifierCache = new IdentifierCache(info);
+            AssignIds(IdentifierCache);
+
+            LogAccessorySummary();
+        }
+
+        public void LogAccessorySummary()
+        {
+            Logger.Verbose("[{Type}] name: {Name}", this.GetType().Name, DisplayName);
+            Logger.Verbose("-------------------------------------------------");
+            Logger.Verbose("uuid: {Uuid}", Uuid);
+            Logger.Verbose("accessory id: {Aid}", AccessoryId);
+
+            foreach (var (key, service) in Services)
+            {
+                Logger.Verbose("service: [{Type}]", key.Name);
+
+                foreach (var (type, characteristic) in service.Characteristics)
+                {
+                    Logger.Verbose("characteristic: [{Type}] => ({Format}) {Value}", type.Name, ((ICharacteristicProps)characteristic).Format, characteristic.Value);
+                }
+
+                foreach (var (type, characteristic) in service.OptionalCharacteristics)
+                {
+                    Logger.Verbose("optional characteristic: [{Type}] => ({Format}) {Value}", type.Name, ((ICharacteristicProps)characteristic).Format, characteristic.Value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Assigns aid/iid to ourselves, any Accessories we are bridging, and all associated Services+Characteristics. Uses
+        /// the provided identifierCache to keep IDs stable.
+        /// </summary>
+        /// <param name="identifierCache"></param>
+        public void AssignIds(IIdentifierCache identifierCache)
+        {
+            if (identifierCache == null) throw new ArgumentNullException(nameof(identifierCache));
+
+            AccessoryId = this is IBridge
+                ? 1  // as we are the bridge, we must have id = 1.
+                : identifierCache.GetInstanceIdForAccessory(this); // as we are bridged, get an id from the identfier cache.
+
+            foreach (var (_, service) in Services)
+            {
+                if (this is IBridge)
+                    service.AssignInstanceId(IdentifierCache, this, 2000000000);
+                else
+                    service.AssignInstanceId(identifierCache, this);
+            }
         }
     }
 }
