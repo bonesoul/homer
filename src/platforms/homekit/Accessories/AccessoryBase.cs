@@ -148,18 +148,18 @@ namespace Homer.Platform.HomeKit.Accessories
         /// <param name="identifierCache"></param>
         public void AssignIds(IIdentifierCache identifierCache)
         {
-            if (!IsBridged && this is IBridge)
-            {
-                // as we are the bridge, we must have id = 1.
-                AccessoryId = 1;
-            }
+            if (identifierCache == null) throw new ArgumentNullException(nameof(identifierCache));
+
+            AccessoryId = this is IBridge 
+                ? 1  // as we are the bridge, we must have id = 1.
+                : identifierCache.GetInstanceIdForAccessory(this); // as we are bridged, get an id from the identfier cache.
 
             foreach (var (_, service) in Services)
             {
                 if (this is IBridge)
-                    service.AssignIds(IdentifierCache, this, 2000000000);
+                    service.AssignInstanceId(IdentifierCache, this, 2000000000);
                 else
-                    service.AssignIds(identifierCache, this);
+                    service.AssignInstanceId(identifierCache, this);
             }
         }
     }

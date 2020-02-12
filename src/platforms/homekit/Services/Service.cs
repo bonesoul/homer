@@ -233,16 +233,19 @@ namespace Homer.Platform.HomeKit.Services
             return "";
         }
 
-        public void AssignIds(IIdentifierCache identifierCache, IAccessoryBase accessory, int baseInstanceId = 0)
+        public void AssignInstanceId(IIdentifierCache identifierCache, IAccessoryBase accessory, int baseInstanceId = 0)
         {
-            // Accessory Information service must have a (reserved by IdentifierCache) ID of 1
-            if (Uuid == AccessoryInformationService.Uuid)
-                InstanceId = 1;
+            if (identifierCache == null) throw new ArgumentNullException(nameof(identifierCache));
+            if (accessory == null) throw new ArgumentNullException(nameof(accessory));
 
-            // assign id's to characteristics.
+            InstanceId = Uuid == AccessoryInformationService.Uuid
+                ? 1 // Accessory Information service must have a (reserved by IdentifierCache) ID of 1
+                : baseInstanceId + identifierCache.GetInstanceIdForService(accessory, this);
+
+            // assign ids to it's characteristics too.
             foreach (var (_, characteristic) in this.Characteristics)
             {
-                characteristic.AssignId(identifierCache, accessory, this);
+                characteristic.AssignInstanceId(identifierCache, accessory, this);
             }
         }
     }

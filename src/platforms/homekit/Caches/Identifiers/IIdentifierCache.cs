@@ -19,10 +19,12 @@ namespace Homer.Platform.HomeKit.Caches.Identifiers
 
         IReadOnlyDictionary<string, int> Cache { get; }
 
-        IReadOnlyDictionary<string, int> UsedCache { get; }
-
         string SavedCacheHash { get; }
 
-        string GetInstanceId(IAccessoryBase accessory, IService service, ICharacteristic characteristic);
+        int GetInstanceIdForAccessory(IAccessoryBase accessory);
+
+        int GetInstanceIdForService(IAccessoryBase accessory, IService service);
+
+        int GetInstanceIdForCharacteristic(IAccessoryBase accessory, IService service, ICharacteristic characteristic);
     }
 }

@@ -147,6 +147,6 @@ namespace Homer.Platform.HomeKit.Services
 
         string ToHapJson();
 
-        void AssignIds(IIdentifierCache identifierCache, IAccessoryBase accessory, int baseInstanceId = 0);
+        void AssignInstanceId(IIdentifierCache identifierCache, IAccessoryBase accessory, int baseInstanceId = 0);
     }
 }

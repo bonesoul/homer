@@ -34,9 +34,9 @@ namespace Homer.Servers
 {
     public class Server : IServer
     {
-        private IConfigurationService _configurationService;
+        private readonly IConfigurationService _configurationService;
 
-        private ILogger _logger;
+        private readonly ILogger _logger;
 
         public Server(IConfigurationService configurationService)
         {

@@ -41,7 +41,7 @@ namespace Homer.Platform.HomeKit.Characteristics
         public UUID Uuid { get; }
 
         /// <inheritdoc />
-        public int InstanceId { get; }
+        public int InstanceId { get; private set; }
 
         /// <inheritdoc />
         public string DisplayName { get; }
@@ -190,17 +190,16 @@ namespace Homer.Platform.HomeKit.Characteristics
             throw new NotImplementedException();
         }
 
-        public void AssignId(IIdentifierCache identifierCache, IAccessoryBase accessory, IService service)
+        public void AssignInstanceId(IIdentifierCache identifierCache, IAccessoryBase accessory, IService service)
         {
-            throw new NotImplementedException();
+            if (identifierCache == null) throw new ArgumentNullException(nameof(identifierCache));
+            if (accessory == null) throw new ArgumentNullException(nameof(accessory));
+            if (service == null) throw new ArgumentNullException(nameof(service));
+
+            InstanceId = identifierCache.GetInstanceIdForCharacteristic(accessory, service, this);
         }
 
         private void ValidateValue(dynamic value)
-        {
-
-        }
-
-        private void AssignInstanceId()
         {
 
         }

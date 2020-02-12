@@ -121,6 +121,6 @@ namespace Homer.Platform.HomeKit.Characteristics
 
         string ToHapJson();
 
-        void AssignId(IIdentifierCache identifierCache, IAccessoryBase accessory, IService service);
+        void AssignInstanceId(IIdentifierCache identifierCache, IAccessoryBase accessory, IService service);
     }
 }
