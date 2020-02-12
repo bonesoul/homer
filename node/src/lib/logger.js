@@ -27,8 +27,8 @@ const config = require('config');
 const winston = require('winston');
 const moment = require('moment');
 const user = require('lib/user');
-const { format, transports } = require('winston');
-const { combine, cli, colorize, padLevels, timestamp, label, splat, printf } = format;
+const { format, info, transports } = require('winston');
+const { combine, cli, colorize, padLevels, timestamp, ms, label, splat, printf } = format;
 require('moment-duration-format')(moment);
 const hirestime = require('hirestime');
 
@@ -38,8 +38,8 @@ module.exports.initialize = async () => {
     const logPath = path.join(__dirname, '../../../logs');
     fs.existsSync(logPath) || fs.mkdirSync(logPath); // eslint-disable-line security/detect-non-literal-fs-filename
 
-    const masterFormat = printf(({ level, message, label, timestamp }) => {
-      return `${timestamp} [${global.process.pid}] - ${level}: [${label}] ${message}`;
+    const masterFormat = printf((info) => {
+      return `${info.timestamp} [${info.ms}] - ${info.level}: [${info.label}] ${info.message}`;
     });
 
     const timeStamp = () => {
@@ -53,6 +53,7 @@ module.exports.initialize = async () => {
           level: 'verbose',
           format: combine(
             timestamp({format: timeStamp}),
+            ms(),
             label({ label: 'right meow!' }),
             colorize({ level: true }),
             splat(),
@@ -63,6 +64,7 @@ module.exports.initialize = async () => {
           level: 'verbose',
           format: combine(
             timestamp({format: timeStamp}),
+            ms(),
             label({ label: 'right meow!' }),
             splat(),
             masterFormat,
