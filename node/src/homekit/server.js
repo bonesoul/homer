@@ -33,12 +33,11 @@ const config = require('config');
 const qrcode = require('qrcode-terminal');
 const chalk = require('chalk');
 const user = require('lib/user');
-const pify = require('pify');
+const storage = require('node-persist');
 const PluginManager = require('homekit/plugin/manager');
 const PlatformRepository = require('homekit/repository/platform');
 const AccessoryRepository = require('homekit/repository/accessory');
 const HomebridgePluginApi = require('homekit/plugin/api/homebridge/api');
-const accessoryStorage = require('node-persist').create();
 const packageInfo = require('../../package.json');
 
 module.exports = class Server {
@@ -55,7 +54,7 @@ module.exports = class Server {
 
       // init accessory storage.
       winston.verbose(`[SERVER] initializing accessory storage over path ${user.cachedAccessoryPath()}`);
-      accessoryStorage.initSync({ dir: user.cachedAccessoryPath() });
+      await storage.init({ dir: user.cachedAccessoryPath() });
 
       await this._pluginManager.discover(); // discover plugins.
       await this._pluginManager.load(); // load plugins.
@@ -75,7 +74,7 @@ module.exports = class Server {
 
     await this._publish();
 
-    this._orchestrate();
+    // this._orchestrate();
   }
 
   _orchestrate = async () => {
