@@ -39,10 +39,9 @@ module.exports = class PlatformRepoistory {
 
   load = async () => {
     winston.verbose('loading platforms..', { label: 'platformrep'});
-
-    for (const entry of config.get('homekit.platforms')) {
-      await this._loadPlatform(entry);
-    }
+      for (const entry of config.get('homekit.platforms')) {
+        await this._loadPlatform(entry);
+      }
   }
 
   _loadPlatform = async(platformConfig) => {

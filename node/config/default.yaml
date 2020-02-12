@@ -21,6 +21,12 @@ homekit:
         - user: bonesoul
         - player: "TV QE65Q70RATXTK"
   platforms:
+    - platform: config
+      name: Config
+      port: 8581,
+      auth: none,
+      theme: auto,
+      tempUnits: c
     - platform: Hue
       name: Hue
       lights: true

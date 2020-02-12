@@ -96,8 +96,12 @@ const gracefulExit = code => {
   process.exit(code);
 };
 
+process.on('uncaughtException', function(err) {
+  winston.error(err.stack, { label: 'app'});
+})
+
 process.on('unhandledRejection', (reason, promise) => {
-  winston.error(`possibly unhandled rejection at promise; ${util.inspect(promise)}`, { label: 'app'});
+  winston.error(`unhandled rejection: ${util.inspect(promise)}`, { label: 'app'});
 });
 
 startup();

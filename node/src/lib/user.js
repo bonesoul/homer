@@ -39,3 +39,7 @@ module.exports.persistPath = () => {
 module.exports.cachedAccessoryPath = () => {
   return path.join(module.exports.storagePath(), "accessories");
 };
+
+module.exports.configPath = function() {
+  return path.join(module.exports.storagePath(), "local.json");
+}

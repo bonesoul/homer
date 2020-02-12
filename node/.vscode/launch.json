@@ -8,10 +8,16 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
+      "program": "${workspaceFolder}\\src\\app.js",
+      "cwd": "${workspaceRoot}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+			"env": {
+				"NODE_ENV": "development"
+      },
       "skipFiles": [
         "<node_internals>/**"
-      ],
-      "program": "${workspaceFolder}\\src\\app.js"
+      ]
     }
   ]
 }
