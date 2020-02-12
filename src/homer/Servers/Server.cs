@@ -25,7 +25,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Homer.Core.Internals.Services.Configuration;
-using Homer.Platform.HomeKit.Bridges.Setup;
+using Homer.Platform.HomeKit.Bridges;
 using Makaretu.Dns;
 using Serilog;
 using uuid.net.Static_Classes.UUID_Factory;
@@ -54,7 +54,7 @@ namespace Homer.Servers
                 var generator = UUIDFactory.CreateGenerator(5, 1);
                 var uuid = generator.Generate("homer");
 
-                var bridge =  new BridgeSetupManager(uuid, "homer", _configurationService);
+                var bridge = new Bridge(uuid, "homer", _configurationService);
 
                 var mdns = new MulticastService();
 

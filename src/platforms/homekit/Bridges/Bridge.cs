@@ -21,14 +21,20 @@
 //      Licensor: Hüseyin Uslu
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Dynamic;
+using Homer.Core.Internals.Services.Configuration;
 using Homer.Platform.HomeKit.Accessories;
+using Homer.Platform.HomeKit.Characteristics.Definitions;
+using Homer.Platform.HomeKit.Services.Definitions;
 
 namespace Homer.Platform.HomeKit.Bridges
 {
     public class Bridge : AccessoryBase, IBridge
     {
+
         const int MaxAccessories = 149; // Maximum number of bridged accessories per bridge.
 
         /// <inheritdoc />
@@ -39,12 +45,30 @@ namespace Homer.Platform.HomeKit.Bridges
         /// </summary>
         private readonly List<IAccessoryBase> _accessories;
 
-        protected Bridge(string uuid, string displayName, bool isReachable = true) 
+        private IConfigurationService _configurationService;
+
+        public Bridge(string uuid, string displayName, IConfigurationService configurationService, bool isReachable = true) 
             : base(uuid, displayName, false, isReachable, AccessoryCategory.Bridge)
         {
-            _accessories = new List<IAccessoryBase>();
+            _configurationService = configurationService ?? throw new ArgumentNullException(nameof(configurationService));
 
+            _accessories = new List<IAccessoryBase>();
             Accessories = new ReadOnlyCollection<IAccessoryBase>(_accessories);
+
+            // set accessory information service characteristics
+            GetService(typeof(AccessoryInformationService))
+                .SetCharacteristic(typeof(ManufacturerCharacteristic), "Hüseyin Uslu")
+                .SetCharacteristic(typeof(ModelCharacteristic), "Homer")
+                .SetCharacteristic(typeof(SerialNumberCharacteristic), _configurationService.Configuration.Platforms.Homekit.Setup.Serial)
+                .SetCharacteristic(typeof(FirmwareRevisionCharacteristic), "0.1");
+
+            dynamic info = new ExpandoObject();
+            info.username = _configurationService.Configuration.Platforms.Homekit.Setup.Serial;
+            info.port = _configurationService.Configuration.Platforms.Homekit.Setup.Port;
+            info.pin = _configurationService.Configuration.Platforms.Homekit.Setup.Pin;
+            info.category = Category;
+
+            Publish(info, _configurationService.Configuration.Platforms.Homekit.Setup.Insecure);
         }
     }
 }
