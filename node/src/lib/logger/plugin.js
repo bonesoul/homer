@@ -21,35 +21,42 @@
 //      Licensor: Hüseyin Uslu
 'use strict';
 
-module.exports = class PluginLogger {
-  constructor(logger) {
-    this._logger = logger;
-  }
+const util = require('util');
 
-  log = (level, msg) => {
-    if (msg === undefined) {
-      msg = level;
-      level = 'debug';
-    }
+module.exports = {
+  Logger: Logger
+}
 
-    switch(level) {
-      default:
-      case 'debug':
-        this._logger.debug(msg);
-        break;
-      case 'info':
-        this._logger.info(msg);
-        break;
-      case 'warn':
-        this._logger.warn(msg);
-        break;
-      case 'error':
-        this._logger.error(msg);
-        break;
-    }
-  }
-  debug = (msg) => { this._logger.debug(msg); }
-  info = (msg) => { this._logger.info(msg); }
-  warn = (msg) => { this._logger.warn(msg); }
-  error = (msg) => { this._logger.error(msg); }
+function Logger(logger) {
+  this.logger = logger;
+}
+
+Logger.prototype.debug = function(msg) {
+  this.log.apply(this, ['debug'].concat(Array.prototype.slice.call(arguments)));
+}
+
+Logger.prototype.info = function(msg) {
+  this.log.apply(this, ['info'].concat(Array.prototype.slice.call(arguments)));
+}
+
+Logger.prototype.warn = function(msg) {
+  this.log.apply(this, ['warn'].concat(Array.prototype.slice.call(arguments)));
+}
+
+Logger.prototype.error = function(msg) {
+  this.log.apply(this, ['error'].concat(Array.prototype.slice.call(arguments)));
+}
+
+Logger.prototype.log = function(level, msg) {
+  msg = util.format.apply(util, Array.prototype.slice.call(arguments, 1));
+  let func = this.logger.info;
+
+  if (level == 'debug')
+    func = this.logger.debug;
+  else if (level == 'warn')
+    func = this.logger.warn;
+  else if (level == 'error')
+    func = this.logger.error;
+
+  func(msg);
 }

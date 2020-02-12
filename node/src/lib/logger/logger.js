@@ -71,19 +71,10 @@ module.exports.initialize = async () => {
   }
 };
 
-module.exports.customLogger = (dir, type, name) => {
-  try {
-    const logger = createCustomLogger(dir, type, name);
-    return logger;
-  } catch (err) {
-    throw new Error(`error initiliazing custom logger - ${err}.`);
-  }
-};
-
 module.exports.pluginLogger = (dir, type, name) => {
   try {
     const logger = createCustomLogger(dir, type, name);
-    const pluginLogger = new PluginLogger(logger);
+    const pluginLogger = new PluginLogger.Logger(logger);
 
     // custom log api for homebridge plugin api;
     var log = pluginLogger.info.bind(pluginLogger);
@@ -112,11 +103,11 @@ const createCustomLogger = (dir, type, name) => {
 
   if (config.logging.plugin.console.enabled) {
     logger.add(new winston.transports.Console({
-      level: config.logging.master.console.level,
+      level: config.logging.plugin.console.level,
       format: combine(
         timestamp({format: timeStamp}),
         ms(),
-        label({ label: `${type}:${name}` }),
+        label({ label: `${dir}:${type}:${name}` }),
         colorize({ level: true }),
         splat(),
         logFormat,
@@ -126,11 +117,11 @@ const createCustomLogger = (dir, type, name) => {
 
   if (config.logging.plugin.file.enabled) {
     logger.add(new winston.transports.File({
-      level: config.logging.master.file.level,
+      level: config.logging.plugin.file.level,
       format: combine(
         timestamp({format: timeStamp}),
         ms(),
-        label({ label: `${type}:${name}` }),
+        label({ label: `${dir}:${type}:${name}` }),
         splat(),
         logFormat,
       ),

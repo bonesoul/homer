@@ -1,7 +1,1 @@
-logging:
-  console:
-    enabled: true
-    requests: false
-  file:
-    enabled: true
-    level: debug
+ 
