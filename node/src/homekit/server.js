@@ -87,14 +87,9 @@ module.exports = class Server {
 
     // start listening for plex events.
     this._accessoryRepository.active['Plex.Plex'].getService(Service.OccupancySensor).getCharacteristic(Characteristic.OccupancyDetected).on('change', (data) => {
-      if (!data.oldValue && data.newValue) {
-        winston.info('plex started playing media, closing lights..')
-        this._closeLights(lights);
-      }
-      else if (data.oldValue && !data.newValue) {
-        winston.info('plex stopped playing media, opening lights..')
-        this._openLights(lights);
-      }
+        for(const entry of lights) { // loop through all lights.
+          entry.lightService.getCharacteristic(Characteristic.On).setValue(!data.newValue); // if plex started streaming close them, otherwise re-open them.
+        }
     });
   }
 
@@ -114,18 +109,6 @@ module.exports = class Server {
         return reject(err);
       }
     });
-  }
-
-  _openLights = (lights) => {
-    for(const entry of lights) {
-      entry.lightService.getCharacteristic(Characteristic.On).setValue(true);
-    }
-  }
-
-  _closeLights = (lights) => {
-    for(const entry of lights) {
-      entry.lightService.getCharacteristic(Characteristic.On).setValue(false);
-    }
   }
 
   _publish = async () => {
