@@ -51,9 +51,9 @@ module.exports = class HomebridgePluginApi {
     let fullName = `${pluginName}.${accessoryName}`;
 
     if (this._accessories[fullName])
-      throw new Error(`[API] plugin ${pluginName} attempted to registern an accessory: ${accessoryName} which has been already registered!`);
+      throw new Error(`plugin ${pluginName} attempted to registern an accessory: ${accessoryName} which has been already registered!`,{ label: 'api'});
 
-    winston.verbose(`[API] registering accessory: ${pluginName}.${accessoryName}..`);
+    winston.verbose(`registering accessory: ${pluginName}.${accessoryName}..`,{ label: 'api'});
 
     this._accessories[fullName] = constructor;
 
@@ -74,12 +74,12 @@ module.exports = class HomebridgePluginApi {
       if (matches.length == 1) // if only found a single match
         return this._accessories[matches[0]]; // return it.
       else if (matches.length > 1) // if we found multiple matches
-        throw new Error(`found multiple matches for given accessory name ${name}. Please expilicitly spesify by writing one of these; ${matches.join(', ')}`);
+        throw new Error(`found multiple matches for given accessory name ${name}. Please expilicitly spesify by writing one of these; ${matches.join(', ')}`, { label: 'api'});
       else
-        throw new Error(`can't find a matching accessory for given name ${name}`);
+        throw new Error(`can't find a matching accessory for given name ${name}`, { label: 'api'});
     } else { // if we got a full name in form of plugin.accessory notation.
       if (!this._accessories[name])
-        throw new Error(`can't find a matching accessory for given name ${name}`);
+        throw new Error(`can't find a matching accessory for given name ${name}`, { label: 'api'});
 
       return this._accessories[name];
     }
@@ -89,9 +89,9 @@ module.exports = class HomebridgePluginApi {
     let fullName = `${pluginName}.${platformName}`;
 
     if (this._platforms[fullName])
-      throw new Error(`[API] plugin ${pluginName} attempted to registern an platform: ${platformName} which has been already registered!`);
+      throw new Error(`plugin ${pluginName} attempted to registern an platform: ${platformName} which has been already registered!`, { label: 'api'});
 
-      winston.verbose(`[API] registering platform: ${pluginName}.${platformName}..`);
+      winston.verbose(`registering platform: ${pluginName}.${platformName}..`, { label: 'api'});
 
       this._platforms[fullName] = constructor;
 
@@ -112,12 +112,12 @@ module.exports = class HomebridgePluginApi {
       if (matches.length == 1) // if only found a single match
         return this._platforms[matches[0]]; // return it.
       else if (matches.length > 1) // if we found multiple matches
-        throw new Error(`found multiple matches for given platforms name ${name}. Please expilicitly spesify by writing one of these; ${matches.join(', ')}`);
+        throw new Error(`found multiple matches for given platforms name ${name}. Please expilicitly spesify by writing one of these; ${matches.join(', ')}`, { label: 'api'});
       else
-        throw new Error(`can't find a matching platforms for given name ${name}`);
+        throw new Error(`can't find a matching platforms for given name ${name}`, { label: 'api'});
     } else { // if we got a full name in form of plugin.platforms notation.
       if (!this._platforms[name])
-        throw new Error(`can't find a matching platforms for given name ${name}`);
+        throw new Error(`can't find a matching platforms for given name ${name}`, { label: 'api'});
 
       return this._platforms[name];
     }

@@ -36,29 +36,29 @@ module.exports = class Plugin {
   }
 
   load = async() => {
-    winston.verbose(`[PLUGIN:${this.name}] loading plugin..`);
+    winston.verbose(`loading plugin..`, { label: `plugin:${this.name}`});
 
     var json = await Plugin.getJson(this.dir);
 
     // make sure it has a valid json.
     if (json === undefined)
-      throw new Error(`[PLUGIN:${this.name}] plugin does not have a valid package.json..`);
+      throw new Error(`plugin does not have a valid package.json..`,{ label: `plugin:${this.name}`});
 
     // check if it has homebridge or homer as engine.
     if (!json.engines || (!json.engines.homebridge && !json.engines.homer))
-      throw new Error(`[PLUGIN:${this.name}] plugin does not contain correct engines definitions..`);
+      throw new Error(`plugin does not contain correct engines definitions..`,{ label: `plugin:${this.name}`});
 
     // check if homer version is satisfied.
     if (json.engines.homer && !semver.satisfies(HomerVersion.ServerVersion, json.engines.homer) )
-      throw new Error(`[PLUGIN:${this.name}] plugin requires homer version ${json.engines.homer} which is not satisfied by current version ${HomerVersion.ServerVersion}. Please consider upgrading your homer installation..`);
+      throw new Error(`plugin requires homer version ${json.engines.homer} which is not satisfied by current version ${HomerVersion.ServerVersion}. Please consider upgrading your homer installation..`,{ label: `plugin:${this.name}`});
 
     // check if homebridge version is satisfied.
     if (json.engines.homebridge && !semver.satisfies(HomebridgVersion.ServerCompatibilityVersion, json.engines.homebridge))
-      throw new Error(`[PLUGIN:${this.name}] plugin requires homebridge compatability version ${json.engines.homebridge} which is not satisfied by current version ${HomebridgVersion.ServerCompatibilityVersion}. Please consider upgrading your homer installation..`);
+      throw new Error(`plugin requires homebridge compatability version ${json.engines.homebridge} which is not satisfied by current version ${HomebridgVersion.ServerCompatibilityVersion}. Please consider upgrading your homer installation..`,{ label: `plugin:${this.name}`});
 
     // check node version.
     if (json.engines.node && !semver.satisfies(process.version, json.engines.node))
-      winston.warn(`[PLUGIN:${this.name}] plugin requires node version ${json.engines.node} which is not satisfied by current version ${process.version}. Consider upgrading your node installation..`);
+      winston.warn(`plugin requires node version ${json.engines.node} which is not satisfied by current version ${process.version}. Consider upgrading your node installation..`,{ label: `plugin:${this.name}`});
 
     // get plugin entrance
     let entrance = json.main || "./index.js";
@@ -72,20 +72,20 @@ module.exports = class Plugin {
     else if (module && typeof module.default === "function")
       this.initializer = module.default;
     else
-      throw new Error(`[PLUGIN:${this.name}] plugin does not export an initializer..`)
+      throw new Error(`plugin does not export an initializer..`,{ label: `plugin:${this.name}`})
   }
 
   initialize = async (api) => {
     try {
-      winston.verbose(`[PLUGIN:${this.name}] initializing plugin..`);
+      winston.verbose(`initializing plugin..`,{ label: `plugin:${this.name}`});
       this.initializer(api);
     } catch (err) {
-      throw new Error(`[PLUGIN:${this.name}] error initializing plugin ${err.stack}`)
+      throw new Error(`error initializing plugin ${err.stack}`,{ label: `plugin:${this.name}`})
     }
   }
 
   static getJson = async (dir) => {
-    let packageJsonPath = path.join(dir, "package.json");
+    let packageJsonPath = path.join(dir, 'package.json');
 
     if (!await fs.exists(packageJsonPath))
       return;
@@ -99,7 +99,7 @@ module.exports = class Plugin {
         return;
 
       // verify the plugin is correctly tagged with homebridge-plugin or homer-plugin.
-      if (!json.keywords || (json.keywords.indexOf("homebridge-plugin") == -1 && json.keywords.indexOf("homer-plugin") == -1))
+      if (!json.keywords || (json.keywords.indexOf('homebridge-plugin') == -1 && json.keywords.indexOf('homer-plugin') == -1))
         return;
 
       return json;

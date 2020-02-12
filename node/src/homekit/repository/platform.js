@@ -39,7 +39,7 @@ module.exports = class PlatformRepoistory {
   }
 
   load = async () => {
-    winston.verbose('[PLATFORM_REPOSITORY] loading platforms..');
+    winston.verbose('loading platforms..', { label: 'platformrep'});
 
     for (const entry of config.get('homekit.platforms')) {
       await this._loadPlatform(entry);
@@ -52,7 +52,7 @@ module.exports = class PlatformRepoistory {
       var name = platformConfig.name || type;
 
       var ctor = await this._pluginApi.platform(type); // get platform's ctor.
-      if (!ctor) throw new Error(`[PLATFORM_REPOSITORY] requested unregistered accessory ${type}`);
+      if (!ctor) throw new Error(`requested unregistered accessory ${type}`, { label: 'platformrep'});
 
       var logger = Logger.withPrefix(`${type}:${name}`); // create logger for platform
       var instance = new ctor(logger, platformConfig, this._pluginApi);
@@ -65,7 +65,7 @@ module.exports = class PlatformRepoistory {
       this.active[`${type}.${name}`] = instance;
 
     } catch (err) {
-      winston.error(`[PLATFORM_REPOSITORY] error loading accessory; ${err.stack}`)
+      winston.error(`error loading accessory; ${err.stack}`, { label: 'platformrep'})
     }
   }
 

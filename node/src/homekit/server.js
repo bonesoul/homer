@@ -53,7 +53,7 @@ module.exports = class Server {
       this._platformRepository = new PlatformRepository(this._pluginApi, this._accessoryRepository, this._bridge);
 
       // init accessory storage.
-      winston.verbose(`[SERVER] initializing accessory storage over path ${user.cachedAccessoryPath()}`);
+      winston.verbose(`initializing accessory storage over path ${user.cachedAccessoryPath()}`, { label: 'server'});
       await storage.init({ dir: user.cachedAccessoryPath() });
 
       await this._pluginManager.discover(); // discover plugins.
@@ -61,7 +61,7 @@ module.exports = class Server {
       await this._pluginManager.initialize(); // initialize plugins.
 
       this._bridge.on('listening', function(port) {
-        winston.info(`[SERVER] homer is running on port ${port}.`);
+        winston.info(`homer is running on port ${port}.`, { label: 'server'});
       });
 
       return this;
@@ -124,7 +124,7 @@ module.exports = class Server {
       category: Accessory.Categories.BRIDGE,
     }
 
-    winston.verbose(`[SERVER] publishing ${publishInfo.username} over port ${publishInfo.port} using pin ${publishInfo.pincode}..`);
+    winston.verbose(`publishing ${publishInfo.username} over port ${publishInfo.port} using pin ${publishInfo.pincode}..`, { label: 'server'});
 
     await this._bridge.publish(publishInfo, this._allowInsecureAccess);
     await this._printSetupInfo();
@@ -132,19 +132,19 @@ module.exports = class Server {
 
   _createBridge = async () => {
     var uuid = Uuid.generate('homer');
-    winston.verbose(`[SERVER] creating bridge: homer, uuid: ${uuid}`)
+    winston.verbose(`creating bridge: homer, uuid: ${uuid}`, { label: 'server'})
     return new Bridge('homer', uuid);
   }
 
   _printSetupInfo = async () => {
-    winston.info(`[SERVER] setup payload ${this._bridge.setupURI()}`);
-    winston.info(`[SERVER] scan this code with your Homekit device to pair..`);
+    winston.info(`setup payload ${this._bridge.setupURI()}`, { label: 'server'});
+    winston.info(`scan this code with your Homekit device to pair..`, { label: 'server'});
     qrcode.generate(this._bridge.setupURI());
-    winston.info(`[SERVER] or enter this pin on your Homekit device to pair..`);
-    winston.info(chalk.black.bgYellow(`                       `));
-    winston.info(chalk.black.bgYellow(`    ┌────────────┐     `));
-    winston.info(chalk.black.bgYellow(`    │ ${config.get('homekit.setup.pin')} │     `));
-    winston.info(chalk.black.bgYellow(`    └────────────┘     `));
-    winston.info(chalk.black.bgYellow(`                       `));
+    winston.info(`or enter this pin on your Homekit device to pair..`, { label: 'server'});
+    winston.info(chalk.black.bgYellow(`                       `), { label: 'server'});
+    winston.info(chalk.black.bgYellow(`    ┌────────────┐     `), { label: 'server'});
+    winston.info(chalk.black.bgYellow(`    │ ${config.get('homekit.setup.pin')} │     `), { label: 'server'});
+    winston.info(chalk.black.bgYellow(`    └────────────┘     `), { label: 'server'});
+    winston.info(chalk.black.bgYellow(`                       `), { label: 'server'});
   }
 }

@@ -33,17 +33,17 @@ const HomerVersion = require('homekit/plugin/api/homer/version');
 module.exports = class PluginManager {
   constructor(pluginApi) {
     this._pluginApi = pluginApi;
-    winston.info(`[PLUGIN_MANAGER] api compatibilities levels; homer: ${HomerVersion.ServerVersion} api: ${HomerVersion.ApiVersion}, homebridge: ${HomebridgVersion.ServerCompatibilityVersion} api: ${HomebridgVersion.ApiCompatibilityVersion}..`)
+    winston.info(`api compatibilities levels; homer: ${HomerVersion.ServerVersion} api: ${HomerVersion.ApiVersion}, homebridge: ${HomebridgVersion.ServerCompatibilityVersion} api: ${HomebridgVersion.ApiCompatibilityVersion}..`, { label: 'pluginmanager'})
   }
 
   discover = async() => {
-    winston.verbose('[PLUGIN_MANAGER] loading plugins..');
+    winston.verbose('loading plugins..', { label: 'pluginmanager'});
 
     this._plugins = await this._discover();
 
-    this._plugins.length > 0 
-      ? winston.info(`[PLUGIN_MANAGER] discovered a total of ${this._plugins.length} plugins..`)
-      : winston.warn(`[PLUGIN_MANAGER] no plugins found. See the README for information on installing plugins..`)
+    this._plugins.length > 0
+      ? winston.info(`discovered a total of ${this._plugins.length} plugins..`, { label: 'pluginmanager'})
+      : winston.warn(`no plugins found. See the README for information on installing plugins..`, { label: 'pluginmanager'})
   }
 
   load = async() => {
@@ -63,7 +63,7 @@ module.exports = class PluginManager {
     let searchedPaths = {};
     let paths = await this._getPaths();
 
-    winston.verbose(`[PLUGIN_MANAGER] discovering plugins..`);
+    winston.verbose(`discovering plugins..`, { label: 'pluginmanager'});
 
     for (const path of paths) {
       if (searchedPaths[path]) 
@@ -77,7 +77,7 @@ module.exports = class PluginManager {
         continue;
 
       for(const plugin of plugins) {
-        winston.verbose(`[PLUGIN_MANAGER] discovered plugin: ${plugin.name}..`);
+        winston.verbose(`discovered plugin: ${plugin.name}..`, { label: 'pluginmanager'});
         discovered.push(plugin);
       }
     }
@@ -87,7 +87,7 @@ module.exports = class PluginManager {
 
   _discoverPath = async (dir) => {
     try {
-      winston.verbose(`[PLUGIN_MANAGER] checking ${dir} for plugins..`);
+      winston.verbose(`checking ${dir} for plugins..`, { label: 'pluginmanager'});
 
       let plugins = [];
 
@@ -99,7 +99,7 @@ module.exports = class PluginManager {
       let names = await fs.readdir(dir);
 
       // if this is a module directory with package.json, just skip it.
-      if (await fs.exists(path.join(dir, "package.json")))
+      if (await fs.exists(path.join(dir, 'package.json')))
         names = [""];
 
       for (const name of names) {

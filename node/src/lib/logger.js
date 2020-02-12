@@ -39,7 +39,8 @@ module.exports.initialize = async () => {
     fs.existsSync(logPath) || fs.mkdirSync(logPath); // eslint-disable-line security/detect-non-literal-fs-filename
 
     const masterFormat = printf((info) => {
-      return `${info.timestamp} [${info.ms}] - ${info.level}: [${info.label}] ${info.message}`;
+      let context = info.label ? ` [${info.label}] ` : ''
+      return `${info.timestamp} [${info.ms}] - ${info.level}:${context}${info.message}`;
     });
 
     const timeStamp = () => {
@@ -50,22 +51,22 @@ module.exports.initialize = async () => {
     winston.configure({
       transports: [
         new winston.transports.Console({
-          level: 'verbose',
+          level: 'silly',
           format: combine(
             timestamp({format: timeStamp}),
             ms(),
-            label({ label: 'right meow!' }),
+            label({ label: '' }),
             colorize({ level: true }),
             splat(),
             masterFormat,
           )
         }),
         new winston.transports.File({
-          level: 'verbose',
+          level: 'silly',
           format: combine(
             timestamp({format: timeStamp}),
             ms(),
-            label({ label: 'right meow!' }),
+            label({ label: '' }),
             splat(),
             masterFormat,
           ),
@@ -73,6 +74,7 @@ module.exports.initialize = async () => {
         })
       ]
     });
+
   } catch (err) {
     throw new Error(`Error initiliazing logger - ${err}.`);
   }

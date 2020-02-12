@@ -37,7 +37,7 @@ module.exports = class AccessoryRepository {
   }
 
   load = async () => {
-    winston.verbose('[ACCESSORY_REPOSITORY] loading accessories..');
+    winston.verbose('loading accessories..', { label: 'accessoryrep'});
 
     for (const entry of config.get('homekit.accessories')) {
       await this._loadAccessory(entry);
@@ -50,7 +50,7 @@ module.exports = class AccessoryRepository {
       var name = accessoryConfig.name;
 
       var ctor = await this._pluginApi.accessory(type); // get accessory's ctor.
-      if (!ctor) throw new Error(`[ACCESSORY_REPOSITORY] requested unregistered accessory ${type}`);
+      if (!ctor) throw new Error(`requested unregistered accessory ${type}`, { label: 'accessoryrep'});
 
       var logger = Logger.withPrefix(`${type}:${name}`); // create logger for accessory.
       var instance = new ctor(logger, accessoryConfig); // create an instance.
@@ -58,13 +58,13 @@ module.exports = class AccessoryRepository {
 
       this._bridge.addBridgedAccessory(accessory); // add accessory to our bridge.
     } catch (err) {
-      winston.error(`[ACCESSORY_REPOSITORY] error loading accessory; ${err.stack}`)
+      winston.error(`error loading accessory; ${err.stack}`, { label: 'accessoryrep'})
     }
   }
 
   createAccessory = async(accessoryInstance, displayName, accessoryType, uuid_base) => {
 
-    winston.verbose(`[ACCESSORY_REPOSITORY] creating accessory: ${accessoryType} => ${displayName}..`);
+    winston.verbose(`creating accessory: ${accessoryType} => ${displayName}..`, { label: 'accessoryrep'});
 
     var services = accessoryInstance.getServices();
 

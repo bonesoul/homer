@@ -33,8 +33,8 @@ module.exports = async () => {
     // ========================================
     // init hap-nodejs.
     // ========================================
-    winston.verbose(`[HOMEKIT] initializing hap-nodejs over path ${user.persistPath()}`);
-    await hap.init(user.persistPath());
+    winston.verbose(`initializing hap-nodejs over path ${user.persistPath()}`, { label: 'homekit'});
+    hap.init(user.persistPath());
 
     // ========================================
     // start homekit server.
@@ -42,6 +42,6 @@ module.exports = async () => {
     var server = await new Server();
     await server.run();
   } catch (err) {
-    throw new Error(`[HOMEKIT] error initializing homekit server: ${err.stack}`);
+    throw new Error(`error initializing homekit server: ${err.stack}`, { label: 'homekit'});
   }
 };

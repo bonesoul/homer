@@ -65,10 +65,10 @@ const startup = async () => {
     winston.info('          |           \\			        ');
     winston.info('          j            Y				      ');
     winston.info('');
-    winston.info(`[HOMER] starting up homer version: ${packageInfo.version} [${env}]`); // eslint-disable-line no-undef
-    winston.info(`[HOMER] running on: ${os.platform()}-${os.arch()} [${os.type()} ${os.release()}]`);
-    winston.info(`[HOMER] node: ${process.versions.node}, v8: ${process.versions.v8}, uv: ${process.versions.uv}, openssl: ${process.versions.openssl}`);
-    winston.info(`[HOMER] running over ${os.cpus().length} core system.`);
+    winston.info(`starting up homer version: ${packageInfo.version} [${env}]`, { label: 'app'}); // eslint-disable-line no-undef
+    winston.info(`running on: ${os.platform()}-${os.arch()} [${os.type()} ${os.release()}]`, { label: 'app'});
+    winston.info(`node: ${process.versions.node}, v8: ${process.versions.v8}, uv: ${process.versions.uv}, openssl: ${process.versions.openssl}`, { label: 'app'});
+    winston.info(`running over ${os.cpus().length} core system.`, { label: 'app'});
 
     // ========================================
     // start homekit support.
@@ -84,20 +84,20 @@ const startup = async () => {
     // ========================================
     // broadcast startup event.
     // ========================================
-    winston.info('[HOMER] startup done..');
+    winston.info('startup done..', { label: 'app'});
     emitter.emit('startup');
   } catch (err) {
-    winston.error(`startup error: ${err}`);
+    winston.error(`startup error: ${err}`, { label: 'app'});
   }
 };
 
 const gracefulExit = code => {
-  winston.info(`[HOMER] exiting process with code: ${code}`);
+  winston.info(`exiting process with code: ${code}`, { label: 'app'});
   process.exit(code);
 };
 
 process.on('unhandledRejection', (reason, promise) => {
-  winston.error(`Possibly unhandled rejection at promise; ${util.inspect(promise)}`);
+  winston.error(`possibly unhandled rejection at promise; ${util.inspect(promise)}`, { label: 'app'});
 });
 
 startup();
