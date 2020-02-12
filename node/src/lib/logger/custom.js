@@ -21,21 +21,35 @@
 //      Licensor: Hüseyin Uslu
 'use strict';
 
-const os = require('os');
-const path = require('path');
+module.exports = class CustomLogger {
+  constructor(logger) {
+    this.logger = logger;
+  }
 
-module.exports.storagePath = () => {
-  return path.join(os.homedir(), ".homer");
-};
+  log = (level, msg) => {
+    if (msg === undefined) {
+      msg = level;
+      level = 'debug';
+    }
 
-module.exports.logPath = () => {
-  return path.join(module.exports.storagePath(), `/logs/`)
+    switch(level) {
+      default:
+      case 'debug':
+        this.logger.debug(msg);
+        break;
+      case 'info':
+        this.logger.info(msg);
+        break;
+      case 'warn':
+        this.logger.warn(msg);
+        break;
+      case 'error':
+        this.logger.error(msg);
+        break;
+    }
+  }
+  debug = (msg) => { this.logger.debug(msg); }
+  info = (msg) => { this.logger.info(msg); }
+  warn = (msg) => { this.logger.warn(msg); }
+  error = (msg) => { this.logger.error(msg); }
 }
-
-module.exports.persistPath = () => {
-  return path.join(module.exports.storagePath(), "persist");
-};
-
-module.exports.cachedAccessoryPath = () => {
-  return path.join(module.exports.storagePath(), "accessories");
-};

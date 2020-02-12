@@ -29,7 +29,7 @@ const winston = require('winston');
 const util = require('util');
 const events = require('events');
 const emitter = new events.EventEmitter();
-const logger = require('lib/logger');
+const logger = require('lib/logger/logger');
 const packageInfo = require('../package.json');
 
 const startup = async () => {
