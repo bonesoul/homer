@@ -21,9 +21,9 @@
 //      Licensor: Hüseyin Uslu
 'use strict';
 
-module.exports = class CustomLogger {
+module.exports = class PluginLogger {
   constructor(logger) {
-    this.logger = logger;
+    this._logger = logger;
   }
 
   log = (level, msg) => {
@@ -35,21 +35,21 @@ module.exports = class CustomLogger {
     switch(level) {
       default:
       case 'debug':
-        this.logger.debug(msg);
+        this._logger.debug(msg);
         break;
       case 'info':
-        this.logger.info(msg);
+        this._logger.info(msg);
         break;
       case 'warn':
-        this.logger.warn(msg);
+        this._logger.warn(msg);
         break;
       case 'error':
-        this.logger.error(msg);
+        this._logger.error(msg);
         break;
     }
   }
-  debug = (msg) => { this.logger.debug(msg); }
-  info = (msg) => { this.logger.info(msg); }
-  warn = (msg) => { this.logger.warn(msg); }
-  error = (msg) => { this.logger.error(msg); }
+  debug = (msg) => { this._logger.debug(msg); }
+  info = (msg) => { this._logger.info(msg); }
+  warn = (msg) => { this._logger.warn(msg); }
+  error = (msg) => { this._logger.error(msg); }
 }

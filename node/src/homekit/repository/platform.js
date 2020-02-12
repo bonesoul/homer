@@ -53,7 +53,7 @@ module.exports = class PlatformRepoistory {
       var ctor = await this._pluginApi.platform(type); // get platform's ctor.
       if (!ctor) throw new Error(`requested unregistered accessory ${type}`, { label: 'platformrep'});
 
-      const logger = require('lib/logger/logger').customLogger('platform', type, name); // create custom logger for platform
+      const logger = require('lib/logger/logger').pluginLogger('platform', type, name); // create custom logger for platform
       var instance = new ctor(logger, platformConfig, this._pluginApi);
 
       if (instance.configureAccessory == undefined)

@@ -51,7 +51,7 @@ module.exports = class AccessoryRepository {
       var ctor = await this._pluginApi.accessory(type); // get accessory's ctor.
       if (!ctor) throw new Error(`requested unregistered accessory ${type}`, { label: 'accessoryrep'});
 
-      const logger = require('lib/logger/logger').customLogger('accessory', type, name); // create custom logger for accessory
+      const logger = require('lib/logger/logger').pluginLogger('accessory', type, name); // create custom logger for accessory
       var instance = new ctor(logger, accessoryConfig); // create an instance.
       var accessory = await this.createAccessory(instance, name, type, accessoryConfig.uuid_base); // create accessory.
 

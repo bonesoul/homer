@@ -27,7 +27,7 @@ const config = require('config');
 const winston = require('winston');
 const util = require('util');
 const user = require('lib/user');
-const CustomLogger = require('lib/logger/custom');
+const PluginLogger = require('lib/logger/plugin');
 const { format } = require('winston');
 const { combine, colorize, timestamp, ms, label, splat, printf } = format;
 
@@ -73,22 +73,32 @@ module.exports.initialize = async () => {
 
 module.exports.customLogger = (dir, type, name) => {
   try {
-    const logger = createCustomLogger(dir, type, name); // the custom winston logger.
-    const customLoger = new CustomLogger(logger);
-
-    var log = customLoger.info.bind(customLoger);
-    log.debug = customLoger.debug;
-    log.info = customLoger.info;
-    log.warn = customLoger.warn;
-    log.error = customLoger.error;
-    log.log = customLoger.log;
-    log.logger = customLoger.logger;
-    console.dir(log.logger)
-    return log;
+    const logger = createCustomLogger(dir, type, name);
+    return logger;
   } catch (err) {
     throw new Error(`error initiliazing custom logger - ${err}.`);
   }
 };
+
+module.exports.pluginLogger = (dir, type, name) => {
+  try {
+    const logger = createCustomLogger(dir, type, name);
+    const pluginLogger = new PluginLogger(logger);
+
+    // custom log api for homebridge plugin api;
+    var log = pluginLogger.info.bind(pluginLogger);
+    log.debug = pluginLogger.debug;
+    log.info = pluginLogger.info;
+    log.warn = pluginLogger.warn;
+    log.error = pluginLogger.error;
+    log.log = pluginLogger.log;
+    log.logger = pluginLogger.logger;
+
+    return log;
+  } catch (err) {
+    throw new Error(`error initiliazing plugin logger - ${err}.`);
+  }
+}
 
 const createCustomLogger = (dir, type, name) => {
   // setup the logging directory and ensure it exists.
