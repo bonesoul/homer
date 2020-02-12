@@ -28,6 +28,10 @@ module.exports.storagePath = () => {
   return path.join(os.homedir(), ".homer");
 };
 
+module.exports.logPath = () => {
+  return path.join(module.exports.storagePath(), `/logs/homer.log`)
+}
+
 module.exports.persistPath = () => {
   return path.join(module.exports.storagePath(), "persist");
 };

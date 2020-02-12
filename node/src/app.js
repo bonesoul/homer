@@ -42,7 +42,7 @@ const startup = async () => {
     // ========================================
     // initialize log manager.
     // ========================================
-    await logger.processLogger('homer');
+    await logger.initialize();
 
     // ========================================
     // print startup banner.

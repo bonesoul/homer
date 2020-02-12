@@ -26,43 +26,53 @@ const path = require('path');
 const config = require('config');
 const winston = require('winston');
 const moment = require('moment');
+const user = require('lib/user');
+const { format, transports } = require('winston');
+const { combine, cli, colorize, padLevels, timestamp, label, splat, printf } = format;
 require('moment-duration-format')(moment);
 const hirestime = require('hirestime');
 
-module.exports.processLogger = async processName => {
+module.exports.initialize = async () => {
   try {
     // setup the logging directory and ensure it exists.
     const logPath = path.join(__dirname, '../../../logs');
     fs.existsSync(logPath) || fs.mkdirSync(logPath); // eslint-disable-line security/detect-non-literal-fs-filename
 
-    // remove the default console log.
-    winston.remove(winston.transports.Console);
+    const masterFormat = printf(({ level, message, label, timestamp }) => {
+      return `${timestamp} [${global.process.pid}] - ${level}: [${label}] ${message}`;
+    });
 
-    if (config.logging.console.enabled) { // re-setup the console log if enabled.
-      winston.add(winston.transports.Console, {
-        level: config.logging.console.level,
-        handleExceptions: true,
-        humanReadableUnhandledException: true,
-        colorize: true,
-        prettyPrint: true,
-        timestamp: () => {
-          var date = new Date();
-          return `${date.getDate()}/${(date.getMonth() + 1)} ${date.toTimeString().substr(0, 8)} [${global.process.pid}]`;
-        }
-      });
+    const timeStamp = () => {
+      var date = new Date();
+      return `${date.getDate()}/${(date.getMonth() + 1)} ${date.toTimeString().substr(0, 8)}`;
     }
 
-    if (config.logging.file.enabled) { // setup the server log if enabled.
-      winston.add(winston.transports.File, {
-        handleExceptions: true,
-        humanReadableUnhandledException: true,
-        filename: path.join(logPath, `/${processName}.log`),
-        level: config.logging.file.level,
-        json: false
-      });
-    }
+    winston.configure({
+      transports: [
+        new winston.transports.Console({
+          level: 'verbose',
+          format: combine(
+            timestamp({format: timeStamp}),
+            label({ label: 'right meow!' }),
+            colorize({ level: true }),
+            splat(),
+            masterFormat,
+          )
+        }),
+        new winston.transports.File({
+          level: 'verbose',
+          format: combine(
+            timestamp({format: timeStamp}),
+            label({ label: 'right meow!' }),
+            splat(),
+            masterFormat,
+          ),
+          filename: user.logPath()
+        })
+      ]
+    });
   } catch (err) {
-    throw new Error(`Error initiliazing process logger - ${err}.`);
+    throw new Error(`Error initiliazing logger - ${err}.`);
   }
 };
 
