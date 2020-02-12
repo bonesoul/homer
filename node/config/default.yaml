@@ -27,7 +27,6 @@ homekit:
       auth: none,
       theme: auto,
       tempUnits: c
-      noFork: true
       logs:
         method: file
         path: C:/Users/shala/.homer/logs/homer.log
