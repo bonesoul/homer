@@ -48,33 +48,35 @@ module.exports.initialize = async () => {
       return `${date.getDate()}/${(date.getMonth() + 1)} ${date.toTimeString().substr(0, 8)}`;
     }
 
-    winston.configure({
-      transports: [
-        new winston.transports.Console({
-          level: 'silly',
-          format: combine(
-            timestamp({format: timeStamp}),
-            ms(),
-            label({ label: '' }),
-            colorize({ level: true }),
-            splat(),
-            masterFormat,
-          )
-        }),
-        new winston.transports.File({
-          level: 'silly',
-          format: combine(
-            timestamp({format: timeStamp}),
-            ms(),
-            label({ label: '' }),
-            splat(),
-            masterFormat,
-          ),
-          filename: user.logPath()
-        })
-      ]
-    });
+    // setup the console log if enabled.
+    if (config.logging.console.enabled) {
+      winston.add(new winston.transports.Console({
+        level: 'silly',
+        format: combine(
+          timestamp({format: timeStamp}),
+          ms(),
+          label({ label: '' }),
+          colorize({ level: true }),
+          splat(),
+          masterFormat,
+        )
+      }));
+    }
 
+    // setup the server log if enabled.
+    if (config.logging.file.enabled) {
+    winston.add(new winston.transports.File({
+      level: 'silly',
+      format: combine(
+        timestamp({format: timeStamp}),
+        ms(),
+        label({ label: '' }),
+        splat(),
+        masterFormat,
+      ),
+      filename: user.logPath()
+    }));
+    }
   } catch (err) {
     throw new Error(`Error initiliazing logger - ${err}.`);
   }

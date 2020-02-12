@@ -38,7 +38,7 @@ module.exports = class HomebridgePluginApi {
     this.version = 2.4;
 
     // expose the homebridge server version
-    this.serverVersion =  versions.Homebridge.ApiCompatibilityVersion;
+    this.serverVersion = versions.Homebridge.ApiCompatibilityVersion;
 
     // expose the User class methods to plugins to get paths. Example: homebridge.user.storagePath()
     this.user = user;
