@@ -26,7 +26,7 @@ namespace Homer.Platform.HomeKit.Caches.Identifiers
             SavedCacheHash = "";
         }
 
-        public int InstanceIdForAccessory(IAccessoryBase accessory)
+        public int GetInstanceIdForAccessory(IAccessoryBase accessory)
         {
             if (accessory == null) throw new ArgumentNullException(nameof(accessory));
 
