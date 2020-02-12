@@ -27,13 +27,12 @@ const fs = require('fs-extra')
 const globalDirectories = require('global-dirs');
 const Plugin = require('homekit/plugin/plugin');
 const chalk = require('chalk');
-const HomebridgVersion = require('homekit/plugin/api/homebridge/version');
-const HomerVersion = require('homekit/plugin/api/homer/version');
+const versions = require('homekit/plugin/api/versions');
 
 module.exports = class PluginManager {
   constructor(pluginApi) {
     this._pluginApi = pluginApi;
-    winston.info(`api compatibilities levels; homer: ${HomerVersion.ServerVersion} api: ${HomerVersion.ApiVersion}, homebridge: ${HomebridgVersion.ServerCompatibilityVersion} api: ${HomebridgVersion.ApiCompatibilityVersion}..`, { label: 'pluginmanager'})
+    winston.info(`api compatibilities levels; homer: ${versions.Homer.ServerVersion} api: ${versions.Homer.ApiVersion}, homebridge: ${versions.Homebridge.ServerCompatibilityVersion} api: ${versions.Homebridge.ApiCompatibilityVersion}..`, { label: 'pluginmanager'})
   }
 
   discover = async() => {

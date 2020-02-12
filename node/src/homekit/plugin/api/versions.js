@@ -21,7 +21,15 @@
 //      Licensor: Hüseyin Uslu
 'use strict';
 
+const packageInfo = require('../../../../package.json');
+
 module.exports = Object.freeze({
-  ServerCompatibilityVersion: '0.4.50',
-  ApiCompatibilityVersion: '2.4'
+  Homebridge: {
+    ServerCompatibilityVersion: '0.4.50',
+    ApiCompatibilityVersion: '2.4'
+  },
+  Homer: {
+    ServerVersion: packageInfo.version,
+    ApiVersion: 0.1
+  }
 });

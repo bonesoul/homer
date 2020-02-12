@@ -25,8 +25,7 @@ const path = require('path');
 const winston = require('winston');
 const fs = require('fs-extra')
 const semver = require('semver');
-const HomerVersion = require('homekit/plugin/api/homer/version');
-const HomebridgVersion = require('homekit/plugin/api/homebridge/version');
+const versions = require('homekit/plugin/api/versions');
 
 module.exports = class Plugin {
   constructor(name, dir) {
@@ -49,12 +48,12 @@ module.exports = class Plugin {
       throw new Error(`plugin does not contain correct engines definitions..`,{ label: `plugin:${this.name}`});
 
     // check if homer version is satisfied.
-    if (json.engines.homer && !semver.satisfies(HomerVersion.ServerVersion, json.engines.homer) )
-      throw new Error(`plugin requires homer version ${json.engines.homer} which is not satisfied by current version ${HomerVersion.ServerVersion}. Please consider upgrading your homer installation..`,{ label: `plugin:${this.name}`});
+    if (json.engines.homer && !semver.satisfies(versions.Homer.ServerVersion, json.engines.homer) )
+      throw new Error(`plugin requires homer version ${json.engines.homer} which is not satisfied by current version ${versions.Homer.ServerVersion}. Please consider upgrading your homer installation..`,{ label: `plugin:${this.name}`});
 
     // check if homebridge version is satisfied.
-    if (json.engines.homebridge && !semver.satisfies(HomebridgVersion.ServerCompatibilityVersion, json.engines.homebridge))
-      throw new Error(`plugin requires homebridge compatability version ${json.engines.homebridge} which is not satisfied by current version ${HomebridgVersion.ServerCompatibilityVersion}. Please consider upgrading your homer installation..`,{ label: `plugin:${this.name}`});
+    if (json.engines.homebridge && !semver.satisfies(versions.Homebridge.ServerCompatibilityVersion, json.engines.homebridge))
+      throw new Error(`plugin requires homebridge compatability version ${json.engines.homebridge} which is not satisfied by current version ${versions.Homebridge.ServerCompatibilityVersion}. Please consider upgrading your homer installation..`,{ label: `plugin:${this.name}`});
 
     // check node version.
     if (json.engines.node && !semver.satisfies(process.version, json.engines.node))

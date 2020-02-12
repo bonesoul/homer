@@ -87,7 +87,7 @@ const startup = async () => {
     winston.info('startup done..', { label: 'app'});
     emitter.emit('startup');
   } catch (err) {
-    winston.error(`startup error: ${err}`, { label: 'app'});
+    winston.error(`startup error: ${err.stack}`, { label: 'app'});
   }
 };
 
