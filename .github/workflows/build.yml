@@ -28,10 +28,18 @@ jobs:
       run: |
         echo "FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}"        
     - name: build
-      if: ${{ matrix.os }} == 'macos-latest' || ${{ matrix.os }} == 'ubuntu-latest'
+      - if: matrix.os == 'macos-latest'
       run: |
         cd dotnet-core
         ./build.sh
+      - if: matrix.os == 'linux-latest'
+      run: |
+        cd dotnet-core
+        ./build.sh
+      - if: matrix.os == 'windows-latest'
+      run: |
+        cd dotnet-core
+        ./build.cmd		
     - name: test
       run: |
         cd dotnet-core
