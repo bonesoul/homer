@@ -22,7 +22,7 @@ function readCharacteristics(metadata) {
     classyName = classyName.replace(/[.]/g, "_"); // "PM2.5" -> "PM2_5"
     characteristics[characteristic.UUID] = classyName; // build characteristics list for later reference to use in services.
 
-    var outputPath = path.join(__dirname, '..', '..', 'src', 'platforms', 'homekit', 'Characteristics',  'Definitions', `${classyName}Characteristic.cs`);
+    var outputPath = path.join(__dirname, '..', '..', 'dotnet-core', 'src', 'platforms', 'homekit', 'Characteristics',  'Definitions', `${classyName}Characteristic.cs`);
     var output = fs.createWriteStream(outputPath);
 
     var res = nunjucks.render('characteristic.html', {
@@ -47,7 +47,7 @@ function readServices(metadata) {
     var service = metadata.Services[index];
     var classyName = service.Name.replace(/[\s\-]/g, "");
 
-    var outputPath = path.join(__dirname, '..', '..', 'src', 'platforms', 'homekit', 'Services',  'Definitions', `${classyName}Service.cs`);
+    var outputPath = path.join(__dirname, '..', '..', 'dotnet-core', 'src', 'platforms', 'homekit', 'Services',  'Definitions', `${classyName}Service.cs`);
     var output = fs.createWriteStream(outputPath);
 
     var res = nunjucks.render('service.html', {
