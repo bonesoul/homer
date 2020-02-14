@@ -17,13 +17,13 @@ jobs:
       uses: gittools/actions/gitversion/setup@v0.9
       with:
           versionSpec: '5.1.x'
-    - name: setup dotnet core
-      uses: actions/setup-dotnet@v1.4.0
-      with:
-        dotnet-version: ${{ matrix.dotnetcore }}
     - name: setup gitversion
       id: gitversion # step id used as reference for output values
       uses: gittools/actions/gitversion/execute@v0.9
+    - name: setup dotnet core
+      uses: actions/setup-dotnet@v1.4.0
+      with:
+        dotnet-version: ${{ matrix.dotnetcore }}    
     - name: build info
       run: |
         echo "FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}"        
