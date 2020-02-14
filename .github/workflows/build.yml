@@ -55,7 +55,8 @@ jobs:
       run: cd dotnet-core && ./build.sh
     - name: test
       run: cd dotnet-core && dotnet test
-    - uses: actions/upload-artifact@v1
+    - name: upload artifacts	  
+      uses: actions/upload-artifact@v1
       with:
         name: ${{ steps.gitversion.outputs.fullSemVer }}-artifacts
         path: dotnet-core/bin
