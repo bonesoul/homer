@@ -2,7 +2,12 @@ name: build
 on: [push]
 jobs:
   dotnetcore:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+        dotnetcore: ['3.1.101']
+    name: ${{ matrix.os }} - dotnet core ${{ matrix.dotnetcore }}		
     steps:
     - name: checkout
       uses: actions/checkout@v2
@@ -11,11 +16,11 @@ jobs:
     - name: install gitversion
       uses: gittools/actions/gitversion/setup@v0.9
       with:
-          versionSpec: '5.1.x'	  
+          versionSpec: '5.1.x'
     - name: setup dotnet core
       uses: actions/setup-dotnet@v1.4.0
       with:
-        dotnet-version: 3.1.101
+        dotnet-version: ${{ matrix.dotnetcore }}
     - name: gitversion
       id: gitversion # step id used as reference for output values
       uses: gittools/actions/gitversion/execute@v0.9
@@ -58,5 +63,5 @@ jobs:
     - name: upload artifacts	  
       uses: actions/upload-artifact@v1
       with:
-        name: ${{ steps.gitversion.outputs.fullSemVer }}-artifacts
+        name: ${{ steps.gitversion.outputs.fullSemVer }}-${{ matrix.os }}-${{ matrix.dotnetcore }}-artifacts
         path: dotnet-core/bin
