@@ -16,6 +16,6 @@ jobs:
     #- name: run mongodb
     #  run:  sudo docker run --name mongo -d -p 27017:27017 mongo    
     - name: build
-      run: ./build.sh
+      run: ./dotnet-core/build.sh
     - name: test
       run: dotnet test
