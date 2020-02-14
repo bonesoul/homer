@@ -14,7 +14,7 @@ jobs:
     #- name: run mongodb
     #  run:  sudo docker run --name mongo -d -p 27017:27017 mongo    
     - name: build
-      run: ./dotnet-core/build.sh
+      run: dotnet-core/build.sh
     - name: test
       run: dotnet test
     - uses: actions/upload-artifact@v1
