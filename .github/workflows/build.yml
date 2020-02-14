@@ -35,13 +35,13 @@ jobs:
     - name: linux build		
       if: matrix.os == 'linux-latest'
         run: |
-          cd dotnet-core
-          ./build.sh
+        cd dotnet-core
+        ./build.sh
     - name: windows build		
       if: matrix.os == 'windows-latest'
         run: |
-          cd dotnet-core
-          ./build.cmd		
+        cd dotnet-core
+        ./build.cmd		
     - name: test
       run: |
         cd dotnet-core
