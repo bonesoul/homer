@@ -19,8 +19,8 @@ jobs:
     - name: Use GitVersion
       id: gitversion # step id used as reference for output values
       uses: gittools/actions/gitversion/execute@v0.9
-    - name: build info	  
-    - run: |
+    - name: build info
+      run: |
         echo "FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}"
         echo "Major: ${{ steps.gitversion.outputs.major }}"
         echo "Minor: ${{ steps.gitversion.outputs.minor }}"
