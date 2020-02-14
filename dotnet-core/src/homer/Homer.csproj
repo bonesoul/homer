@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\contrib\uuid.net\uuid.net.csproj" />
+    <ProjectReference Include="..\..\..\contrib\uuid.net\uuid.net.csproj" />
     <ProjectReference Include="..\core\Homer.Core.csproj" />
     <ProjectReference Include="..\platforms\homekit\Homer.Platform.HomeKit.csproj" />
   </ItemGroup>

@@ -17,3 +17,7 @@ jobs:
       run: ./dotnet-core/build.sh
     - name: test
       run: dotnet test
+    - uses: actions/upload-artifact@v1
+      with:
+        name: artifacts
+        path: dotnet-core/bin
