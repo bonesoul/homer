@@ -8,14 +8,14 @@ jobs:
       uses: actions/checkout@v2
     - name: Fetch all history for all tags and branches
       run: git fetch --prune --unshallow
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9
-      with:
-          versionSpec: '5.1.x'	  
     - name: install dotnet core 3.1
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9
+      with:
+          versionSpec: '5.1.x'	  
     - name: Use GitVersion
       id: gitversion # step id used as reference for output values
       uses: gittools/actions/gitversion/execute@v0.9
@@ -56,5 +56,5 @@ jobs:
       run: cd dotnet-core && dotnet test
     - uses: actions/upload-artifact@v1
       with:
-        name: artifacts
+        name: ${{ steps.gitversion.outputs.fullSemVer }}-artifacts
         path: dotnet-core/bin
