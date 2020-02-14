@@ -33,7 +33,7 @@ jobs:
         cd dotnet-core
         ./build.sh
     - name: linux build		
-      if: matrix.os == 'linux-latest'
+      if: matrix.os == 'ubuntu-latest'
       run: |
         cd dotnet-core
         ./build.sh
