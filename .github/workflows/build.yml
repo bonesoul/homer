@@ -31,7 +31,7 @@ jobs:
       run: |
         cd dotnet-core
         ./build.sh
-      if: matrix.os == macos-latest || matrix.os == ubuntu-latest
+      if: ${{ matrix.os }} == macos-latest || ${{ matrix.os }} == ubuntu-latest
     - name: test
       run: |
         cd dotnet-core
