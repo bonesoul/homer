@@ -1,9 +1,7 @@
-name: dotnet-core
-
+name: build
 on: [push]
-
 jobs:
-  build:
+  dotnetcore:
 
     runs-on: ubuntu-latest
 
