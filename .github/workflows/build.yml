@@ -10,13 +10,13 @@ jobs:
     - name: install dotnet core 3.1
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.100
+        dotnet-version: 3.1.101
     #- name: run mongodb
     #  run:  sudo docker run --name mongo -d -p 27017:27017 mongo    
     - name: build
-      run: dotnet-core/build.sh
+      run: cd dotnet-core && ./build.sh
     - name: test
-      run: dotnet test
+      run: cd dotnet-core && dotnet test
     - uses: actions/upload-artifact@v1
       with:
         name: artifacts
