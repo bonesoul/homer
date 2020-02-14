@@ -33,12 +33,12 @@ jobs:
         cd dotnet-core
         ./build.sh
     - name: linux build		
-        if: matrix.os == 'linux-latest'
-        run: |
+     if: matrix.os == 'linux-latest'
+       run: |
           cd dotnet-core
           ./build.sh
     - name: windows build		
-        if: matrix.os == 'windows-latest'
+      if: matrix.os == 'windows-latest'
         run: |
           cd dotnet-core
           ./build.cmd		
