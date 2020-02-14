@@ -70,9 +70,9 @@ namespace Homer.Build
             var projects = new []
             {
                 "contrib/uuid.net/uuid.net.csproj",
-                "src/platforms/homekit/Homer.Platform.HomeKit.csproj",
-                "src/core/Homer.Core.csproj",
-                "src/homer/Homer.csproj"
+                "dotnet-core/src/platforms/homekit/Homer.Platform.HomeKit.csproj",
+                "dotnet-core/src/core/Homer.Core.csproj",
+                "dotnet-core/src/homer/Homer.csproj"
             };
 
             var testProjects = new string[]
