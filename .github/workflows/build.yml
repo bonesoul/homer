@@ -41,8 +41,3 @@ jobs:
       run: |
         cd dotnet-core
         dotnet test
-    - name: upload artifacts	  
-      uses: actions/upload-artifact@v1
-      with:
-        name: ${{ steps.gitversion.outputs.fullSemVer }}-${{ matrix.os }}-dotnetcore-${{ matrix.dotnetcore }}-artifacts
-        path: dotnet-core/bin
