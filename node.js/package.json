@@ -1,0 +1,58 @@
+{
+  "name": "homer",
+  "version": "0.0.1",
+  "description": "The complete home automation for Homer Simpson.",
+  "os": [
+    "linux",
+    "darwin",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "ia32",
+    "arm"
+  ],
+  "main": "src/app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bonesoul/homer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bonesoul/homer/issues"
+  },
+  "keywords": [
+    "homer",
+    "homekit",
+    "smarthome",
+    "home",
+    "automation"
+  ],
+  "author": {
+    "name": "Hüseyin Uslu",
+    "email": "shalafiraistlin@gmail.com",
+    "url": "https://github.com/bonesoul/homer"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/bonesoul/homer#readme",
+  "dependencies": {
+    "app-module-path": "2.2.0",
+    "chalk": "3.0.0",
+    "config": "3.3.0",
+    "fs-extra": "8.1.0",
+    "global-dirs": "2.0.1",
+    "hap-nodejs": "0.5.7",
+    "js-yaml": "3.13.1",
+    "lodash": "4.17.19",
+    "node-persist": "3.0.5",
+    "qrcode-terminal": "0.12.0",
+    "semver": "7.1.3",
+    "winston": "3.2.1"
+  },
+  "engines": {
+    "node": ">=13.7.0",
+    "npm": ">=6.13.6"
+  }
+}

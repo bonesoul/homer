@@ -1,0 +1,30 @@
+# The default config that will be merged with the mode config [development, production, test] and then local.yaml.
+
+############################
+# homekit config.
+############################
+homekit:
+  setup:
+    serial: F1:F6:AC:2B:7E:8B
+    pin: 069-39-561
+    port: 25777
+    insecure: true # allow insecure access?
+
+############################
+# Logging config.
+############################
+logging:
+  master:
+    console: # console logging.
+      enabled: true # enable console log?
+      level: silly #  minimum log level.
+    file: # file logging.
+      enabled: true # enable logging to file?
+      level: silly # minimum log level.
+  plugin: # per-plugin loggers
+    console: # console logging.
+      enabled: true # enable console log?
+      level: silly # minimum log level
+    file: # file logging.
+      enabled: true # enable logging to file?
+      level: silly # minimum log level.

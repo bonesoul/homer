@@ -1,0 +1,15 @@
+﻿logs:
+  master:
+    console:
+      enabled: true
+      level: info
+    file:
+      enabled: true
+      level: debug
+  accessories:
+    console:
+      enabled: false
+      level: info
+    file:
+      enabled: true
+      level: debug

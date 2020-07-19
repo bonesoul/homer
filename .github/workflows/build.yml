@@ -1,0 +1,43 @@
+name: build
+on: [push]
+jobs:
+  dotnetcore:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+        dotnetcore: ['3.1.101']
+    name: ${{ matrix.os }} - dotnet core ${{ matrix.dotnetcore }}		
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: fetch all git history
+      run: git fetch --prune --unshallow
+    - name: install gitversion
+      uses: gittools/actions/gitversion/setup@v0.9
+      with:
+          versionSpec: '5.1.x'
+    - name: setup gitversion
+      id: gitversion # step id used as reference for output values
+      uses: gittools/actions/gitversion/execute@v0.9
+    - name: setup dotnet core
+      uses: actions/setup-dotnet@v1.4.0
+      with:
+        dotnet-version: ${{ matrix.dotnetcore }}    
+    - name: build info
+      run: |
+        echo "FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}"        
+    - name: unix build
+      if: matrix.os == 'macos-latest' || matrix.os == 'ubuntu-latest'
+      run: |
+        cd dotnet-core
+        ./build.sh
+    - name: windows build		
+      if: matrix.os == 'windows-latest'
+      run: |
+        cd dotnet-core
+        ./build.cmd		
+    - name: test
+      run: |
+        cd dotnet-core
+        dotnet test

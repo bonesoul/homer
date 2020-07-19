@@ -1,0 +1,4 @@
+logging:
+  plugin:
+    console:
+      level: silly

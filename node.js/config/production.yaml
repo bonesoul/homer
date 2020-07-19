@@ -1,0 +1,6 @@
+logging:
+  master:
+    console:
+      level: info
+    file:
+      level: info
