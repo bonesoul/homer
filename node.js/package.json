@@ -45,7 +45,7 @@
     "global-dirs": "2.0.1",
     "hap-nodejs": "0.5.7",
     "js-yaml": "3.13.1",
-    "lodash": "4.17.19",
+    "lodash": "4.17.21",
     "node-persist": "3.0.5",
     "qrcode-terminal": "0.12.0",
     "semver": "7.1.3",
