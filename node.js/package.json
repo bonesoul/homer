@@ -40,7 +40,7 @@
   "dependencies": {
     "app-module-path": "2.2.0",
     "chalk": "3.0.0",
-    "config": "3.3.0",
+    "config": "3.3.8",
     "fs-extra": "8.1.0",
     "global-dirs": "2.0.1",
     "hap-nodejs": "0.5.7",
